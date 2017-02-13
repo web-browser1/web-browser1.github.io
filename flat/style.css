@@ -170,7 +170,7 @@ textarea,
     padding: 0;
     border: none;
     color: #333;
-    background: #F9F9F9;
+    background: #f3f3f3;
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     -webkit-text-size-adjust: 100%;
@@ -690,7 +690,6 @@ a {
     line-height: 130%;
     letter-spacing: 0.9px;
     background: #fff;
-    color: #7f8c8d;
 }
 
 .main-navigation .menu > li > a {
@@ -698,14 +697,12 @@ a {
     padding: 14px 18px;
     margin: 6px 6px 0px 0px;
     border-radius: 2px; 
-    box-shadow: 0px 2px 0px 0px rgba(148, 148, 148, 0.11);
 }
 
 .main-navigation .menu ul a {
     display: block;
     padding: 18px 30px;
     border-bottom: 1px solid rgba(148, 148, 148, 0.07);
-    box-shadow: 0px 1px 1px 1px rgba(148, 148, 148, 0.11);
 }
 
 .main-navigation { 
@@ -787,7 +784,6 @@ a {
     top: -1px;
     left: 50%;
     margin-left: -10px;
-    border-bottom-color: rgba(148, 148, 148, 0.11);
     z-index: 1;
 }
 
@@ -951,8 +947,7 @@ a {
     position: relative;
     overflow: hidden;
     z-index: 2;
-    border-radius: 2px;
-    box-shadow: 0px 1px 3px 0px rgba(201, 201, 201, 0.84);
+    
 }
 
 .site-branding a {
@@ -966,10 +961,9 @@ a {
 .site-title a {
     font-size: 2.2em;
     position: relative;
-    padding: 10px;
+    padding: 10px 1em;
     font-family: 'Raleway', serif;
     display: inline-block;
-    box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 0.36);
 
 }
 
@@ -1059,7 +1053,7 @@ a {
 
 .featured-image {
     padding: 2em 4em;
-    background: #ccd0db;
+    background: #C1D0DB;
     overflow: hidden;
     z-index: 1;
 }
@@ -1875,7 +1869,7 @@ object {
     display: block;
     width: 32px;
     height: 32px;
-    color: #898989;
+    color: #FFFFFF;
     margin-left: 4px;
     line-height: 20px;
     text-align: center;
@@ -1927,8 +1921,8 @@ object {
 --------------------------------------------------------------*/
 
 #secondary {
-    background: #333436;
-    padding: 4em;
+    background: #f2f2f2;
+    padding: 4em 0em;
     overflow: auto;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
@@ -1964,12 +1958,10 @@ object {
 
 .widget {
     margin: 0 0 2.5em;
-    color: #EDF1FF;
+    color: #FFFFFF;
     padding-bottom: 20px;
-    background: #2B2C2E;
+    background: #1E2021;
     padding: 2em;
-    border-radius: 3px;
-    box-shadow: 0px 2px 0px 0px #242424;
 }
 
 .widget ul, .widget ol, .widget table, .widget dd, .widget hr, .widget p {
@@ -1982,7 +1974,7 @@ object {
 
 .widget ul li {
     color: #EDF1FF;
-    border-bottom: 1px solid #333436;
+    border-bottom: 1px solid #FFFFFF;
     padding: 14px 0px 14px 6px;
 }
 
@@ -1991,7 +1983,7 @@ object {
 }
 
 .widget li ul {
-    border-top: 1px solid #333436;
+    border-top: 1px solid #FFFFFF;
     margin-top: 1em;
     margin-left: 0;
     padding-left: 1em;
@@ -2003,7 +1995,7 @@ object {
 }
 
 .widget a {
-    color: #D5D9E5;
+    color: #FFFFFF;
     letter-spacing: 0.2px;
 }
 
@@ -2096,7 +2088,7 @@ object {
 }
 
 .site-info a {
-    color: #898989;
+    color: #FFFFFF;
     display: inline-block;
 }
 
@@ -2105,7 +2097,7 @@ object {
 }
 
 .site-info span {
-    color: #898989;
+    color: #FFFFFF;
 }
 
 /*--------------------------------------------------------------
@@ -2125,7 +2117,7 @@ input[type="submit"]:hover,
 }
 
 .color, .a-color-hover a:hover, .color-hover:hover, .a-color a {
-    color: #3498db;
+    color: #DB9634;
 }
 
 .a-underline-hover a:hover {
