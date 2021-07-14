@@ -1,0 +1,18 @@
+body,
+button,
+input,
+select,
+textarea {
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    border: none;
+    color: #222;
+    background: #F9F9F9;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+padding: 1em;
+    font-size: 18px;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: subpixel-antialiased;
+    position: relative;
+}
