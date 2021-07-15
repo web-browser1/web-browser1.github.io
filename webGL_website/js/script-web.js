@@ -206,8 +206,17 @@ for (var i = 0; i < evCache.length; i++) {
 
 
 if (evCache.length == 2) {
+
+    
    
-   var curDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
+   let curDiff = Math.abs(
+       evCache[0].data.getLocalPosition(this.parent).x - evCache[1].data.getLocalPosition(this.parent).x);
+
+
+   console.log(" evCache 2 run   curDiff: " + curDiff +
+    "   prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
+    + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x
+    );
 
    if (prevDiff > 0) {
      if (curDiff > prevDiff) {
@@ -292,8 +301,8 @@ if (evCache.length == 2) {
     //   this.y = newPosition.y;
 
 
-	  console.log("x: " + newPosition.x + "  y: " + newPosition.y  + "  dx: " + dx   + "  dy: " + dy
-       + "  rx: " + rx  + "   ry: " + ry + "  cx1: " + cx1 );
+	//  console.log("x: " + newPosition.x + "  y: " + newPosition.y  + "  dx: " + dx   + "  dy: " + dy
+    //   + "  rx: " + rx  + "   ry: " + ry + "  cx1: " + cx1 );
 
     }
 }
