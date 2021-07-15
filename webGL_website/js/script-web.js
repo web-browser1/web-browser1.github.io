@@ -365,6 +365,24 @@ window.addEventListener("wheel", event => {
 
     }
 
+
+
+
+if( value < 50 ) {
+
+scaleRx += scale_r;
+        scaleRy += scale_r;
+    
+        text3.text = "x"+ scaleRx.toFixed(1);
+    
+    c_rectangle.scale.set(scaleRx, scaleRy);
+
+}
+
+
+
+
+
     console.log("value:" + value + " scroll c: " + scroll_c);
 
 
