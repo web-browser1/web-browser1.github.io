@@ -125,8 +125,8 @@ function onDragStart(event) {
 
 
        
-evCache.push(ev);
- log("pointerDown", ev);
+evCache.push(event);
+ log("pointerDown", event);
 
       //  console.log("event touches: " +   event.targetTouches[0].pageY );
 
@@ -162,7 +162,7 @@ function onDragEnd(ev) {
 
 
 
- remove_event(ev);
+// remove_event(ev);
   
 
   
