@@ -134,7 +134,7 @@ evCache.push(ev);
 
 }
 
-function onDragEnd() {
+function onDragEnd(ev) {
     this.alpha = 1;
     this.dragging = false;
 
@@ -192,9 +192,7 @@ var prevDiff = -1;
 
 function onDragMove(ev) {
 
-
-log("pointerMove", ev);
- ev.target.style.border = "dashed";
+ 
 
  
 
