@@ -126,7 +126,8 @@ function onDragStart(event) {
 
        
 evCache.push(event);
- log("pointerDown", event);
+	
+// log("pointerDown", event);
 
       //  console.log("event touches: " +   event.targetTouches[0].pageY );
 
