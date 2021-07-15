@@ -1,5 +1,16 @@
-const app = new PIXI.Application({ width: 600, height: 600, backgroundColor: 0xDDDDDD });
+const app = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight, backgroundColor: 0xDDDDDD });
 document.body.appendChild(app.view);
+
+
+
+
+window.onload = window.onresize = function () {
+    app.view.width = window.innerWidth;
+
+    app.view.height = window.innerHeight;
+    
+
+};
 
 
 // create a texture from an image path
@@ -13,6 +24,10 @@ const textureButton = PIXI.Texture.from('images/vector.png');
 
 var rx = 50;
 var ry = 50;
+
+
+
+
 
 
 
@@ -106,8 +121,15 @@ function onDragStart(event) {
     cx = newPosition.x;
     cy = newPosition.y; 
 
-
  console.log("cx: " + cx + "  cy: " + cy );
+
+
+       
+
+      //  console.log("event touches: " +   event.targetTouches[0].pageY );
+
+
+
 }
 
 function onDragEnd() {
@@ -127,10 +149,23 @@ function onDragEnd() {
 
    console.log("rx: " + rx + "  ry: " + ry);
 
+
+
+   dx_s = dc_x;
+
+
+   r_x = c_rectangle.x ;
+
 }
 
 var dx = 0;
 var dy = 0;
+
+var dx_s = 0;
+
+var dc_x = 0;
+
+var r_x = 0;
 
 
 function onDragMove() {
@@ -139,12 +174,37 @@ function onDragMove() {
 
     
 
+
+        var b_x = ((scaleRx * start_p) - start_p)/2;
+
       //  var gx = Math.abs(cx - rx)
 
 
         dx = newPosition.x - (cx );
         dy = newPosition.y - (cy );
 
+
+
+        var cx1 = Math.abs((rx + dx) - start_p);
+
+        if( cx1 < b_x ) {
+
+           // dc_x = dx;
+
+         //  dx = 0;
+       
+        }
+
+
+       
+       
+
+
+
+        c_rectangle.x = rx + dx;
+        c_rectangle.y = ry + dy;
+        
+        
 
       //  this.x = dx;
       //  this.y = dy;
@@ -154,12 +214,8 @@ function onDragMove() {
     //   this.y = newPosition.y;
 
 
-c_rectangle.x = rx + dx;
-c_rectangle.y = ry + dy;
-
-
-	console.log("x: " + newPosition.x + "  y: " + newPosition.y  + 
-     "  dx: " + dx   + "  dy: " + dy);
+	  console.log("x: " + newPosition.x + "  y: " + newPosition.y  + "  dx: " + dx   + "  dy: " + dy
+       + "  rx: " + rx  + "   ry: " + ry + "  cx1: " + cx1 );
 
     }
 }
@@ -171,17 +227,13 @@ c_rectangle.y = ry + dy;
 
 
 
-
+/*
     const button = new PIXI.Sprite(textureButton);
-
-
 
     button.anchor.set(0.5);
     button.x = 60;
     button.y = 500;
-
      button.scale.set(0.4, 0.2);
-
 
     button.interactive = true;
     button.buttonMode = true;
@@ -193,10 +245,7 @@ c_rectangle.y = ry + dy;
         .on('pointerover', onButtonOver)
         .on('pointerout', onButtonOut);
 
-
     app.stage.addChild(button);
-
-
 
 
  const button2 = new PIXI.Sprite(textureButton);
@@ -221,12 +270,12 @@ c_rectangle.y = ry + dy;
  
     app.stage.addChild(button2);
 
+*/
 
 
 
 
-
-
+/*
 const text1 = new PIXI.Text('+');
 text1.x = 53;
 text1.y = 485;
@@ -240,16 +289,96 @@ text2.x = 167;
 text2.y = 483;
 
 
-app.stage.addChild(text2);
+app.stage.addChild(text2);*/
 
 
 
 const text3 = new PIXI.Text('x1.0');
-text3.x = 227;
+text3.x = 67;
 text3.y = 483;
 
 
 app.stage.addChild(text3);
+
+
+
+
+
+
+var scale_r = 0.2;
+
+
+
+
+window.addEventListener("gestureend", function(e) {
+
+    console.log(" e scale: " + e.scale );
+
+    if( e.scale < 1.0 ) {
+
+
+    } else if ( e.scale > 1.0 ) {
+
+
+    }
+
+
+
+});
+
+
+
+
+
+var scroll_c = 0;
+
+window.addEventListener("wheel", event => {
+
+    const value = event.deltaY;
+
+    if( value > 0 ) {
+        scroll_c += 1;
+
+        scaleRx -= scale_r;
+        scaleRy -= scale_r;
+    
+        if( scaleRx < 1 ) {
+            scaleRx = 1;
+            scaleRy = 1;
+        }
+    
+        text3.text = "x"+ scaleRx.toFixed(1);
+    
+        c_rectangle.scale.set(scaleRx, scaleRy);
+
+
+    } else if( value < 0 ) {
+        scroll_c -= 1;
+
+
+        scaleRx += scale_r;
+        scaleRy += scale_r;
+    
+        text3.text = "x"+ scaleRx.toFixed(1);
+    
+    c_rectangle.scale.set(scaleRx, scaleRy);
+
+    }
+
+    console.log("value:" + value + " scroll c: " + scroll_c);
+
+
+   // event.preventDefault();
+
+
+
+
+
+});
+
+
+
+
 
 
 
@@ -274,11 +403,9 @@ function onButtonDown2() {
         scaleRy = 1;
     }
 
+    text3.text = "x"+ scaleRx + ".0";
 
-text3.text = "x"+ scaleRx + ".0";
-
-
-c_rectangle.scale.set(scaleRx, scaleRy);
+    c_rectangle.scale.set(scaleRx, scaleRy);
 
 }
 
