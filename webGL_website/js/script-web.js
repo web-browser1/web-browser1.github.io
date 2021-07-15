@@ -125,6 +125,8 @@ function onDragStart(event) {
 
 
        
+evCache.push(ev);
+ log("pointerDown", ev);
 
       //  console.log("event touches: " +   event.targetTouches[0].pageY );
 
@@ -156,6 +158,20 @@ function onDragEnd() {
 
    r_x = c_rectangle.x ;
 
+
+
+
+
+ remove_event(ev);
+  
+
+  
+  if (evCache.length < 2) {
+    prevDiff = -1;
+  }
+
+
+
 }
 
 var dx = 0;
@@ -168,7 +184,70 @@ var dc_x = 0;
 var r_x = 0;
 
 
-function onDragMove() {
+
+var evCache = new Array();
+var prevDiff = -1;
+
+
+
+function onDragMove(ev) {
+
+
+log("pointerMove", ev);
+ ev.target.style.border = "dashed";
+
+ 
+
+for (var i = 0; i < evCache.length; i++) {
+   if (ev.pointerId == evCache[i].pointerId) {
+      evCache[i] = ev;
+   break;
+   }
+ }
+
+
+if (evCache.length == 2) {
+   
+   var curDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
+
+   if (prevDiff > 0) {
+     if (curDiff > prevDiff) {
+       
+    scaleRx += scale_r;
+        scaleRy += scale_r;
+    
+        text3.text = "x"+ scaleRx.toFixed(1);
+    
+    c_rectangle.scale.set(scaleRx, scaleRy);
+       
+     }
+     if (curDiff < prevDiff) {
+       scaleRx -= scale_r;
+        scaleRy -= scale_r;
+    
+        if( scaleRx < 1 ) {
+            scaleRx = 1;
+            scaleRy = 1;
+        }
+    
+        text3.text = "x"+ scaleRx.toFixed(1);
+    
+        c_rectangle.scale.set(scaleRx, scaleRy);
+
+     }
+   }
+
+   
+   prevDiff = curDiff;
+ }
+
+
+
+
+
+
+
+
     if (this.dragging) {
         const newPosition = this.data.getLocalPosition(this.parent);
 
