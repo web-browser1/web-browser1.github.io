@@ -333,7 +333,7 @@ window.addEventListener("gestureend", function(e) {
 var scroll_c = 0;
 
 window.addEventListener("wheel", event => {
-
+ event.preventDefault();
     const value = event.deltaY;
 
     if( value > 0 ) {
@@ -368,7 +368,7 @@ window.addEventListener("wheel", event => {
     console.log("value:" + value + " scroll c: " + scroll_c);
 
 
-   // event.preventDefault();
+   
 
 
 
