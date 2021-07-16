@@ -168,7 +168,7 @@ function onDragEnd(ev) {
 
 
 
-// remove_event(ev);
+ remove_event(ev);
   
 
   
@@ -179,6 +179,24 @@ function onDragEnd(ev) {
 
 
 }
+
+
+
+
+function remove_event(ev) {
+    // Remove this event from the target's cache
+    for (var i = 0; i < evCache.length; i++) {
+      if (evCache[i].pointerId == ev.pointerId) {
+        evCache.splice(i, 1);
+        break;
+      }
+    }
+   }
+
+
+
+
+
 
 var dx = 0;
 var dy = 0;
@@ -227,7 +245,7 @@ if (evCache.length == 2) {
 
     
    
-   let curDiff = Math.abs(
+   var curDiff = Math.abs(
        evCache[0].data.getLocalPosition(this.parent).x - evCache[1].data.getLocalPosition(this.parent).x);
 
 
@@ -237,11 +255,13 @@ if (evCache.length == 2) {
     );
 	
 
-    textl.text = " evCache 2 run   curDiff: " + curDiff +
+      textl.text = " evCache 2 run   curDiff: " + curDiff +
     "  \n prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
-    + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x
+    + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x +
     
-	
+    " \n  pointer-id:   " + evCache[0].pointerId +  " pointer-id2: " + evCache[1].pointerId +
+     " \n pointeridc: " + ev.pointerId + "  cache length: " + evCache.length;
+   	
 
 	
 
@@ -447,7 +467,7 @@ window.addEventListener("gestureend", function(e) {
 var scroll_c = 0;
 
 window.addEventListener("wheel", event => {
- event.preventDefault();
+ //event.preventDefault();
     const value = event.deltaY;
 
     if( value > 0 ) {
