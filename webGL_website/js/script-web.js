@@ -199,8 +199,7 @@ const textl = new PIXI.Text('log');
 textl.x = 67;
 textl.y = 183;
 
-textl.scale.x(0.4);
-textl.scale.y(0.4);
+textl.scale.set(0.4, 0.4);
 
 app.stage.addChild(textl);
 
@@ -237,11 +236,13 @@ if (evCache.length == 2) {
     + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x
     );
 	
-	
-	  textl.text = " evCache 2 run   curDiff: " + curDiff +
-    "   prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
+
+    textl.text = " evCache 2 run   curDiff: " + curDiff +
+    "  \n prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
     + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x
     
+	
+
 	
 
    if (prevDiff > 0) {
