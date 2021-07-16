@@ -277,8 +277,9 @@ if (evCache.length == 2) {
         : Math.sqrt( Math.pow(Math.abs(dx), 2) + Math.pow(Math.abs(dy), 2) );
 
 
-     scaleRx = scale_a + (scale_c * 0.1);
-     scaleRy = scale_a + (scale_c * 0.1);
+    
+     scaleRx = (scale_a + (scale_c * 0.01)) < 1 ? 1 : (scale_a + (scale_c * 0.01));
+     scaleRy = (scale_a + (scale_c * 0.01)) < 1 ? 1 : (scale_a + (scale_c * 0.01));
  
      text3.text = "x"+ scaleRx.toFixed(1);
  
