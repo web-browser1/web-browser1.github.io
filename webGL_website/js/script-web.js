@@ -149,7 +149,9 @@ c_rectangle.endFill();
             // move
 
 
-            
+            if( ongoingTouches.length >= 1 ) {
+
+
 
         var positionX = ongoingTouches[0].pageX;
         var positionY = ongoingTouches[0].pageY;
@@ -164,7 +166,7 @@ c_rectangle.endFill();
         dy = positionY - (cy );
 
 
-       /* var cx1 = Math.abs((rx + dx) - start_p);
+      /*  var cx1 = Math.abs((rx + dx) - start_p);
 
         if( cx1 < b_x ) {
 
@@ -193,7 +195,7 @@ c_rectangle.endFill();
 
 
 
-
+    
 
 
 
@@ -215,7 +217,7 @@ c_rectangle.endFill();
            // console.log("event touches: " +   ongoingTouches[ongoingTouchIndexById(evt.pointerId)].pageX  + " id:" + evt.pointerId + " ongoingTouches.length:" + ongoingTouches.length );
 
 
-           console.log("event touches 0: " +   ongoingTouches[0].pageX );
+          // console.log("event touches 0: " +   ongoingTouches[0].pageX );
 
 
             if( ongoingTouches.length == 2 ) {
@@ -261,6 +263,11 @@ c_rectangle.endFill();
             } else {
              
             }
+
+
+
+        }
+
           }
 
 
