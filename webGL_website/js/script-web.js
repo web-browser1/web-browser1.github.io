@@ -158,7 +158,12 @@ c_rectangle.endFill();
                 scale_e = scale_f - scale_s;
 
 
-
+  scaleRx = (scale_a + (scale_e * 0.01)) < 1 ? 1 : (scale_a + (scale_e * 0.01));
+                scaleRy = (scale_a + (scale_e * 0.01)) < 1 ? 1 : (scale_a + (scale_e * 0.01));
+            
+                text3.text = "x"+ scaleRx.toFixed(1);
+            
+            c_rectangle.scale.set(scaleRx, scaleRy);
 
             }
 
@@ -191,7 +196,8 @@ c_rectangle.endFill();
         function handleEnd(evt) {
            
             scale_s = 0;
-
+		
+ 		scale_a = scaleRx;
 
             var idx = ongoingTouchIndexById(evt.pointerId);
           
