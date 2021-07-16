@@ -79,11 +79,108 @@ c_rectangle.endFill();
 
  // setup events for mouse + touch using
     // the pointer events
-   c_rectangle
+  /* c_rectangle
         .on('pointerdown', onDragStart)
         .on('pointerup', onDragEnd)
         .on('pointerupoutside', onDragEnd)
-        .on('pointermove', onDragMove);
+        .on('pointermove', onDragMove);*/
+
+
+
+        window.addEventListener("pointerdown", handleStart, false);
+        window.addEventListener("pointerup", handleEnd, false);
+
+        window.addEventListener("pointerupoutside", handleEnd, false);
+        window.addEventListener("pointermove", handleMove, false);
+
+
+
+        function handleStart(evt) {
+         
+            ongoingTouches.push(copyTouch(evt));
+         
+          }
+
+
+
+          var ongoingTouches = new Array();
+
+          function copyTouch(touch) {
+              return { identifier: touch.pointerId, pageX: touch.clientX, pageY: touch.clientY };
+            }
+          
+            function ongoingTouchIndexById(idToFind) {
+              for (var i = 0; i < ongoingTouches.length; i++) {
+                var id = ongoingTouches[i].identifier;
+            
+                if (id == idToFind) {
+                  return i;
+                }
+              }
+              return -1;    // not found
+            }
+
+
+
+
+        function handleMove(evt) {
+         
+            var idx = ongoingTouchIndexById(evt.pointerId);
+          
+          
+           // console.log("event touches: " +   ongoingTouches[ongoingTouchIndexById(evt.pointerId)].pageX  + " id:" + evt.pointerId + " ongoingTouches.length:" + ongoingTouches.length );
+
+
+           console.log("event touches 0: " +   ongoingTouches[0].pageX );
+
+
+            if( ongoingTouches.length == 2 ) {
+
+                console.log("event touches 1: " +   ongoingTouches[1].pageX );
+
+            }
+
+
+
+        //  console.log("event touches 1: " +   evt.touches[0].pageX );
+
+  // console.log("event touches: " +   ongoingTouches[ongoingTouchIndexById(evt.pointerId)].pageX );
+
+
+
+            textl.text = " log:     0 " +  ongoingTouches[0].pageX    +   "  1:  " + ongoingTouches.length == 2 ?  ongoingTouches[1].pageX : 0;
+           
+
+            if (idx >= 0) {
+            
+             
+             
+              ongoingTouches.splice(idx, 1, copyTouch(evt));  // swap in the new touch record
+             
+            } else {
+             
+            }
+          }
+
+
+
+        function handleEnd(evt) {
+           
+            
+            var idx = ongoingTouchIndexById(evt.pointerId);
+          
+            if (idx >= 0) {
+             
+              ongoingTouches.splice(idx, 1);  // remove it; we're done
+            } else {
+            
+            }
+          }
+
+
+
+
+
 
 
 
@@ -108,8 +205,7 @@ console.log("bx: " + bx + "  by: " + by );
 
 
 
-
-var f1 = 0;
+var f1x = 0; var f1y = 0;
 
 
 function onDragStart(event) {
@@ -135,12 +231,18 @@ evCache.push(event);
 	
 // log("pointerDown", event);
 
-      //  console.log("event touches: " +   event.targetTouches[0].pageY );
+     
+ongoingTouches.push(copyTouch(event));
 
- if (evCache.length == 1) {
+      console.log("event start x: " +  this.data.getLocalPosition(this.parent).x );
 
-        f1 = this.data.getLocalPosition(this.parent).x;
+      if (evCache.length == 1) {
+
+        f1x = this.data.getLocalPosition(this.parent).x;
+        f1y = this.data.getLocalPosition(this.parent).y;
       }
+
+
 
 }
 
@@ -169,13 +271,15 @@ function onDragEnd(ev) {
    r_x = c_rectangle.x ;
 
 
-    f1 = 0;
-	
-	
- scale_a = scaleRx;
+    f1x = 0;   f1y = 0;
+
 
  remove_event(ev);
   
+
+
+ scale_a = scaleRx;
+
 
   
   if (evCache.length < 2) {
@@ -203,7 +307,6 @@ function remove_event(ev) {
 
 
 
-
 var dx = 0;
 var dy = 0;
 
@@ -219,25 +322,34 @@ var evCache = new Array();
 var prevDiff = -1;
 
 
+
+
 const textl = new PIXI.Text('log');
 textl.x = 67;
 textl.y = 183;
 
 textl.scale.set(0.4, 0.4);
 
-app.stage.addChild(textl);
 
+app.stage.addChild(textl);
 
 var scale_c = 0;
 
 var scale_a = 1;
 
 
-function onDragMove() {
+var curDiff = 0;
+
+
+
+function onDragMove(ev) {
 
  
+//  console.log("event touches: " +   ev.targetTouches[0].pageX );
 
- /*
+  // console.log("event touches: " +   ongoingTouches[ongoingTouchIndexById(ev.pointerId)].pageX );
+
+ 
 
 for (var i = 0; i < evCache.length; i++) {
    if (ev.pointerId == evCache[i].pointerId) {
@@ -245,50 +357,56 @@ for (var i = 0; i < evCache.length; i++) {
    break;
    }
  }
- */
 
-	
-	
-	
+
+
+
 
 if (evCache.length == 2) {
 
     
    
-   var curDiff = Math.abs(
-       f1 - evCache[1].data.getLocalPosition(this.parent).x);
+  /// curDiff = Math.abs( f1 - evCache[1].data.getLocalPosition(this.parent).x );
+
+
+ // curDiff = Math.sqrt(Math.pow(Math.abs( f1x - evCache[1].data.getLocalPosition(this.parent).x ), 2) +
+ // Math.pow(Math.abs( f1y - evCache[1].data.getLocalPosition(this.parent).y ), 2) );
+
+  
+
 
 
    console.log(" evCache 2 run   curDiff: " + curDiff +
     "   prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
     + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x
     );
-	
 
-      textl.text = " evCache 2 run   curDiff: " + curDiff +
+
+
+    textl.text = " evCache 2 run   curDiff: " + curDiff +
     "  \n prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
     + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x +  "  f1: " + f1 +
     
     " \n  pointer-id:   " + evCache[0].pointerId +  " pointer-id2: " + evCache[1].pointerId +
-     " \n pointeridc   cache length: " + evCache.length;
-   	
+     " \n pointeridc: " + ev.pointerId + "  cache length: " + evCache.length;
+   
+    
+    // scale_c = (dx * 0.1);
 
         scale_c = dx < 0 ? -Math.sqrt( Math.pow(Math.abs(dx), 2) + Math.pow(Math.abs(dy), 2) ) 
         : Math.sqrt( Math.pow(Math.abs(dx), 2) + Math.pow(Math.abs(dy), 2) );
 
 
-    
      scaleRx = (scale_a + (scale_c * 0.01)) < 1 ? 1 : (scale_a + (scale_c * 0.01));
      scaleRy = (scale_a + (scale_c * 0.01)) < 1 ? 1 : (scale_a + (scale_c * 0.01));
  
      text3.text = "x"+ scaleRx.toFixed(1);
  
  c_rectangle.scale.set(scaleRx, scaleRy);
-	  
-   
-	
-	
-  /* if (prevDiff > 0) {
+
+
+/*
+   if (prevDiff > 0) {
      if (curDiff > prevDiff) {
        
     scaleRx += scale_c;
@@ -315,12 +433,13 @@ if (evCache.length == 2) {
      }
    }
 
-   
-   prevDiff = curDiff;*/
-	
-	
-	
-	
+   prevDiff = curDiff;
+   */
+
+
+
+
+
  }
 
 
@@ -375,8 +494,8 @@ if (evCache.length == 2) {
     //   this.y = newPosition.y;
 
 
-	//  console.log("x: " + newPosition.x + "  y: " + newPosition.y  + "  dx: " + dx   + "  dy: " + dy
-    //   + "  rx: " + rx  + "   ry: " + ry + "  cx1: " + cx1 );
+	  console.log("x: " + newPosition.x + "  y: " + newPosition.y  + "  dx: " + dx   + "  dy: " + dy
+       + "  rx: " + rx  + "   ry: " + ry + "  cx1: " + cx1 );
 
     }
 }
