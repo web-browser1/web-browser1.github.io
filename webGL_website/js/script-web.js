@@ -170,7 +170,9 @@ function onDragEnd(ev) {
 
 
     f1 = 0;
-
+	
+	
+ scale_a = scaleRx;
 
  remove_event(ev);
   
@@ -228,6 +230,8 @@ app.stage.addChild(textl);
 
 var scale_c = 0;
 
+var scale_a = 1;
+
 
 function onDragMove(ev) {
 
@@ -269,15 +273,18 @@ if (evCache.length == 2) {
      " \n pointeridc: " + ev.pointerId + "  cache length: " + evCache.length;
    	
 
-	  
-     scale_c = (dx * 0.1);
+        scale_c = dx < 0 ? -Math.sqrt( Math.pow(Math.abs(dx), 2) + Math.pow(Math.abs(dy), 2) ) 
+        : Math.sqrt( Math.pow(Math.abs(dx), 2) + Math.pow(Math.abs(dy), 2) );
 
-     scaleRx += scale_c;
-     scaleRy += scale_c;
+
+     scaleRx = scale_a + (scale_c * 0.1);
+     scaleRy = scale_a + (scale_c * 0.1);
  
      text3.text = "x"+ scaleRx.toFixed(1);
  
  c_rectangle.scale.set(scaleRx, scaleRy);
+	  
+   
 	
 	
   /* if (prevDiff > 0) {
