@@ -269,9 +269,18 @@ if (evCache.length == 2) {
      " \n pointeridc: " + ev.pointerId + "  cache length: " + evCache.length;
    	
 
-	     scale_c = (curDiff * 0.01);
+	  
+     scale_c = (dx * 0.1);
 
-   if (prevDiff > 0) {
+     scaleRx += scale_c;
+     scaleRy += scale_c;
+ 
+     text3.text = "x"+ scaleRx.toFixed(1);
+ 
+ c_rectangle.scale.set(scaleRx, scaleRy);
+	
+	
+  /* if (prevDiff > 0) {
      if (curDiff > prevDiff) {
        
     scaleRx += scale_c;
@@ -299,7 +308,11 @@ if (evCache.length == 2) {
    }
 
    
-   prevDiff = curDiff;
+   prevDiff = curDiff;*/
+	
+	
+	
+	
  }
 
 
