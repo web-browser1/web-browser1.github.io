@@ -148,7 +148,7 @@ c_rectangle.endFill();
 
 
 
-            textl.text = " log:     0 " +  ongoingTouches[0].pageX    +   "  1:  " + ongoingTouches.length == 2 ?  ongoingTouches[1].pageX : 0;
+           textl.text = " log:     r0 " +  ongoingTouches[0].pageX    +   "  r1:  " + (ongoingTouches.length == 2 ?  ongoingTouches[1].pageX : 0);
            
 
             if (idx >= 0) {
