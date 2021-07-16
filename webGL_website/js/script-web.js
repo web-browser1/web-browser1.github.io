@@ -94,10 +94,22 @@ c_rectangle.endFill();
         window.addEventListener("pointermove", handleMove, false);
 
 
+        var scale_s = 0;
 
         function handleStart(evt) {
          
             ongoingTouches.push(copyTouch(evt));
+
+
+
+            if( ongoingTouches.length == 2 ) {
+
+                scale_s = Math.sqrt( Math.pow( Math.abs( ongoingTouches[0].pageX - ongoingTouches[1].pageX ), 2) 
+                 + Math.pow( Math.abs( ongoingTouches[0].pageY - ongoingTouches[1].pageY ), 2 ) );
+            }
+
+
+
          
           }
 
@@ -121,7 +133,7 @@ c_rectangle.endFill();
             }
 
 
-
+            var scale_e = 0;
 
         function handleMove(evt) {
          
@@ -138,6 +150,16 @@ c_rectangle.endFill();
 
                 console.log("event touches 1: " +   ongoingTouches[1].pageX );
 
+
+                var scale_f = Math.sqrt( Math.pow( Math.abs( ongoingTouches[0].pageX - ongoingTouches[1].pageX ), 2) 
+                + Math.pow( Math.abs( ongoingTouches[0].pageY - ongoingTouches[1].pageY ), 2 ) );
+
+
+                scale_e = scale_f - scale_s;
+
+
+
+
             }
 
 
@@ -148,7 +170,9 @@ c_rectangle.endFill();
 
 
 
-           textl.text = " log:     r0 " +  ongoingTouches[0].pageX    +   "  r1:  " + (ongoingTouches.length == 2 ?  ongoingTouches[1].pageX : 0);
+            textl.text = " log:     r0 " +  ongoingTouches[0].pageX    + 
+              "  r1:  " + (ongoingTouches.length == 2 ?  ongoingTouches[1].pageX : 0) +
+               "  scale_s: " + scale_s + "   scale_e: " + scale_e;
            
 
             if (idx >= 0) {
@@ -166,7 +190,9 @@ c_rectangle.endFill();
 
         function handleEnd(evt) {
            
-            
+            scale_s = 0;
+
+
             var idx = ongoingTouchIndexById(evt.pointerId);
           
             if (idx >= 0) {
