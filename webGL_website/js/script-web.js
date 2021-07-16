@@ -139,7 +139,7 @@ evCache.push(event);
 
  if (evCache.length == 1) {
 
-        f1 = this.data.getLocalPosition(this.parent);
+        f1 = this.data.getLocalPosition(this.parent).x;
       }
 
 }
