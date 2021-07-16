@@ -79,11 +79,11 @@ c_rectangle.endFill();
 
  // setup events for mouse + touch using
     // the pointer events
-  c_rectangle
+  /* c_rectangle
         .on('pointerdown', onDragStart)
         .on('pointerup', onDragEnd)
         .on('pointerupoutside', onDragEnd)
-        .on('pointermove', onDragMove);
+        .on('pointermove', onDragMove);*/
 
 
 
@@ -100,7 +100,7 @@ c_rectangle.endFill();
          
             ongoingTouches.push(copyTouch(evt));
 
-
+         
 
             if( ongoingTouches.length == 2 ) {
 
@@ -109,6 +109,8 @@ c_rectangle.endFill();
             }
 
 
+            cx = ongoingTouches[0].pageX;
+            cy = ongoingTouches[0].pageY; 
 
          
           }
@@ -133,9 +135,79 @@ c_rectangle.endFill();
             }
 
 
+
+
+
+
+
+
             var scale_e = 0;
 
         function handleMove(evt) {
+
+
+            // move
+
+
+            
+
+        var positionX = ongoingTouches[0].pageX;
+        var positionY = ongoingTouches[0].pageY;
+
+
+      //  var b_x = ((scaleRx * start_p) - start_p)/2;
+
+      //  var gx = Math.abs(cx - rx)
+
+
+        dx = positionX - (cx );
+        dy = positionY - (cy );
+
+
+        var cx1 = Math.abs((rx + dx) - start_p);
+
+        if( cx1 < b_x ) {
+
+           // dc_x = dx;
+
+         //  dx = 0;
+       
+        }
+
+
+        c_rectangle.x = rx + dx;
+        c_rectangle.y = ry + dy;
+        
+        
+
+      //  this.x = dx;
+      //  this.y = dy;
+
+
+      //  this.x = newPosition.x;
+    //   this.y = newPosition.y;
+
+
+	//  console.log("x: " + newPosition.x + "  y: " + newPosition.y  + "  dx: " + dx   + "  dy: " + dy
+     //  + "  rx: " + rx  + "   ry: " + ry + "  cx1: " + cx1 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // zoom
+
          
             var idx = ongoingTouchIndexById(evt.pointerId);
           
@@ -158,7 +230,7 @@ c_rectangle.endFill();
                 scale_e = scale_f - scale_s;
 
 
-  scaleRx = (scale_a + (scale_e * 0.01)) < 1 ? 1 : (scale_a + (scale_e * 0.01));
+                scaleRx = (scale_a + (scale_e * 0.01)) < 1 ? 1 : (scale_a + (scale_e * 0.01));
                 scaleRy = (scale_a + (scale_e * 0.01)) < 1 ? 1 : (scale_a + (scale_e * 0.01));
             
                 text3.text = "x"+ scaleRx.toFixed(1);
@@ -196,8 +268,15 @@ c_rectangle.endFill();
         function handleEnd(evt) {
            
             scale_s = 0;
-		
- 		scale_a = scaleRx;
+
+
+            scale_a = scaleRx;
+
+
+            rx = c_rectangle.x;
+            ry = c_rectangle.y;
+
+
 
             var idx = ongoingTouchIndexById(evt.pointerId);
           
@@ -381,13 +460,114 @@ function onDragMove(ev) {
 
   // console.log("event touches: " +   ongoingTouches[ongoingTouchIndexById(ev.pointerId)].pageX );
 
+ 
+
+for (var i = 0; i < evCache.length; i++) {
+   if (ev.pointerId == evCache[i].pointerId) {
+      evCache[i] = ev;
+   break;
+   }
+ }
+
+
+
+
+
+if (evCache.length == 2) {
+
+    
+   
+  /// curDiff = Math.abs( f1 - evCache[1].data.getLocalPosition(this.parent).x );
+
+
+ // curDiff = Math.sqrt(Math.pow(Math.abs( f1x - evCache[1].data.getLocalPosition(this.parent).x ), 2) +
+ // Math.pow(Math.abs( f1y - evCache[1].data.getLocalPosition(this.parent).y ), 2) );
+
+  
+
+
+
+   console.log(" evCache 2 run   curDiff: " + curDiff +
+    "   prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
+    + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x
+    );
+
+
+
+    textl.text = " evCache 2 run   curDiff: " + curDiff +
+    "  \n prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
+    + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x +  "  f1: " + f1 +
+    
+    " \n  pointer-id:   " + evCache[0].pointerId +  " pointer-id2: " + evCache[1].pointerId +
+     " \n pointeridc: " + ev.pointerId + "  cache length: " + evCache.length;
+   
+    
+    // scale_c = (dx * 0.1);
+
+        scale_c = dx < 0 ? -Math.sqrt( Math.pow(Math.abs(dx), 2) + Math.pow(Math.abs(dy), 2) ) 
+        : Math.sqrt( Math.pow(Math.abs(dx), 2) + Math.pow(Math.abs(dy), 2) );
+
+
+     scaleRx = (scale_a + (scale_c * 0.01)) < 1 ? 1 : (scale_a + (scale_c * 0.01));
+     scaleRy = (scale_a + (scale_c * 0.01)) < 1 ? 1 : (scale_a + (scale_c * 0.01));
+ 
+     text3.text = "x"+ scaleRx.toFixed(1);
+ 
+ c_rectangle.scale.set(scaleRx, scaleRy);
+
+
+/*
+   if (prevDiff > 0) {
+     if (curDiff > prevDiff) {
+       
+    scaleRx += scale_c;
+        scaleRy += scale_c;
+    
+        text3.text = "x"+ scaleRx.toFixed(1);
+    
+    c_rectangle.scale.set(scaleRx, scaleRy);
+       
+     }
+     if (curDiff < prevDiff) {
+       scaleRx -= scale_c;
+        scaleRy -= scale_c;
+    
+        if( scaleRx < 1 ) {
+            scaleRx = 1;
+            scaleRy = 1;
+        }
+    
+        text3.text = "x"+ scaleRx.toFixed(1);
+    
+        c_rectangle.scale.set(scaleRx, scaleRy);
+
+     }
+   }
+
+   prevDiff = curDiff;
+   */
+
+
+
+
+
+ }
+
+
+
+
+
 
 
 
     if (this.dragging) {
-        const newPosition = this.data.getLocalPosition(this.parent);
 
-    
+
+
+
+
+
+        const newPosition = this.data.getLocalPosition(this.parent);
 
 
         var b_x = ((scaleRx * start_p) - start_p)/2;
@@ -399,7 +579,6 @@ function onDragMove(ev) {
         dy = newPosition.y - (cy );
 
 
-
         var cx1 = Math.abs((rx + dx) - start_p);
 
         if( cx1 < b_x ) {
@@ -409,11 +588,6 @@ function onDragMove(ev) {
          //  dx = 0;
        
         }
-
-
-       
-       
-
 
 
         c_rectangle.x = rx + dx;
@@ -431,6 +605,10 @@ function onDragMove(ev) {
 
 	  console.log("x: " + newPosition.x + "  y: " + newPosition.y  + "  dx: " + dx   + "  dy: " + dy
        + "  rx: " + rx  + "   ry: " + ry + "  cx1: " + cx1 );
+
+
+
+
 
     }
 }
