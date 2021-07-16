@@ -79,11 +79,11 @@ c_rectangle.endFill();
 
  // setup events for mouse + touch using
     // the pointer events
-  /* c_rectangle
+  c_rectangle
         .on('pointerdown', onDragStart)
         .on('pointerup', onDragEnd)
         .on('pointerupoutside', onDragEnd)
-        .on('pointermove', onDragMove);*/
+        .on('pointermove', onDragMove);
 
 
 
@@ -380,103 +380,6 @@ function onDragMove(ev) {
 //  console.log("event touches: " +   ev.targetTouches[0].pageX );
 
   // console.log("event touches: " +   ongoingTouches[ongoingTouchIndexById(ev.pointerId)].pageX );
-
- 
-
-for (var i = 0; i < evCache.length; i++) {
-   if (ev.pointerId == evCache[i].pointerId) {
-      evCache[i] = ev;
-   break;
-   }
- }
-
-
-
-
-
-if (evCache.length == 2) {
-
-    
-   
-  /// curDiff = Math.abs( f1 - evCache[1].data.getLocalPosition(this.parent).x );
-
-
- // curDiff = Math.sqrt(Math.pow(Math.abs( f1x - evCache[1].data.getLocalPosition(this.parent).x ), 2) +
- // Math.pow(Math.abs( f1y - evCache[1].data.getLocalPosition(this.parent).y ), 2) );
-
-  
-
-
-
-   console.log(" evCache 2 run   curDiff: " + curDiff +
-    "   prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
-    + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x
-    );
-
-
-
-    textl.text = " evCache 2 run   curDiff: " + curDiff +
-    "  \n prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
-    + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x +  "  f1: " + f1 +
-    
-    " \n  pointer-id:   " + evCache[0].pointerId +  " pointer-id2: " + evCache[1].pointerId +
-     " \n pointeridc: " + ev.pointerId + "  cache length: " + evCache.length;
-   
-    
-    // scale_c = (dx * 0.1);
-
-        scale_c = dx < 0 ? -Math.sqrt( Math.pow(Math.abs(dx), 2) + Math.pow(Math.abs(dy), 2) ) 
-        : Math.sqrt( Math.pow(Math.abs(dx), 2) + Math.pow(Math.abs(dy), 2) );
-
-
-     scaleRx = (scale_a + (scale_c * 0.01)) < 1 ? 1 : (scale_a + (scale_c * 0.01));
-     scaleRy = (scale_a + (scale_c * 0.01)) < 1 ? 1 : (scale_a + (scale_c * 0.01));
- 
-     text3.text = "x"+ scaleRx.toFixed(1);
- 
- c_rectangle.scale.set(scaleRx, scaleRy);
-
-
-/*
-   if (prevDiff > 0) {
-     if (curDiff > prevDiff) {
-       
-    scaleRx += scale_c;
-        scaleRy += scale_c;
-    
-        text3.text = "x"+ scaleRx.toFixed(1);
-    
-    c_rectangle.scale.set(scaleRx, scaleRy);
-       
-     }
-     if (curDiff < prevDiff) {
-       scaleRx -= scale_c;
-        scaleRy -= scale_c;
-    
-        if( scaleRx < 1 ) {
-            scaleRx = 1;
-            scaleRy = 1;
-        }
-    
-        text3.text = "x"+ scaleRx.toFixed(1);
-    
-        c_rectangle.scale.set(scaleRx, scaleRy);
-
-     }
-   }
-
-   prevDiff = curDiff;
-   */
-
-
-
-
-
- }
-
-
-
-
 
 
 
