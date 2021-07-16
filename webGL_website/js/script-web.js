@@ -164,7 +164,7 @@ c_rectangle.endFill();
         dy = positionY - (cy );
 
 
-        var cx1 = Math.abs((rx + dx) - start_p);
+       /* var cx1 = Math.abs((rx + dx) - start_p);
 
         if( cx1 < b_x ) {
 
@@ -172,7 +172,7 @@ c_rectangle.endFill();
 
          //  dx = 0;
        
-        }
+        }*/
 
 
         c_rectangle.x = rx + dx;
