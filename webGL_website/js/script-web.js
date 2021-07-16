@@ -228,7 +228,7 @@ function onDragMove(ev) {
 
  
 
- 
+ /*
 
 for (var i = 0; i < evCache.length; i++) {
    if (ev.pointerId == evCache[i].pointerId) {
@@ -236,6 +236,7 @@ for (var i = 0; i < evCache.length; i++) {
    break;
    }
  }
+ */
 
 	
 	
