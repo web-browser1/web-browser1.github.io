@@ -109,6 +109,7 @@ console.log("bx: " + bx + "  by: " + by );
 
 
 
+var f1 = 0;
 
 
 function onDragStart(event) {
@@ -136,7 +137,10 @@ evCache.push(event);
 
       //  console.log("event touches: " +   event.targetTouches[0].pageY );
 
+ if (evCache.length == 1) {
 
+        f1 = this.data.getLocalPosition(this.parent);
+      }
 
 }
 
@@ -165,7 +169,7 @@ function onDragEnd(ev) {
    r_x = c_rectangle.x ;
 
 
-
+    f1 = 0;
 
 
  remove_event(ev);
@@ -247,7 +251,7 @@ if (evCache.length == 2) {
     
    
    var curDiff = Math.abs(
-       evCache[0].data.getLocalPosition(this.parent).x - evCache[1].data.getLocalPosition(this.parent).x);
+       f1 - evCache[1].data.getLocalPosition(this.parent).x);
 
 
    console.log(" evCache 2 run   curDiff: " + curDiff +
@@ -258,7 +262,7 @@ if (evCache.length == 2) {
 
       textl.text = " evCache 2 run   curDiff: " + curDiff +
     "  \n prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
-    + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x +
+    + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x +  "  f1: " + f1 +
     
     " \n  pointer-id:   " + evCache[0].pointerId +  " pointer-id2: " + evCache[1].pointerId +
      " \n pointeridc: " + ev.pointerId + "  cache length: " + evCache.length;
