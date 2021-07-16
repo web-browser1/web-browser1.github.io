@@ -269,7 +269,7 @@ if (evCache.length == 2) {
      " \n pointeridc: " + ev.pointerId + "  cache length: " + evCache.length;
    	
 
-	     scale_c = (curDiff * 0.1);
+	     scale_c = (curDiff * 0.01);
 
    if (prevDiff > 0) {
      if (curDiff > prevDiff) {
