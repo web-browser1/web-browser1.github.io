@@ -106,6 +106,11 @@ console.log("bx: " + bx + "  by: " + by );
 }
 
 
+
+
+
+
+
 function onDragStart(event) {
     // store a reference to the data
     // the reason for this is because of multitouch
@@ -195,7 +200,7 @@ function onDragMove(ev) {
 
  
 
- 
+ /*
 
 for (var i = 0; i < evCache.length; i++) {
    if (ev.pointerId == evCache[i].pointerId) {
@@ -203,7 +208,7 @@ for (var i = 0; i < evCache.length; i++) {
    break;
    }
  }
-
+*/
 
 if (evCache.length == 2) {
 
