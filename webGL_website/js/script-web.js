@@ -195,12 +195,23 @@ var evCache = new Array();
 var prevDiff = -1;
 
 
+const textl = new PIXI.Text('log');
+textl.x = 67;
+textl.y = 183;
+
+textl.scale.x(0.4);
+textl.scale.y(0.4);
+
+app.stage.addChild(textl);
+
+
+
 
 function onDragMove(ev) {
 
  
 
- /*
+ 
 
 for (var i = 0; i < evCache.length; i++) {
    if (ev.pointerId == evCache[i].pointerId) {
@@ -208,7 +219,10 @@ for (var i = 0; i < evCache.length; i++) {
    break;
    }
  }
-*/
+
+	
+	
+	
 
 if (evCache.length == 2) {
 
@@ -222,6 +236,13 @@ if (evCache.length == 2) {
     "   prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
     + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x
     );
+	
+	
+	  textl.text = " evCache 2 run   curDiff: " + curDiff +
+    "   prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
+    + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x
+    
+	
 
    if (prevDiff > 0) {
      if (curDiff > prevDiff) {
