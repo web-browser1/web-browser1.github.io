@@ -226,6 +226,7 @@ textl.scale.set(0.4, 0.4);
 app.stage.addChild(textl);
 
 
+var scale_c = 0;
 
 
 function onDragMove(ev) {
@@ -268,13 +269,13 @@ if (evCache.length == 2) {
      " \n pointeridc: " + ev.pointerId + "  cache length: " + evCache.length;
    	
 
-	
+	     scale_c = (curDiff * 0.1);
 
    if (prevDiff > 0) {
      if (curDiff > prevDiff) {
        
-    scaleRx += scale_r;
-        scaleRy += scale_r;
+    scaleRx += scale_c;
+        scaleRy += scale_c;
     
         text3.text = "x"+ scaleRx.toFixed(1);
     
@@ -282,8 +283,8 @@ if (evCache.length == 2) {
        
      }
      if (curDiff < prevDiff) {
-       scaleRx -= scale_r;
-        scaleRy -= scale_r;
+       scaleRx -= scale_c;
+        scaleRy -= scale_c;
     
         if( scaleRx < 1 ) {
             scaleRx = 1;
