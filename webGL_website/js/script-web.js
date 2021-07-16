@@ -233,7 +233,7 @@ var scale_c = 0;
 var scale_a = 1;
 
 
-function onDragMove(ev) {
+function onDragMove() {
 
  
 
@@ -270,7 +270,7 @@ if (evCache.length == 2) {
     + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x +  "  f1: " + f1 +
     
     " \n  pointer-id:   " + evCache[0].pointerId +  " pointer-id2: " + evCache[1].pointerId +
-     " \n pointeridc: " + ev.pointerId + "  cache length: " + evCache.length;
+     " \n pointeridc   cache length: " + evCache.length;
    	
 
         scale_c = dx < 0 ? -Math.sqrt( Math.pow(Math.abs(dx), 2) + Math.pow(Math.abs(dy), 2) ) 
