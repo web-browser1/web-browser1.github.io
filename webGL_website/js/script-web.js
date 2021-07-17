@@ -738,7 +738,7 @@ window.addEventListener("wheel", event => {
 
 	
 	if( Math.abs(value) == 100 ) {
-	    scale_r = 0.05;
+	    scale_r = 0.01;
 	  } else {
 
 	    scale_r = 0.01;
