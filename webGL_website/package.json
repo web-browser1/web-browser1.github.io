@@ -1,0 +1,16 @@
+{
+  "name": "webgl-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script-web.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/pixi.js": "^4.5.3",
+    "pixi.js": "^6.0.4"
+  }
+}
