@@ -738,6 +738,18 @@ window.addEventListener("wheel", event => {
  //event.preventDefault();
     const value = event.deltaY;
 
+	
+	  if( Math.abs(value) == 100 ) {
+
+
+	    scale_r = 0.05;
+	  } else {
+
+	    scale_r = 0.01;
+	  }
+	
+	
+	
     if( value > 0 ) {
         scroll_c += 1;
 
@@ -766,20 +778,6 @@ window.addEventListener("wheel", event => {
     c_rectangle.scale.set(scaleRx, scaleRy);
 
     }
-
-
-
-
-if( value < 50 ) {
-
-scaleRx += scale_r;
-        scaleRy += scale_r;
-    
-        text3.text = "x"+ scaleRx.toFixed(1);
-    
-    c_rectangle.scale.set(scaleRx, scaleRy);
-
-}
 
 
 
