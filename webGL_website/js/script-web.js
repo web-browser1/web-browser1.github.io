@@ -364,7 +364,7 @@ for (let index = 0; index < lr; index++) {
             if( ongoingTouches.length == 2 ) {
 
 
-                ct2 = 1;
+                ct2 = 0;
 
                 console.log("event touches 1: " +   ongoingTouches[1].pageX );
 
