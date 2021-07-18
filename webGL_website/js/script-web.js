@@ -36,7 +36,20 @@ c_rectangle.lineStyle(16, 0xCCCCCC, 3);
 var start_p = 300;
 
 
-start_p = (window.innerWidth * 0.5) * 4.2;
+var window_c = 0;
+
+if ( window.innerWidth > window.innerHeight ) {
+
+    window_c = window.innerWidth;
+
+} else {
+
+   window_c = window.innerHeight;
+}
+
+
+
+start_p = ( window_c * 0.5) * 4.2;
 
 
 
@@ -353,8 +366,8 @@ for (let index = 0; index < lr; index++) {
                 scale_e = scale_f - scale_s;
 
 
-                scaleRx = (scale_a + (scale_e * 0.01))*10 < 3 ? 0.3 : (scale_a + (scale_e * 0.01));
-                scaleRy = (scale_a + (scale_e * 0.01))*10 < 3 ? 0.3 : (scale_a + (scale_e * 0.01));
+                scaleRx = (scale_a + (scale_e * 0.001))*10 < 3 ? 0.3 : (scale_a + (scale_e * 0.001));
+                scaleRy = (scale_a + (scale_e * 0.001))*10 < 3 ? 0.3 : (scale_a + (scale_e * 0.001));
             
                 text3.text = "x"+ scaleRx.toFixed(1);
             
