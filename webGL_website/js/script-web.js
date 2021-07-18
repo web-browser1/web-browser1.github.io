@@ -121,7 +121,7 @@ for (let index = 0; index < lr; index++) {
     
     const realPath = new PIXI.Graphics();
 
-    realPath.lineStyle(1, 0xCCCCCC, 1);
+    realPath.lineStyle(2, 0xCCCCCC, 1);
     realPath.moveTo(mrx, 0);
     realPath.lineTo(mrx, start_p*2);
     
@@ -146,7 +146,7 @@ for (let index = 0; index < lr; index++) {
     
     const realPath = new PIXI.Graphics();
 
-    realPath.lineStyle(1, 0xCCCCCC, 1);
+    realPath.lineStyle(2, 0xCCCCCC, 1);
     realPath.moveTo(0, mry);
     realPath.lineTo(start_p*2, mry);
     
