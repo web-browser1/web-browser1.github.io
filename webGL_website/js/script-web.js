@@ -376,9 +376,17 @@ for (let index = 0; index < lr; index++) {
                 scale_e = scale_f - scale_s;
 
 
-                scaleRx = (scale_a + (scale_e * 0.001))*100 < 3 ? 0.3 : (scale_a + (scale_e * 0.001));
-                scaleRy = (scale_a + (scale_e * 0.001))*100 < 3 ? 0.3 : (scale_a + (scale_e * 0.001));
+                scaleRx = (scale_a + (scale_e * 0.001))*100 < 5 ? 0.5 : (scale_a + (scale_e * 0.001));
+                scaleRy = (scale_a + (scale_e * 0.001))*100 < 5 ? 0.5 : (scale_a + (scale_e * 0.001));
             
+            if( scaleRx > 2 ) {
+
+               scaleRx = 2;
+               scaleRy = 2;
+
+             }
+
+
                 text3.text = "x"+ scaleRx.toFixed(1);
             
             c_rectangle.scale.set(scaleRx, scaleRy);
@@ -424,9 +432,11 @@ for (let index = 0; index < lr; index++) {
             scale_a = scaleRx;
 
 
+
+if( ongoingTouches.length == 1 ) {
             rx = c_rectangle.x;
             ry = c_rectangle.y;
-
+}
 
             dx_c += dx;
             dy_c += dy;
