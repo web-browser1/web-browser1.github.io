@@ -877,7 +877,7 @@ window.addEventListener("gestureend", function(e) {
 
 
 
-
+var scale_m = 5;
 
 var scroll_c = 0;
 
@@ -887,10 +887,10 @@ window.addEventListener("wheel", event => {
 
 	
 	if( Math.abs(value) == 100 ) {
-	    scale_r = 0.01;
+	    scale_r = 0.01 * scale_m;
 	  } else {
 
-	    scale_r = 0.01;
+	    scale_r = 0.01 * scale_m;;
 	  }
 	
 	
@@ -900,9 +900,9 @@ window.addEventListener("wheel", event => {
         scaleRx -= scale_r;
         scaleRy -= scale_r;
     
-        if( scaleRx*10 < 3 ) {
-            scaleRx = 0.3;
-            scaleRy = 0.3;
+        if( scaleRx*10 < 5 ) {
+            scaleRx = 0.5;
+            scaleRy = 0.5;
         }
     
         text3.text = "x"+ scaleRx.toFixed(1);
@@ -916,6 +916,13 @@ window.addEventListener("wheel", event => {
 
         scaleRx += scale_r;
         scaleRy += scale_r;
+
+
+        if( scaleRx > 2 ) {
+            scaleRx = 2;
+            scaleRy = 2;
+        }
+
     
         text3.text = "x"+ scaleRx.toFixed(1);
     
