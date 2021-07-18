@@ -27,17 +27,18 @@ var ry = 50;
 
 
 
-
-
-
-
 const c_rectangle = new PIXI.Graphics();
 
-// Rectangle
+// Rectangle   0x9CCC65
 
-c_rectangle.lineStyle(16, 0x9CCC65, 3);
+c_rectangle.lineStyle(16, 0xCCCCCC, 3);
 
 var start_p = 300;
+
+
+start_p = (window.innerWidth * 0.5) * 4.2;
+
+
 
 
 c_rectangle.beginFill(0xEEEEEE);
@@ -50,8 +51,20 @@ c_rectangle.endFill();
     c_rectangle.y = start_p;
 
 
+
     rx = start_p;
     ry = start_p;
+
+
+
+
+    c_rectangle.x = window.innerWidth/2;
+
+    c_rectangle.y = window.innerHeight/2;
+
+
+    rx = window.innerWidth/2;
+    ry = window.innerHeight/2;
 
 
 //app.stage.addChild(c_rectangle);
@@ -72,6 +85,65 @@ c_rectangle.endFill();
 
   
     c_rectangle.scale.set(1);
+
+
+
+
+
+
+    
+let mrx = 0;
+
+let mcx = 0;
+
+
+
+let lr = 35;
+
+
+mcx = (start_p*2)/lr;
+
+
+for (let index = 0; index < lr; index++) {
+    
+    const realPath = new PIXI.Graphics();
+
+    realPath.lineStyle(1, 0xCCCCCC, 1);
+    realPath.moveTo(mrx, 0);
+    realPath.lineTo(mrx, start_p*2);
+    
+    realPath.position.x = -start_p;
+    realPath.position.y = -start_p;
+    
+    c_rectangle.addChild(realPath);
+
+    mrx += mcx;
+}
+
+
+    
+let mry = 0;
+
+let mcy = 0;
+
+
+mcy = (start_p*2)/lr;
+
+for (let index = 0; index < lr; index++) {
+    
+    const realPath = new PIXI.Graphics();
+
+    realPath.lineStyle(1, 0xCCCCCC, 1);
+    realPath.moveTo(0, mry);
+    realPath.lineTo(start_p*2, mry);
+    
+    realPath.position.x = -start_p;
+    realPath.position.y = -start_p;
+    
+    c_rectangle.addChild(realPath);
+
+    mry += mcy;
+}
 
 
 
@@ -112,6 +184,10 @@ c_rectangle.endFill();
             cx = ongoingTouches[0].pageX;
             cy = ongoingTouches[0].pageY; 
 
+
+                dx = 0;
+                dy = 0;
+
          
           }
 
@@ -138,7 +214,8 @@ c_rectangle.endFill();
 
 
 
-
+                let dx_c = 0;
+                let dy_c = 0;
 
 
             var scale_e = 0;
@@ -162,9 +239,6 @@ c_rectangle.endFill();
       //  var gx = Math.abs(cx - rx)
 
 
-        dx = positionX - (cx );
-        dy = positionY - (cy );
-
 
       /*  var cx1 = Math.abs((rx + dx) - start_p);
 
@@ -177,9 +251,60 @@ c_rectangle.endFill();
         }*/
 
 
+        console.log("x: " + positionX + "  y: " + positionY  + "  dx: " + dx   + "  dy: " + dy
+        + "  rx: " + rx  + "   ry: " + ry  + "   dx_c: " + (dx_c+dx)  + "   dy_c: " + (dy_c+dy)  + "   df1 " + ((start_p*2*scaleRx - window.innerWidth)/2) );
+ 
+      
+        dx = positionX - (cx );
+        dy = positionY - (cy );
+
+
+
+        if( (dx_c+dx)  >  ((start_p*2*scaleRx - window.innerWidth)/2) ) {
+
+            dx =  (((start_p*2*scaleRx - window.innerWidth)/2) - dx_c ) - 4;
+
+            console.log(" <<<<<<<  b   dx: " + dx);
+    
+        }
+
+
+        if( (dx_c+dx)  <  -((start_p*2*scaleRx - window.innerWidth)/2) ) {
+
+            dx = -(((start_p*2*scaleRx - window.innerWidth)/2) + dx_c ) - 4;
+
+            console.log(" <<<<<<<  b   dx: " + dx);
+    
+        }
+
+
+
+
+        if( (dy_c+dy)  >  ((start_p*2*scaleRy - window.innerHeight)/2) ) {
+
+            dy =  (((start_p*2*scaleRy - window.innerHeight)/2) - dy_c ) - 4;
+
+            console.log(" <<<<<<<  b   dx: " + dy);
+    
+        }
+
+
+        if( (dy_c+dy)  <  -((start_p*2*scaleRy - window.innerHeight)/2) ) {
+
+            dy = -(((start_p*2*scaleRy - window.innerHeight)/2) + dy_c ) - 4;
+
+            console.log(" <<<<<<<  b   dx: " + dy);
+    
+        }
+
+
+
+
+
+
+
         c_rectangle.x = rx + dx;
         c_rectangle.y = ry + dy;
-        
         
 
       //  this.x = dx;
@@ -190,13 +315,9 @@ c_rectangle.endFill();
     //   this.y = newPosition.y;
 
 
-	//  console.log("x: " + newPosition.x + "  y: " + newPosition.y  + "  dx: " + dx   + "  dy: " + dy
-     //  + "  rx: " + rx  + "   ry: " + ry + "  cx1: " + cx1 );
 
 
-
-    
-
+        ///// start_p = (window.innerWidth * 0.5) * 1.2;
 
 
 
@@ -232,8 +353,8 @@ c_rectangle.endFill();
                 scale_e = scale_f - scale_s;
 
 
-                scaleRx = (scale_a + (scale_e * 0.01)) < 1 ? 1 : (scale_a + (scale_e * 0.01));
-                scaleRy = (scale_a + (scale_e * 0.01)) < 1 ? 1 : (scale_a + (scale_e * 0.01));
+                scaleRx = (scale_a + (scale_e * 0.01))*10 < 3 ? 0.3 : (scale_a + (scale_e * 0.01));
+                scaleRy = (scale_a + (scale_e * 0.01))*10 < 3 ? 0.3 : (scale_a + (scale_e * 0.01));
             
                 text3.text = "x"+ scaleRx.toFixed(1);
             
@@ -283,6 +404,9 @@ c_rectangle.endFill();
             rx = c_rectangle.x;
             ry = c_rectangle.y;
 
+
+            dx_c += dx;
+            dy_c += dy;
 
 
             var idx = ongoingTouchIndexById(evt.pointerId);
@@ -443,8 +567,8 @@ var prevDiff = -1;
 
 
 const textl = new PIXI.Text('log');
-textl.x = 67;
-textl.y = 183;
+textl.x = 40;
+textl.y = innerHeight - 40;
 
 textl.scale.set(0.4, 0.4);
 
@@ -695,10 +819,10 @@ app.stage.addChild(text2);*/
 
 const text3 = new PIXI.Text('x1.0');
 text3.x = 67;
-text3.y = 483;
+text3.y = 93;
 
 
-app.stage.addChild(text3);
+c_rectangle.addChild(text3);
 
 
 
@@ -751,9 +875,9 @@ window.addEventListener("wheel", event => {
         scaleRx -= scale_r;
         scaleRy -= scale_r;
     
-        if( scaleRx < 1 ) {
-            scaleRx = 1;
-            scaleRy = 1;
+        if( scaleRx*10 < 3 ) {
+            scaleRx = 0.3;
+            scaleRy = 0.3;
         }
     
         text3.text = "x"+ scaleRx.toFixed(1);
