@@ -386,6 +386,15 @@ for (let index = 0; index < lr; index++) {
 
              }
 
+           if( scaleRx*10 < 5 ) {
+
+               scaleRx = 0.5;
+               scaleRy = 0.5;
+
+             }
+
+
+
 
                 text3.text = "x"+ scaleRx.toFixed(1);
             
