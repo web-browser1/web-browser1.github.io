@@ -226,6 +226,7 @@ for (let index = 0; index < lr; index++) {
 
 
 
+       var ct2 = 0;
 
                 let dx_c = 0;
                 let dy_c = 0;
@@ -241,6 +242,12 @@ for (let index = 0; index < lr; index++) {
 
             if( ongoingTouches.length >= 1 ) {
 
+
+
+             if( ct2 == 0 ) {
+
+
+             
 
 
         var positionX = ongoingTouches[0].pageX;
@@ -333,7 +340,7 @@ for (let index = 0; index < lr; index++) {
         ///// start_p = (window.innerWidth * 0.5) * 1.2;
 
 
-
+          }
 
 
 
@@ -356,6 +363,9 @@ for (let index = 0; index < lr; index++) {
 
             if( ongoingTouches.length == 2 ) {
 
+
+                ct2 = 1;
+
                 console.log("event touches 1: " +   ongoingTouches[1].pageX );
 
 
@@ -366,8 +376,8 @@ for (let index = 0; index < lr; index++) {
                 scale_e = scale_f - scale_s;
 
 
-                scaleRx = (scale_a + (scale_e * 0.001))*10 < 3 ? 0.3 : (scale_a + (scale_e * 0.001));
-                scaleRy = (scale_a + (scale_e * 0.001))*10 < 3 ? 0.3 : (scale_a + (scale_e * 0.001));
+                scaleRx = (scale_a + (scale_e * 0.001))*100 < 3 ? 0.3 : (scale_a + (scale_e * 0.001));
+                scaleRy = (scale_a + (scale_e * 0.001))*100 < 3 ? 0.3 : (scale_a + (scale_e * 0.001));
             
                 text3.text = "x"+ scaleRx.toFixed(1);
             
@@ -421,6 +431,8 @@ for (let index = 0; index < lr; index++) {
             dx_c += dx;
             dy_c += dy;
 
+
+           ct2 = 0;
 
             var idx = ongoingTouchIndexById(evt.pointerId);
           
