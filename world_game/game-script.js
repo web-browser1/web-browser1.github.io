@@ -52,7 +52,7 @@ function main() {
       
 
 
-    checkCookie();
+   // checkCookie();
 
     canvas = document.getElementById('canvas');
   
