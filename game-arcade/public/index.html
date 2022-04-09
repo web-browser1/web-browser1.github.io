@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Beetle World</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <meta name="description" content="HTML5 Web Adventure Arcade Game">
+    <meta name="keywords" content="Beetle, World, Level, Play, Start, Score, Game, Arcade">
+    <meta name="author" content="Canvas Game Engine">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+   
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            
+
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+   
+    
+    <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1483897869589441"
+    
+
+    crossorigin="anonymous"></script>
+    
+    <!--
+ data-adbreak-test="on"
+
+    <script async
+    data-ad-client="ca-pub-123456789"
+    data-admob-interstitial-slot="ca-app-pub-0987654321/1234567890"
+    data-admob-rewarded-slot="ca-app-pub-0987654321/0987654321"
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">  </script>
+  -->
+  
+  
+  <script>
+
+    window.adsbygoogle = window.adsbygoogle || [];
+    const adBreak = adConfig = function(o) {adsbygoogle.push(o);}
+  </script>
+    
+    
+    
+    
+    
+   
+</head>
+<body>
+
+   
+
+        <div class="container">
+            <nav>
+                <div class="icon-b">
+                        <div class="b1"></div>
+                        <div class="b2"></div>
+                        <div class="b3"></div>
+                        <div class="b4"></div>
+
+                </div>
+                <h3 class="web-title">Beetle World</h3>
+            </nav>
+        </div>
+
+ 
+
+    
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-12 col-lg-9 col-md-6 col-sm-12">
+
+                <div class="game-c">
+                    <canvas id="canvas"></canvas>
+
+
+                    <h1 id="title" class="game-title">Beetle World 
+                        Adventure</h3>
+
+                    <h2 id="text" class="text">Text</h3>
+
+
+                    <p id="leveltext" class="leveltext">Level 1</p>
+
+                    <div id="levels" class="levels">
+
+                        <div class="levels-1">
+                        <a id="level1" class="lvl1" href="#" onclick="levelStart(1)">Level 1</a>
+                        <a id="level2" class="lvl2" href="#" onclick="levelStart(2)">Level 2</a>
+                        <a id="level3" class="lvl3" href="#" onclick="levelStart(3)">Level 3</a>
+                        <a id="level4" class="lvl4" href="#" onclick="levelStart(4)">Level 4</a>
+                        <a id="level5" class="lvl5" href="#" onclick="levelStart(5)">Level 5</a>
+                        </div>
+
+                        <div class="levels-2">
+                        <a id="level6" class="lvl6" href="#" onclick="levelStart(6)">Level 6</a>
+                        <a id="level7" class="lvl7" href="#" onclick="levelStart(7)">Level 7</a>
+                        <a id="level8" class="lvl8" href="#" onclick="levelStart(8)">Level 8</a>
+                        <a id="level9" class="lvl9" href="#" onclick="levelStart(9)">Level 9</a>
+                        <a id="level10" class="lvl10" href="#" onclick="levelStart(10)">Level 10</a>
+                        </div>
+                    </div>
+
+
+
+
+                   <a id="retry" class="retry" href="#" onclick="retry()">Retry</a>
+
+                   <a id="next" class="next" href="#" onclick="next()">Next Level</a>
+
+                   <a id="menu" class="menu" href="#" onclick="menu()">Menu</a>
+
+
+                   <a id="start" class="start" href="#" onclick="start()">Start</a>
+
+                   <a id="pause" class="pause" href="#" onclick="pause()">| |</a>
+
+                </div>
+
+              
+
+            </div>
+            <div class="col-12 col-lg-3 col-md-6 col-sm-12">
+             
+            </div>
+
+        </div>
+
+
+    <div class="row">
+
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+       
+                <p>Controls: Arrow Keys </p>
+         </div>
+
+    </div>
+
+      
+
+    </div>
+
+
+<footer>
+    <div class="container">
+    <p>Copyright 2022 &copy;</p>
+    <a href="https://canvasgameweb.web.app/privacy.html">Privacy Policy</a>
+</div>
+</footer>
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDDWBTH5GiDT15-28IyEsvber-godZDcGU",
+      authDomain: "canvasgameweb.firebaseapp.com",
+      projectId: "canvasgameweb",
+      storageBucket: "canvasgameweb.appspot.com",
+      messagingSenderId: "1025633486659",
+      appId: "1:1025633486659:web:8cb167ff9f2f4a29fbd1f6",
+      measurementId: "G-RX372QGF52"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+
+
+<script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+
+<script src='main.js'></script>
+</body>
+</html>
