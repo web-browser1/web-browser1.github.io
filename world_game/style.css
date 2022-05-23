@@ -68,8 +68,10 @@ p {
 
     position: relative;
     display: inline-block;
+        padding: 2em;
 }
 
 canvas {
-    display: inline-block;
+    display: inline-block; 
+    border-radius: 20px;
 }
