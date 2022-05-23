@@ -58,6 +58,10 @@ function main() {
   
 
     var loading = document.getElementById("loading");
+    
+    
+     scale = 0.6 * (window.innerWidth / 1000);
+    
 
     loading.style.visibility = "hidden";
  WIDTH = window.innerWidth * 0.7;
