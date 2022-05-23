@@ -60,13 +60,32 @@ function main() {
     var loading = document.getElementById("loading");
 
     loading.style.visibility = "hidden";
+ WIDTH = window.innerWidth * 0.7;
+    HEIGHT = 400;
+    if( window.innerWidth  > window.innerHeight ) {
+       
 
-  WIDTH = window.innerWidth * 0.7;
-
-   HEIGHT = 400; // window.innerHeight;
+         // window.innerHeight;
+    } else {
+     
+        
+        
+    }
+    
+     if( window.innerWidth < 700 ||  window.innerHeight < 700 ) {
+          if( window.innerWidth  > window.innerHeight ) {
+               HEIGHT = window.innerHeight * 0.8;
+          } else {
+               HEIGHT = window.innerHeight * 0.5;
+          }
+         
+         
+     }
+    
+  
 
     canvas.width = WIDTH;
-    canvas.height = 400;
+    canvas.height = HEIGHT;
 
     ctx = canvas.getContext("2d");
 
@@ -162,11 +181,11 @@ var cloudCount = 130;
 
 
 var mounts = [];
-var mountsCount = 160;
+var mountsCount = 70;
 
 
 var mounts_f = [];
-var mountsCount_f = 230;
+var mountsCount_f = 100;
 
 
 
@@ -436,7 +455,7 @@ var camera_1 = 0;
 // 200   260   blue
 
 var hsl_h = 36;
-var hsl_s = 40;
+var hsl_s = 70;
 var hsl_l = 21;
 
 var hsl_l1 = 21;
