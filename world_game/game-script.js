@@ -74,9 +74,13 @@ function main() {
     
      if( window.innerWidth < 700 ||  window.innerHeight < 700 ) {
           if( window.innerWidth  > window.innerHeight ) {
-               HEIGHT = window.innerHeight * 0.8;
+               WIDTH = window.innerWidth * 0.9;
+              
+               HEIGHT = window.innerHeight * 0.9;
           } else {
-               HEIGHT = window.innerHeight * 0.5;
+               WIDTH = window.innerWidth * 0.9;
+              
+               HEIGHT = window.innerHeight * 0.4;
           }
          
          
@@ -372,7 +376,7 @@ function init() {
 
 
     var bx = 0;
-    var by = (HEIGHT/2) + 100;
+    var by = (HEIGHT) - 100;
 
 var s = 0;
 
@@ -1263,7 +1267,7 @@ function game_loop() {
     ctx.fillText("Go Forward", (WIDTH/3)*2+110, HEIGHT/2);
      } else {
  
-         ctx.fillText("- U s e  a r r o w k e y s  t o  m o v e  p l a y e r", (WIDTH/2)+0, HEIGHT/2);
+         ctx.fillText("- U s e  a r r o w k e y s  t o  m o v e  p l a y e r", (WIDTH/3)+0, HEIGHT/2);
      }
    }
 
