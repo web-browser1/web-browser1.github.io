@@ -23,11 +23,11 @@ window.onload = window.onresize = function () {
 
     HEIGHT = window.innerHeight;
     
-    canvas = document.getElementById('canvas');
-    canvas.width = WIDTH;
-    canvas.height = HEIGHT;
+   // canvas = document.getElementById('canvas');
+   // canvas.width = WIDTH;
+   // canvas.height = HEIGHT;
 
-    init();
+  //  init();
 
 };
 
