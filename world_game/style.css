@@ -68,8 +68,7 @@ p {
 
     position: relative;
     display: inline-block;
-        padding: 2em;
-    width: 70%;
+    padding-top: 1em;
     height: 400px;
 }
 
