@@ -360,12 +360,15 @@ var s = 0;
 
         var r = Math.random(1)*100;
 
+        if( i > 12 ) {
             s++;
 
             if( s == 5) {
 
                 s = 0;
             }
+            
+        }
 
             if( r < 7 ) { r = 7; }
           //  console.log("R:" + r );
@@ -1197,7 +1200,7 @@ function game_loop() {
    ctx.font = "700 50px Raleway";
    ctx.fillText("W O R L D", (WIDTH/2)-110, 100);
    ctx.font = "700 27px Raleway";
-   ctx.fillText("H A L L O W E E N", (WIDTH/2)-106, 124);
+   ctx.fillText("A D V E N T U R E", (WIDTH/2)-106, 124);
 
 
 
