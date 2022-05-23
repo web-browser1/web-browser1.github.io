@@ -1233,9 +1233,9 @@ function game_loop() {
    if( game_state == 0 ) {
 
    ctx.fillStyle = "#FFF";
-   ctx.font = "700 50px Raleway";
+   ctx.font = "700 30px Raleway";
    ctx.fillText("W O R L D", (WIDTH/2)-110, 100);
-   ctx.font = "700 27px Raleway";
+   ctx.font = "700 17px Raleway";
    ctx.fillText("A D V E N T U R E", (WIDTH/2)-106, 124);
 
 
@@ -1252,7 +1252,7 @@ function game_loop() {
    if( game_state == 1 && startXC < 50 ) {
 
     ctx.fillStyle = "#FFF";
-    ctx.font = "700 16px Raleway";
+    ctx.font = "700 14px Raleway";
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
         
