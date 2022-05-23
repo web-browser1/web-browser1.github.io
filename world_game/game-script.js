@@ -10,7 +10,7 @@
                 window.oRequestAnimationFrame ||
                 window.msRequestAnimationFrame ||
                 function(callback) {
-                    window.setTimeout(callback, 1000 / 60); //60 frames per second
+                    window.setTimeout(callback, 1000 / 30); //60 frames per second
                 };
 
     })();
