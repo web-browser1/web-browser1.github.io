@@ -153,7 +153,7 @@ var bricks = [];
 
 var brickCount = 1230;
 
-
+var brickCurrent = 0;
 
 var clouds = [];
 var cloudCount = 130;
@@ -1082,6 +1082,11 @@ function game_loop() {
 
     for( var b = 0; b<brickCount; b++ ) {
 
+        
+        if(b < (brickCurrent+24) && b > (brickCurrent-24)) {
+           
+           
+        
       /* if( player.x >= (WIDTH/2) ) {
         bricks[b].x -= 1;
        }*/
@@ -1148,6 +1153,7 @@ function game_loop() {
             player.grounded = true;
 
 
+            brickCurrent = b; 
            // ctx.scale(1.0, 1.0);
         } 
 
@@ -1159,6 +1165,7 @@ function game_loop() {
         }
 
 
+        }
 
     }
 
