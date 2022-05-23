@@ -61,12 +61,12 @@ function main() {
 
     loading.style.visibility = "hidden";
 
-//  WIDTH = window.innerWidth;
+  WIDTH = window.innerWidth;
 
-  //  HEIGHT = window.innerHeight;
+   HEIGHT = window.innerHeight;
 
-  //  canvas.width = WIDTH;
-   // canvas.height = HEIGHT;
+    canvas.width = WIDTH * 0.7;
+    canvas.height = 400;
 
     ctx = canvas.getContext("2d");
 
