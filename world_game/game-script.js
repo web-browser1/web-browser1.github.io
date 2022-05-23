@@ -19,9 +19,9 @@
 
 
 window.onload = window.onresize = function () {
-    WIDTH = window.innerWidth;
+  //  WIDTH = window.innerWidth;
 
-    HEIGHT = window.innerHeight;
+   // HEIGHT = window.innerHeight;
     
    // canvas = document.getElementById('canvas');
    // canvas.width = WIDTH;
@@ -61,11 +61,11 @@ function main() {
 
     loading.style.visibility = "hidden";
 
-  WIDTH = window.innerWidth;
+  WIDTH = window.innerWidth * 0.7;
 
-   HEIGHT = window.innerHeight;
+   HEIGHT = 400; // window.innerHeight;
 
-    canvas.width = WIDTH * 0.7;
+    canvas.width = WIDTH;
     canvas.height = 400;
 
     ctx = canvas.getContext("2d");
