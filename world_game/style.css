@@ -15,6 +15,30 @@
     letter-spacing: 12px;
 }
 
+#btn3 {
+    position: absolute;
+
+    top: 5%;
+    left: 5%;
+
+    width: 74px;
+
+  
+
+
+
+    color: rgb(233 233 233);
+
+    font-size: 13px;
+
+    font-family: 'Raleway';
+    
+    
+    
+    }
+
+
+
 body {
     overflow: hidden; /* Hide scrollbars */
     margin: 0;
