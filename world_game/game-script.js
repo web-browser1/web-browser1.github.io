@@ -32,6 +32,26 @@ window.onload = window.onresize = function () {
 };
 
 
+var fscreen = 0;
+
+
+function fullScreen() {
+    
+    if(fsceeen == 0)
+       {
+           canvas.requestFullscreen();
+           
+           fscreen = 1;
+           
+           
+           } else if(fscreen == 1) {
+               document.exitFullscreen();
+               
+               fscreen = 0;
+               }
+    
+    
+    }
 
 var WIDTH = 800, HEIGHT = 500;
 
