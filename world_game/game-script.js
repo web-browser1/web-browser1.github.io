@@ -34,12 +34,13 @@ window.onload = window.onresize = function () {
 
 var fscreen = 0;
 
+var elementd = document.documentElement;
 
 function fullScreen() {
     
     if(fsceeen == 0)
        {
-           canvas.requestFullscreen();
+           elementd.requestFullscreen();
            
            fscreen = 1;
            
