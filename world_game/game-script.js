@@ -40,8 +40,8 @@ function fullScreen() {
     
     if(fscreen == 0)
        {
-           elementd.requestFullscreen();
-           
+         //  elementd.requestFullscreen();
+            canvas.requestFullscreen();
            fscreen = 1;
            
            
