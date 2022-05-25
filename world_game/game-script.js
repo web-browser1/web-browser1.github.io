@@ -38,7 +38,7 @@ var elementd = document.documentElement;
 
 function fullScreen() {
     
-    if(fsceeen == 0)
+    if(fscreen == 0)
        {
            elementd.requestFullscreen();
            
