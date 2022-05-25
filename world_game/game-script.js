@@ -401,7 +401,7 @@ function init() {
 
 
     var bx = 0;
-    var by = (HEIGHT) - 100;
+    var by = (HEIGHT) - 120;
 
 var s = 0;
 
@@ -419,6 +419,10 @@ var s = 0;
             }
             
         }
+        
+        if(i < 6) {
+            r = 0;
+            }
 
             if( r < 7 ) { r = 7; }
           //  console.log("R:" + r );
