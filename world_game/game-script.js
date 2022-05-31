@@ -32,6 +32,9 @@ window.onload = window.onresize = function () {
 };
 
 
+var rscreen = 2;
+
+
 var fscreen = 0;
 
 var elementd = document.documentElement;
@@ -62,6 +65,10 @@ var ctx;
 var keystate;
 
 var ontouch_1 = 0;
+
+
+
+
 
 function main() {
     setCookie("start1", 2300, 365);
@@ -110,6 +117,23 @@ function main() {
          
          
      }
+    
+    
+    
+    if( rscreen > 1 ) {
+        
+          WIDTH = window.innerWidth;
+          HEIGHT = window.innerHeight;
+        
+         if( rscreen == 2) {
+               canvas.requestFullscreen();
+                fscreen = 1;
+         }
+        
+        
+    }
+    
+    
     
   
 
@@ -1286,14 +1310,14 @@ function game_loop() {
     
  
     ctx.fillRect(WIDTH/3, 100, 3, HEIGHT-200);
-    ctx.fillText("Go Back", (WIDTH/3)-210, HEIGHT/2);
+    ctx.fillText("GO BACK", (WIDTH*0.1), HEIGHT/2);
  
  
-    ctx.fillText("Jump", (WIDTH/3)+140, HEIGHT/2);
+    ctx.fillText("JUMP", (WIDTH/3)+(WIDTH*0.1), HEIGHT/2);
  
     ctx.fillRect((WIDTH/3)*2, 100, 3, HEIGHT-200);
  
-    ctx.fillText("Go Forward", (WIDTH/3)*2+110, HEIGHT/2);
+    ctx.fillText("GO FORWARD", (WIDTH/3)*2+(WIDTH*0.1), HEIGHT/2);
      } else {
  
          ctx.fillText("- U s e  a r r o w k e y s  t o  m o v e  p l a y e r", (WIDTH/3)+0, HEIGHT/2);
