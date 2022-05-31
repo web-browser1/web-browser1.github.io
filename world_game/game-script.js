@@ -999,7 +999,7 @@ function game_loop() {
         
         }
 
-       tapToStart();
+     //  tapToStart();
 
            
 
