@@ -122,11 +122,12 @@ function main() {
     
     if( rscreen > 1 ) {
         
-          WIDTH = window.innerWidth;
-          HEIGHT = window.innerHeight;
+        //  WIDTH = window.innerWidth;
+        //  HEIGHT = window.innerHeight;
         
         
-        
+           WIDTH = window.screen.width;
+          HEIGHT = window.screen.height;
         
     }
     
