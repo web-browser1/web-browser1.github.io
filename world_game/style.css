@@ -3,16 +3,15 @@
 #btn1 {
 
     position: absolute;
-    left: 50%;
-    width: 374px;
-    margin-left: -179px;
-    bottom: 116px;
+    left: 26%;
+    width: 45%;
+    bottom: 28%;
     color: rgb(233 233 233);
-    font-size: 23px;
+    font-size: 14px;
     font-family: 'Raleway';
     font-weight: 700;
     text-decoration: none;
-    letter-spacing: 12px;
+    letter-spacing: 4px;
 }
 
 #btn3 {
