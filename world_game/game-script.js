@@ -125,10 +125,7 @@ function main() {
           WIDTH = window.innerWidth;
           HEIGHT = window.innerHeight;
         
-         if( rscreen == 2) {
-               canvas.requestFullscreen();
-                fscreen = 1;
-         }
+        
         
         
     }
@@ -544,6 +541,11 @@ function tapToStart() {
 
     game_state = 1;
 
+    
+     if( rscreen == 2) {
+               canvas.requestFullscreen();
+                fscreen = 1;
+         }
 }
 
 
