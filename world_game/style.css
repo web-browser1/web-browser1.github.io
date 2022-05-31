@@ -2,12 +2,15 @@
 
 #btn1 {
 
-    position: absolute;
-    left: 26%;
+  position: absolute;
+    border: #FFF solid 5px;
+    border-radius: 13px;
+    padding: 2em;
+    left: 9%;
     width: 45%;
-    bottom: 28%;
+    bottom: 39%;
     color: rgb(233 233 233);
-    font-size: 14px;
+    font-size: 17px;
     font-family: 'Raleway';
     font-weight: 700;
     text-decoration: none;
