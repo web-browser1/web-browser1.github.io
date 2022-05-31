@@ -94,11 +94,11 @@ p {
 
     position: relative;
     display: inline-block;
-    padding-top: 1em;
-    height: 400px;
+   /* padding-top: 1em;
+    height: 400px;*/
 }
 
 canvas {
     display: inline-block; 
-    border-radius: 20px;
+    /*border-radius: 20px;*/
 }
