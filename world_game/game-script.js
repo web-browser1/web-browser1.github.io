@@ -631,7 +631,7 @@ function game_loop() {
  // Create gradient
 
  var grd = ctx.createLinearGradient(0, 0, 0, HEIGHT);
- grd.addColorStop(0, 'hsl('+((hsl_h-180))+'deg '+hsl_s-10+'% '+((hsl_l-sunB*0.1)+45)+'%)');
+ grd.addColorStop(0, 'hsl('+((hsl_h-180))+'deg '+(hsl_s-10)+'% '+((hsl_l-sunB*0.1)+45)+'%)');
  grd.addColorStop(1, 'hsl('+(hsl_h)+'deg '+(hsl_s-10+sunB)+'% '+((hsl_l+sunB*0.2)+45)+'%)');
 
  //  ctx.rotate(20 * Math.PI / 180);
