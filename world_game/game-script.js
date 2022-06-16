@@ -631,8 +631,8 @@ function game_loop() {
  // Create gradient
 
  var grd = ctx.createLinearGradient(0, 0, 0, HEIGHT);
- grd.addColorStop(0, 'hsl('+((hsl_h-180))+'deg '+hsl_s+20+'% '+((hsl_l-sunB*0.1)+45)+'%)');
- grd.addColorStop(1, 'hsl('+(hsl_h)+'deg '+(hsl_s+20+sunB)+'% '+((hsl_l+sunB*0.2)+45)+'%)');
+ grd.addColorStop(0, 'hsl('+((hsl_h-180))+'deg '+hsl_s-10+'% '+((hsl_l-sunB*0.1)+45)+'%)');
+ grd.addColorStop(1, 'hsl('+(hsl_h)+'deg '+(hsl_s-10+sunB)+'% '+((hsl_l+sunB*0.2)+45)+'%)');
 
  //  ctx.rotate(20 * Math.PI / 180);
  
@@ -974,7 +974,7 @@ function game_loop() {
      /// ctx.fillStyle = 'hsl(120deg 53% 32%)';
 
 
-    ctx.fillStyle = 'hsl('+hsl_h+'deg '+hsl_s+'% '+(hsl_l+15)+'%)';
+    ctx.fillStyle = 'hsl('+hsl_h+'deg '+hsl_s+20+'% '+(hsl_l+15)+'%)';
 
 
     ctx.fillRect(player.x, player.y, player.width, player.height);
@@ -1172,7 +1172,7 @@ function game_loop() {
         bricks[b].x -= 1;
        }*/
 
-        ctx.fillStyle = 'hsl('+(hsl_h+180)+'deg '+(hsl_s-30)+'% '+(hsl_l + 15)+'%)';
+        ctx.fillStyle = 'hsl('+(hsl_h+180)+'deg '+(hsl_s+30)+'% '+(hsl_l + 15)+'%)';
 
         var b_velY = 0;
 
@@ -1253,13 +1253,13 @@ function game_loop() {
 
     player.y += player.velY;
 
-    var grd3 = ctx.createLinearGradient(0, HEIGHT-100, 0, HEIGHT+60);
+   /* var grd3 = ctx.createLinearGradient(0, HEIGHT-100, 0, HEIGHT+60);
     grd3.addColorStop(1, '#FFFFFFCC');
     grd3.addColorStop(0, '#FFFFFF00');
  
     ctx.fillStyle = grd3;
  
-    ctx.fillRect(0, HEIGHT-100, WIDTH, 100);
+    ctx.fillRect(0, HEIGHT-100, WIDTH, 100);*/
 
 
 
