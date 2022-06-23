@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>
+        Web Idle - Gas Station Tycoon
+
+    </title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B128R5TMRB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B128R5TMRB');
+</script>
+</head>
+<body>
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v14.0" nonce="CCx6F2Dj"></script>
+    <h4>Gas Idle Empire Tycoon   <div class="fb-share-button" data-href="https://gitgraph.github.io/web-idle" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgitgraph.github.io%2Fweb-idle&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+    </h4>
+
+    <div class="container-money">
+        <span class="material-symbols-outlined money-icon">
+            payments
+            </span>
+        <p class="money" id="money">100$</p>
+
+    </div>
+    <div class="container">
+      
+    <div class="game" id="game">
+
+        <p class="p" id="value_g">1.3$/L</p>
+
+        <!--
+            <div id="g1" class="g1 g">gas <span class="material-symbols-outlined">
+                local_gas_station
+                </span><span class="material-symbols-outlined" id="car1">
+                    directions_car
+                    </span></div>
+            <div id="g2" class="g2 g">gas <span class="material-symbols-outlined">
+                local_gas_station
+                </span><span class="material-symbols-outlined" id="car2">
+                    directions_car
+                    </span></div>
+            <div id="g3" class="g3 g">gas <span class="material-symbols-outlined">
+                local_gas_station
+                </span><span class="material-symbols-outlined" id="car3">
+                    directions_car
+                    </span></div>
+            -->
+
+    </div>
+
+
+    <div class="diesel" id="diesel">
+        <p class="p" id="value_g">2.3$/L</p>
+
+    </div>
+
+
+    <div class="electric" id="electric">
+        <p class="p" id="value_g">4.3$/mW</p>
+
+
+    </div>
+
+    <div class="scooter" id="scooter">
+        <p class="p" id="value_g">5.3$/mW</p>
+
+    </div>
+    <div class="bike" id="bike">
+        <p class="p" id="value_g">6.4$/mW</p>
+
+    </div>
+
+
+
+    <div class="menu">
+
+        <h4>Stations</h4>
+
+
+            <a class="buttong" id="btn_gas" onclick="buyGasStation(1)" >
+                <span class="material-symbols-outlined">
+                    local_gas_station
+                </span>
+                <span class="text">Gas Station</span>
+                  <span id="price_g">70$</span> 
+            </a>
+
+            <a class="buttong" id="btn_bus" onclick="buyGasStation(2)" >
+                <span class="material-symbols-outlined">
+                    local_gas_station
+                </span>
+                <span class="material-symbols-outlined">
+                    directions_bus
+                </span>
+                <span class="text">Diesel Station</span>
+                  <span id="price_d">70$</span> 
+            </a>
+            <a class="buttong" id="btn_electric" onclick="buyGasStation(3)" >
+                <span class="material-symbols-outlined">
+                    ev_station
+                </span>
+                <span class="material-symbols-outlined">
+                    electric_car
+                </span>
+                <span class="text">Electric Station</span>
+                  <span id="price_e">270$</span> 
+            </a>
+            <a class="buttong" id="btn_scooter" onclick="buyGasStation(4)" >
+                <span class="material-symbols-outlined">
+                    ev_station
+                </span>
+                <span class="material-symbols-outlined">
+                    electric_scooter
+                </span>
+                <span class="text">Electric Scooter Station</span>
+                  <span id="price_s">570$</span> 
+            </a>
+            <a class="buttong" id="btn_bike" onclick="buyGasStation(5)" >
+                <span class="material-symbols-outlined">
+                    ev_station
+                </span>
+                <span class="material-symbols-outlined">
+                    electric_bike
+                </span>
+                <span class="text">Electric Bike Station</span>
+                  <span id="price_b">670$</span> 
+            </a>
+
+
+
+            <a class="buttong" id="btn_hq_diesel" onclick="buyHQUpgrade(1)" >
+                <span class="material-symbols-outlined">
+                    local_gas_station
+                </span>
+                <span class="material-symbols-outlined">
+                    account_balance
+                    </span>
+                  <span id="price_dhq">17000$</span> 
+                  <span class="text">Diesel HQ Upgrade</span>
+            </a>
+
+            <a class="buttong" id="btn_hq_electric" onclick="buyHQUpgrade(2)" >
+                <span class="material-symbols-outlined">
+                    ev_station
+                </span>
+                <span class="material-symbols-outlined">
+                    account_balance
+                    </span>
+                  <span id="price_ehq">700000$</span> 
+                  <span class="text">Electric HQ Upgrade</span>
+            </a>
+
+            <a class="buttong" id="btn_hq_scooter" onclick="buyHQUpgrade(3)" >
+                <span class="material-symbols-outlined">
+                    electric_scooter
+                </span>
+                <span class="material-symbols-outlined">
+                    domain
+                    </span>
+                  <span id="price_shq">1700000$</span> 
+                  <span class="text">Electric Scooter Department Upgrade</span>
+            </a>
+            <a class="buttong" id="btn_hq_bike" onclick="buyHQUpgrade(4)" >
+                <span class="material-symbols-outlined">
+                    electric_bike
+                </span>
+                <span class="material-symbols-outlined">
+                    domain
+                    </span>
+                  <span id="price_bhq">3700000$</span> 
+                  <span class="text">Electric Bike Department Upgrade</span>
+            </a>
+
+
+    </div>
+</div>
+
+
+<div class="copyright">
+    Copyright 2022. All rights reserved
+</div>
+
+
+
+    <script src='main.js'></script>
+</body>
+</html>
