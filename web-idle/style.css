@@ -104,6 +104,17 @@ a.buttong {
     display: inline-block;
 }
 
+.counter {
+    position: absolute;
+    left: 10px;
+    top: 18px;
+    font-size: 11px;
+    color: #fff;
+    padding: 3px 4px;
+    border-radius: 6px;
+    background: #aaa;
+}
+
 a.buttong-a {
     border: rgb(77, 77, 77) solid 2px;
 }
@@ -112,6 +123,12 @@ a.buttong-g {
     border: rgb(0, 197, 0) solid 2px;
 }
 
+#btn_scooter {
+    min-width: 106px;
+}
+#btn_bike {
+    min-width: 106px;
+}
 
 .container-money {
     position: relative;
@@ -143,7 +160,8 @@ a.buttong-g {
 
 .container {
     display: inline-block;
-    
+    position: relative;
+    overflow: hidden;
 }
 
 
