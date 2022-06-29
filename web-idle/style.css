@@ -2,12 +2,21 @@ body {
 
     font-family: 'Montserrat', sans-serif;
 font-family: 'Roboto', sans-serif;
+   background: #FFF;
+  
+}
+body#body {
+    padding: 10px;
+}
+::backdrop {
+    background-color: #FFF;
 }
 
 .copyright {
-    padding: 3em 0em;
+    padding: 4em 1em;
     font-size: 10px;
     color: #ddd;
+
 }
 
 .game, .diesel, .electric, .scooter, .bike {
@@ -148,6 +157,35 @@ a.buttong-g {
     top: 2px;
     margin: 0;
 }
+h1.gh1 {
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: 100;
+}
+.money-p {
+    color: #ccc;
+    font-size: 14px;
+    margin: 0;
+}
+.topr {
+    display: inline-flex;
+    border-bottom: 1px solid #d9e1d9;
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    width: 100%;
+    align-items: center;
+}
+a#fullscreen {
+    background: #455045;
+    border-radius: 7px;
+    padding: 7px;
+    color: #fff;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    align-content: flex-end;
+    margin-left: 3em;  margin-right: 3em;
+}
 
 .text {
     position: absolute;
@@ -167,19 +205,23 @@ a.buttong-g {
 
 .menu {
     margin-top: 3em;
-    float: left;
+    
 }
 .menu-f {
-    margin-top: 3em;
     position: fixed;
-    top: 240px;
-    left: 30px;
-    background: #FFF;
-    height: 145px;
+    left: 10px;
+    bottom: 198px;
+    background: #f3f3f3;
     border-radius: 14px;
-    padding: 0em 1em;
+    padding: 1em 1em;
 }
 
+.stations-text {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #CCC;
+}
 
 .pie {
     width: 10px;
