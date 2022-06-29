@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
-
+    <meta name="twitter:card" content="summary"></meta>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B128R5TMRB"></script>
 <script>
@@ -26,29 +26,41 @@
   gtag('config', 'G-B128R5TMRB');
 </script>
 </head>
-<body>
+<body id="body">
+
+
+    <div class="topr">
+        <h1 class="gh1""">Gas Idle Empire Tycoon</h1>
+
+
+        <a id="fullscreen" onclick="fullScreen()"><span class="material-symbols-outlined">fullscreen</span>Fullscreen </a>
+   
+        <audio controls loop autoplay style="float: right;">
+            <source src="web-music.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+          </audio>
+    </div>
+
+    <!--
     <div id="fb-root"></div>
+
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v14.0" nonce="CCx6F2Dj"></script>
-    <h4>Gas Idle Empire Tycoon   
-    </h4>
+<div class="fb-share-button" data-href="https://gitgraph.github.io/web-idle" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgitgraph.github.io%2Fweb-idle&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"></a></div>
+  -->
 
-    
 
-    <audio controls loop autoplay style="margin: 2em;">
 
-        <source src="web-music.mp3" type="audio/mpeg">
 
-      Your browser does not support the audio element.
-
-</audio>
-    
     <div class="container-money">
         <span class="material-symbols-outlined money-icon">
             payments
             </span>
         <p class="money" id="money">100$</p>
 
+
+        <p class="money-p" id="money-p""">10% / sec</p>
     </div>
+                
     <div class="container">
       
     <div class="game" id="game">
@@ -70,12 +82,12 @@
                 local_gas_station
                 </span><span class="material-symbols-outlined" id="car3">
                     directions_car
-                    </span></div>
+                    </span></div>  <blockquote class="twitter-tweet"><p lang="en" dir="ltr">We need more gasoline.</p>&mdash; Gas Station Tycoon (@lplaygames_3) <a href="https://twitter.com/lplaygames_3/status/1539857069821595649?ref_src=twsrc%5Etfw">June 23, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
             -->
 
     </div>
-
-
+  
     <div class="diesel" id="diesel">
         <p class="p" id="value_g">2.3$/L</p>
 
@@ -101,7 +113,9 @@
 
     <div class="menu">
 
-        <h4>Stations</h4>
+        <div class="menu-fc">
+
+        <p class="stations-text">Stations</p>
 
 
             <a class="buttong" id="btn_gas" onclick="buyGasStation(1)" >
@@ -203,10 +217,10 @@
                   <span class="text">Electric Bike Department Upgrade</span>
             </a>
 
-
+        </div>
     </div>
 </div>
-<blockquote class="twitter-tweet"><p lang="art" dir="ltr">⛽🚘⛽🚘</p>&mdash; Gas Station Tycoon (@lplaygames_3) <a href="https://twitter.com/lplaygames_3/status/1539860338316812288?ref_src=twsrc%5Etfw">June 23, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 
 <div class="copyright">
     Copyright 2022. All rights reserved
