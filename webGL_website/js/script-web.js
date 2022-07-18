@@ -1,17 +1,15 @@
-const app = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight, backgroundColor: 0xDDDDDD });
+const app = new PIXI.Application({
+   width: window.innerWidth,
+   height: window.innerHeight,
+   backgroundColor: 0xDDDDDD
+});
 document.body.appendChild(app.view);
 
 
-
-
-window.onload = window.onresize = function () {
-    app.view.width = window.innerWidth;
-
-    app.view.height = window.innerHeight;
-    
-
+window.onload = window.onresize = function() {
+   app.view.width = window.innerWidth;
+   app.view.height = window.innerHeight;
 };
-
 
 // create a texture from an image path
 const texture = PIXI.Texture.from('images/vector.png');
@@ -20,12 +18,8 @@ texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
 
 const textureButton = PIXI.Texture.from('images/vector.png');
 
-
-
 var rx = 50;
 var ry = 50;
-
-
 
 const c_rectangle = new PIXI.Graphics();
 
@@ -35,542 +29,400 @@ c_rectangle.lineStyle(16, 0xCCCCCC, 3);
 
 var start_p = 300;
 
-
 var window_c = 0;
 
-if ( window.innerWidth > window.innerHeight ) {
-
-    window_c = window.innerWidth;
-
+if (window.innerWidth > window.innerHeight) {
+   window_c = window.innerWidth;
 } else {
-
    window_c = window.innerHeight;
 }
 
-
-
-start_p = ( window_c * 0.5) * 4.2;
-
-
+start_p = (window_c * 0.5) * 4.2;
 
 
 c_rectangle.beginFill(0xEEEEEE);
-c_rectangle.drawRect(-start_p, -start_p, start_p*2, start_p*2);
+c_rectangle.drawRect(-start_p, -start_p, start_p * 2, start_p * 2);
 c_rectangle.endFill();
 
+c_rectangle.x = start_p;
+c_rectangle.y = start_p;
 
 
-   c_rectangle.x = start_p;
-    c_rectangle.y = start_p;
+rx = start_p;
+ry = start_p;
 
+c_rectangle.x = window.innerWidth / 2;
+c_rectangle.y = window.innerHeight / 2;
 
-
-    rx = start_p;
-    ry = start_p;
-
-
-
-
-    c_rectangle.x = window.innerWidth/2;
-
-    c_rectangle.y = window.innerHeight/2;
-
-
-    rx = window.innerWidth/2;
-    ry = window.innerHeight/2;
+rx = window.innerWidth / 2;
+ry = window.innerHeight / 2;
 
 
 //app.stage.addChild(c_rectangle);
-
 // const c_rectangle = new PIXI.Sprite(texture);
 
 
+c_rectangle.interactive = true;
+c_rectangle.buttonMode = true;
 
-    c_rectangle.interactive = true;
+// center the c_rectangle's anchor point
+//  c_rectangle.anchor.set(0.5);
 
-    c_rectangle.buttonMode = true;
-
-
-
-    // center the c_rectangle's anchor point
-  //  c_rectangle.anchor.set(0.5);
+c_rectangle.scale.set(1);
 
 
-  
-    c_rectangle.scale.set(1);
-
-
-
-
-
-
-    
 let mrx = 0;
-
 let mcx = 0;
 
-
-
 let lr = 35;
-
-
-mcx = (start_p*2)/lr;
+mcx = (start_p * 2) / lr;
 
 
 for (let index = 0; index < lr; index++) {
-    
-    const realPath = new PIXI.Graphics();
 
-    realPath.lineStyle(2, 0xCCCCCC, 1);
-    realPath.moveTo(mrx, 0);
-    realPath.lineTo(mrx, start_p*2);
-    
-    realPath.position.x = -start_p;
-    realPath.position.y = -start_p;
-    
-    c_rectangle.addChild(realPath);
+   const realPath = new PIXI.Graphics();
 
-    mrx += mcx;
+   realPath.lineStyle(2, 0xCCCCCC, 1);
+   realPath.moveTo(mrx, 0);
+   realPath.lineTo(mrx, start_p * 2);
+
+   realPath.position.x = -start_p;
+   realPath.position.y = -start_p;
+
+   c_rectangle.addChild(realPath);
+
+   mrx += mcx;
 }
 
-
-    
 let mry = 0;
-
 let mcy = 0;
 
-
-mcy = (start_p*2)/lr;
+mcy = (start_p * 2) / lr;
 
 for (let index = 0; index < lr; index++) {
-    
-    const realPath = new PIXI.Graphics();
 
-    realPath.lineStyle(2, 0xCCCCCC, 1);
-    realPath.moveTo(0, mry);
-    realPath.lineTo(start_p*2, mry);
-    
-    realPath.position.x = -start_p;
-    realPath.position.y = -start_p;
-    
-    c_rectangle.addChild(realPath);
+   const realPath = new PIXI.Graphics();
 
-    mry += mcy;
+   realPath.lineStyle(2, 0xCCCCCC, 1);
+   realPath.moveTo(0, mry);
+   realPath.lineTo(start_p * 2, mry);
+
+   realPath.position.x = -start_p;
+   realPath.position.y = -start_p;
+
+   c_rectangle.addChild(realPath);
+
+   mry += mcy;
+}
+
+
+// setup events for mouse + touch using
+// the pointer events
+/* c_rectangle
+      .on('pointerdown', onDragStart)
+      .on('pointerup', onDragEnd)
+      .on('pointerupoutside', onDragEnd)
+      .on('pointermove', onDragMove);*/
+
+
+window.addEventListener("pointerdown", handleStart, false);
+window.addEventListener("pointerup", handleEnd, false);
+
+window.addEventListener("pointerupoutside", handleEnd, false);
+window.addEventListener("pointermove", handleMove, false);
+
+
+var scale_s = 0;
+
+function handleStart(evt) {
+
+   ongoingTouches.push(copyTouch(evt));
+
+   if (ongoingTouches.length == 2) {
+
+      scale_s = Math.sqrt(Math.pow(Math.abs(ongoingTouches[0].pageX - ongoingTouches[1].pageX), 2) +
+         Math.pow(Math.abs(ongoingTouches[0].pageY - ongoingTouches[1].pageY), 2));
+   }
+
+   cx = ongoingTouches[0].pageX;
+   cy = ongoingTouches[0].pageY;
+
+
+   dx = 0;
+   dy = 0;
+
+
 }
 
 
 
+var ongoingTouches = new Array();
+
+function copyTouch(touch) {
+   return {
+      identifier: touch.pointerId,
+      pageX: touch.clientX,
+      pageY: touch.clientY
+   };
+}
+
+function ongoingTouchIndexById(idToFind) {
+   for (var i = 0; i < ongoingTouches.length; i++) {
+      var id = ongoingTouches[i].identifier;
+
+      if (id == idToFind) {
+         return i;
+      }
+   }
+   return -1; // not found
+}
 
 
- // setup events for mouse + touch using
-    // the pointer events
-  /* c_rectangle
-        .on('pointerdown', onDragStart)
-        .on('pointerup', onDragEnd)
-        .on('pointerupoutside', onDragEnd)
-        .on('pointermove', onDragMove);*/
+var ct2 = 0;
+let dx_c = 0;
+let dy_c = 0;
+var scale_e = 0;
+
+function handleMove(evt) {
+
+   // move
+   if (ongoingTouches.length >= 1) {
+
+      if (ct2 == 0) {
+	      
+         var positionX = ongoingTouches[0].pageX;
+         var positionY = ongoingTouches[0].pageY;
 
 
+         //  var b_x = ((scaleRx * start_p) - start_p)/2;
+         //  var gx = Math.abs(cx - rx)
+         /*  var cx1 = Math.abs((rx + dx) - start_p);
 
-        window.addEventListener("pointerdown", handleStart, false);
-        window.addEventListener("pointerup", handleEnd, false);
-
-        window.addEventListener("pointerupoutside", handleEnd, false);
-        window.addEventListener("pointermove", handleMove, false);
-
-
-        var scale_s = 0;
-
-        function handleStart(evt) {
-         
-            ongoingTouches.push(copyTouch(evt));
-
-         
-
-            if( ongoingTouches.length == 2 ) {
-
-                scale_s = Math.sqrt( Math.pow( Math.abs( ongoingTouches[0].pageX - ongoingTouches[1].pageX ), 2) 
-                 + Math.pow( Math.abs( ongoingTouches[0].pageY - ongoingTouches[1].pageY ), 2 ) );
-            }
-
-
-            cx = ongoingTouches[0].pageX;
-            cy = ongoingTouches[0].pageY; 
-
-
-                dx = 0;
-                dy = 0;
-
-         
-          }
-
-
-
-          var ongoingTouches = new Array();
-
-          function copyTouch(touch) {
-              return { identifier: touch.pointerId, pageX: touch.clientX, pageY: touch.clientY };
-            }
-          
-            function ongoingTouchIndexById(idToFind) {
-              for (var i = 0; i < ongoingTouches.length; i++) {
-                var id = ongoingTouches[i].identifier;
-            
-                if (id == idToFind) {
-                  return i;
-                }
-              }
-              return -1;    // not found
-            }
-
-
-
-
-       var ct2 = 0;
-
-                let dx_c = 0;
-                let dy_c = 0;
-
-
-            var scale_e = 0;
-
-        function handleMove(evt) {
-
-
-            // move
-
-
-            if( ongoingTouches.length >= 1 ) {
-
-
-
-             if( ct2 == 0 ) {
-
-
-             
-
-
-        var positionX = ongoingTouches[0].pageX;
-        var positionY = ongoingTouches[0].pageY;
-
-
-      //  var b_x = ((scaleRx * start_p) - start_p)/2;
-
-      //  var gx = Math.abs(cx - rx)
-
-
-
-      /*  var cx1 = Math.abs((rx + dx) - start_p);
-
-        if( cx1 < b_x ) {
-
-           // dc_x = dx;
-
-         //  dx = 0;
+           if( cx1 < b_x ) {
+              // dc_x = dx;
+            //  dx = 0;
        
-        }*/
+           }*/
 
 
-        console.log("x: " + positionX + "  y: " + positionY  + "  dx: " + dx   + "  dy: " + dy
-        + "  rx: " + rx  + "   ry: " + ry  + "   dx_c: " + (dx_c+dx)  + "   dy_c: " + (dy_c+dy)  + "   df1 " + ((start_p*2*scaleRx - window.innerWidth)/2) );
- 
-      
-        dx = positionX - (cx );
-        dy = positionY - (cy );
+         console.log("x: " + positionX + "  y: " + positionY + "  dx: " + dx + "  dy: " + dy +
+            "  rx: " + rx + "   ry: " + ry + "   dx_c: " + (dx_c + dx) + "   dy_c: " + (dy_c + dy) + "   df1 " + ((start_p * 2 * scaleRx - window.innerWidth) / 2));
 
 
+         dx = positionX - (cx);
+         dy = positionY - (cy);
 
-        if( (dx_c+dx)  >  ((start_p*2*scaleRx - window.innerWidth)/2) ) {
+         if ((dx_c + dx) > ((start_p * 2 * scaleRx - window.innerWidth) / 2)) {
 
-            dx =  (((start_p*2*scaleRx - window.innerWidth)/2) - dx_c ) - 4;
-
+            dx = (((start_p * 2 * scaleRx - window.innerWidth) / 2) - dx_c) - 4;
             console.log(" <<<<<<<  b   dx: " + dx);
-    
-        }
 
+         }
 
-        if( (dx_c+dx)  <  -((start_p*2*scaleRx - window.innerWidth)/2) ) {
+         if ((dx_c + dx) < -((start_p * 2 * scaleRx - window.innerWidth) / 2)) {
 
-            dx = -(((start_p*2*scaleRx - window.innerWidth)/2) + dx_c ) - 4;
-
+            dx = -(((start_p * 2 * scaleRx - window.innerWidth) / 2) + dx_c) - 4;
             console.log(" <<<<<<<  b   dx: " + dx);
-    
-        }
+
+         }
 
 
+         if ((dy_c + dy) > ((start_p * 2 * scaleRy - window.innerHeight) / 2)) {
 
-
-        if( (dy_c+dy)  >  ((start_p*2*scaleRy - window.innerHeight)/2) ) {
-
-            dy =  (((start_p*2*scaleRy - window.innerHeight)/2) - dy_c ) - 4;
-
+            dy = (((start_p * 2 * scaleRy - window.innerHeight) / 2) - dy_c) - 4;
             console.log(" <<<<<<<  b   dx: " + dy);
-    
-        }
 
+         }
 
-        if( (dy_c+dy)  <  -((start_p*2*scaleRy - window.innerHeight)/2) ) {
+         if ((dy_c + dy) < -((start_p * 2 * scaleRy - window.innerHeight) / 2)) {
 
-            dy = -(((start_p*2*scaleRy - window.innerHeight)/2) + dy_c ) - 4;
-
+            dy = -(((start_p * 2 * scaleRy - window.innerHeight) / 2) + dy_c) - 4;
             console.log(" <<<<<<<  b   dx: " + dy);
-    
-        }
 
+         }
 
 
+         c_rectangle.x = rx + dx;
+         c_rectangle.y = ry + dy;
 
+         //  this.x = dx;
+         //  this.y = dy;
 
+         //  this.x = newPosition.x;
+         //   this.y = newPosition.y;
 
+         ///// start_p = (window.innerWidth * 0.5) * 1.2;
 
-        c_rectangle.x = rx + dx;
-        c_rectangle.y = ry + dy;
-        
+      }
 
-      //  this.x = dx;
-      //  this.y = dy;
 
 
-      //  this.x = newPosition.x;
-    //   this.y = newPosition.y;
 
+      // zoom
 
+      var idx = ongoingTouchIndexById(evt.pointerId);
 
+	   
+      // console.log("event touches: " +   ongoingTouches[ongoingTouchIndexById(evt.pointerId)].pageX  + " id:" + evt.pointerId + " ongoingTouches.length:" + ongoingTouches.length );
+      // console.log("event touches 0: " +   ongoingTouches[0].pageX );
 
-        ///// start_p = (window.innerWidth * 0.5) * 1.2;
 
+      if (ongoingTouches.length == 2) {
 
-          }
+         ct2 = 0;
+         console.log("event touches 1: " + ongoingTouches[1].pageX);
 
+         var scale_f = Math.sqrt(Math.pow(Math.abs(ongoingTouches[0].pageX - ongoingTouches[1].pageX), 2) +
+            Math.pow(Math.abs(ongoingTouches[0].pageY - ongoingTouches[1].pageY), 2));
 
+         scale_e = scale_f - scale_s;
 
+         scaleRx = (scale_a + (scale_e * 0.001)) * 100 < 5 ? 0.5 : (scale_a + (scale_e * 0.001));
+         scaleRy = (scale_a + (scale_e * 0.001)) * 100 < 5 ? 0.5 : (scale_a + (scale_e * 0.001));
 
+         if (scaleRx > 2) {
+            scaleRx = 2;
+            scaleRy = 2;
 
+         }
 
+         if (scaleRx * 10 < 5) {
+            scaleRx = 0.5;
+            scaleRy = 0.5;
 
+         }
 
-            // zoom
+         text3.text = "x" + scaleRx.toFixed(1);
+         c_rectangle.scale.set(scaleRx, scaleRy);
 
-         
-            var idx = ongoingTouchIndexById(evt.pointerId);
-          
-          
-           // console.log("event touches: " +   ongoingTouches[ongoingTouchIndexById(evt.pointerId)].pageX  + " id:" + evt.pointerId + " ongoingTouches.length:" + ongoingTouches.length );
+      }
 
+      //  console.log("event touches 1: " +   evt.touches[0].pageX );
+      // console.log("event touches: " +   ongoingTouches[ongoingTouchIndexById(evt.pointerId)].pageX );
 
-          // console.log("event touches 0: " +   ongoingTouches[0].pageX );
+      textl.text = " log:     r0 " + ongoingTouches[0].pageX +
+         "  r1:  " + (ongoingTouches.length == 2 ? ongoingTouches[1].pageX : 0) +
+         "  scale_s: " + scale_s + "   scale_e: " + scale_e;
 
 
-            if( ongoingTouches.length == 2 ) {
+      if (idx >= 0) {
+         ongoingTouches.splice(idx, 1, copyTouch(evt)); // swap in the new touch record
 
+      } else {
 
-                ct2 = 0;
+      }
 
-                console.log("event touches 1: " +   ongoingTouches[1].pageX );
+   }
 
-
-                var scale_f = Math.sqrt( Math.pow( Math.abs( ongoingTouches[0].pageX - ongoingTouches[1].pageX ), 2) 
-                + Math.pow( Math.abs( ongoingTouches[0].pageY - ongoingTouches[1].pageY ), 2 ) );
-
-
-                scale_e = scale_f - scale_s;
-
-
-                scaleRx = (scale_a + (scale_e * 0.001))*100 < 5 ? 0.5 : (scale_a + (scale_e * 0.001));
-                scaleRy = (scale_a + (scale_e * 0.001))*100 < 5 ? 0.5 : (scale_a + (scale_e * 0.001));
-            
-            if( scaleRx > 2 ) {
-
-               scaleRx = 2;
-               scaleRy = 2;
-
-             }
-
-           if( scaleRx*10 < 5 ) {
-
-               scaleRx = 0.5;
-               scaleRy = 0.5;
-
-             }
-
-
-
-
-                text3.text = "x"+ scaleRx.toFixed(1);
-            
-            c_rectangle.scale.set(scaleRx, scaleRy);
-
-            }
-
-
-
-        //  console.log("event touches 1: " +   evt.touches[0].pageX );
-
-  // console.log("event touches: " +   ongoingTouches[ongoingTouchIndexById(evt.pointerId)].pageX );
-
-
-
-            textl.text = " log:     r0 " +  ongoingTouches[0].pageX    + 
-              "  r1:  " + (ongoingTouches.length == 2 ?  ongoingTouches[1].pageX : 0) +
-               "  scale_s: " + scale_s + "   scale_e: " + scale_e;
-           
-
-            if (idx >= 0) {
-            
-             
-             
-              ongoingTouches.splice(idx, 1, copyTouch(evt));  // swap in the new touch record
-             
-            } else {
-             
-            }
-
-
-
-        }
-
-          }
-
-
-
-        function handleEnd(evt) {
-           
-            scale_s = 0;
-
-
-            scale_a = scaleRx;
-
-
-
-if( ongoingTouches.length == 1 ) {
-            rx = c_rectangle.x;
-            ry = c_rectangle.y;
 }
 
-            dx_c += dx;
-            dy_c += dy;
 
 
-           ct2 = 0;
+function handleEnd(evt) {
 
-            var idx = ongoingTouchIndexById(evt.pointerId);
-          
-            if (idx >= 0) {
-             
-              ongoingTouches.splice(idx, 1);  // remove it; we're done
-            } else {
-            
-            }
-          }
+   scale_s = 0;
+   scale_a = scaleRx;
+
+   if (ongoingTouches.length == 1) {
+      rx = c_rectangle.x;
+      ry = c_rectangle.y;
+   }
+
+   dx_c += dx;
+   dy_c += dy;
+
+   ct2 = 0;
+
+   var idx = ongoingTouchIndexById(evt.pointerId);
+
+   if (idx >= 0) {
+
+      ongoingTouches.splice(idx, 1); // remove it; we're done
+   } else {
+
+   }
+}
 
 
-
-
-
-
-
-
-
-    app.stage.addChild(c_rectangle);
+app.stage.addChild(c_rectangle);
 
 var cx = 0;
 var cy = 0;
 
 
-
 function onPanStart(e) {
 
-    var bx = e.deltaX;
+   var bx = e.deltaX;
+   var by = e.deltaY;
 
-    var by = e.deltaY;
-
-
-console.log("bx: " + bx + "  by: " + by );
+   console.log("bx: " + bx + "  by: " + by);
 }
 
 
-
-
-var f1x = 0; var f1y = 0;
+var f1x = 0;
+var f1y = 0;
 
 
 function onDragStart(event) {
-    // store a reference to the data
-    // the reason for this is because of multitouch
-    // we want to track the movement of this particular touch
-    this.data = event.data;
-    this.alpha = 0.7;
-    this.dragging = true;
-
-    const newPosition = this.data.getLocalPosition(this.parent);
-
-     //  const gPosition =   this.data.getGlobalPosition(this.parent);
-
-    cx = newPosition.x;
-    cy = newPosition.y; 
-
- console.log("cx: " + cx + "  cy: " + cy );
-
-
-       
-evCache.push(event);
 	
-// log("pointerDown", event);
+   this.data = event.data;
+   this.alpha = 0.7;
+   this.dragging = true;
 
-     
-ongoingTouches.push(copyTouch(event));
+   const newPosition = this.data.getLocalPosition(this.parent);
 
-      console.log("event start x: " +  this.data.getLocalPosition(this.parent).x );
+   //  const gPosition =   this.data.getGlobalPosition(this.parent);
 
-      if (evCache.length == 1) {
+   cx = newPosition.x;
+   cy = newPosition.y;
 
-        f1x = this.data.getLocalPosition(this.parent).x;
-        f1y = this.data.getLocalPosition(this.parent).y;
-      }
+   console.log("cx: " + cx + "  cy: " + cy);
+
+   evCache.push(event);
+
+   // log("pointerDown", event);
+
+
+   ongoingTouches.push(copyTouch(event));
+
+   console.log("event start x: " + this.data.getLocalPosition(this.parent).x);
+
+   if (evCache.length == 1) {
+
+      f1x = this.data.getLocalPosition(this.parent).x;
+      f1y = this.data.getLocalPosition(this.parent).y;
+   }
 
 
 
 }
 
 function onDragEnd(ev) {
-    this.alpha = 1;
-    this.dragging = false;
+   this.alpha = 1;
+   this.dragging = false;
 
-  // rx = this.data.getLocalPosition(this.parent).x;
- //  ry = this.data.getLocalPosition(this.parent).y;
+   // rx = this.data.getLocalPosition(this.parent).x;
+   //  ry = this.data.getLocalPosition(this.parent).y;
 
-    // set the interaction data to null
-    this.data = null;
+   // set the interaction data to null
+   this.data = null;
 
-
-    rx = c_rectangle.x;
-    ry = c_rectangle.y;
-
-
+   rx = c_rectangle.x;
+   ry = c_rectangle.y;
    console.log("rx: " + rx + "  ry: " + ry);
-
-
-
    dx_s = dc_x;
 
+   r_x = c_rectangle.x;
 
-   r_x = c_rectangle.x ;
+   f1x = 0;
+   f1y = 0;
 
+   remove_event(ev);
+   scale_a = scaleRx;
 
-    f1x = 0;   f1y = 0;
-
-
- remove_event(ev);
-  
-
-
- scale_a = scaleRx;
-
-
-  
-  if (evCache.length < 2) {
-    prevDiff = -1;
-  }
+   if (evCache.length < 2) {
+      prevDiff = -1;
+   }
 
 
 
@@ -578,17 +430,15 @@ function onDragEnd(ev) {
 
 
 
-
 function remove_event(ev) {
-    // Remove this event from the target's cache
-    for (var i = 0; i < evCache.length; i++) {
+   
+   for (var i = 0; i < evCache.length; i++) {
       if (evCache[i].pointerId == ev.pointerId) {
-        evCache.splice(i, 1);
-        break;
+         evCache.splice(i, 1);
+         break;
       }
-    }
    }
-
+}
 
 
 
@@ -630,167 +480,124 @@ var curDiff = 0;
 
 function onDragMove(ev) {
 
- 
-//  console.log("event touches: " +   ev.targetTouches[0].pageX );
 
-  // console.log("event touches: " +   ongoingTouches[ongoingTouchIndexById(ev.pointerId)].pageX );
+   //  console.log("event touches: " +   ev.targetTouches[0].pageX );
+   // console.log("event touches: " +   ongoingTouches[ongoingTouchIndexById(ev.pointerId)].pageX );
 
- 
-
-for (var i = 0; i < evCache.length; i++) {
-   if (ev.pointerId == evCache[i].pointerId) {
-      evCache[i] = ev;
-   break;
-   }
- }
-
-
-
-
-
-if (evCache.length == 2) {
-
-    
-   
-  /// curDiff = Math.abs( f1 - evCache[1].data.getLocalPosition(this.parent).x );
-
-
- // curDiff = Math.sqrt(Math.pow(Math.abs( f1x - evCache[1].data.getLocalPosition(this.parent).x ), 2) +
- // Math.pow(Math.abs( f1y - evCache[1].data.getLocalPosition(this.parent).y ), 2) );
-
-  
-
-
-
-   console.log(" evCache 2 run   curDiff: " + curDiff +
-    "   prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
-    + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x
-    );
-
-
-
-    textl.text = " evCache 2 run   curDiff: " + curDiff +
-    "  \n prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x
-    + " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x +  "  f1: " + f1 +
-    
-    " \n  pointer-id:   " + evCache[0].pointerId +  " pointer-id2: " + evCache[1].pointerId +
-     " \n pointeridc: " + ev.pointerId + "  cache length: " + evCache.length;
-   
-    
-    // scale_c = (dx * 0.1);
-
-        scale_c = dx < 0 ? -Math.sqrt( Math.pow(Math.abs(dx), 2) + Math.pow(Math.abs(dy), 2) ) 
-        : Math.sqrt( Math.pow(Math.abs(dx), 2) + Math.pow(Math.abs(dy), 2) );
-
-
-     scaleRx = (scale_a + (scale_c * 0.01)) < 1 ? 1 : (scale_a + (scale_c * 0.01));
-     scaleRy = (scale_a + (scale_c * 0.01)) < 1 ? 1 : (scale_a + (scale_c * 0.01));
- 
-     text3.text = "x"+ scaleRx.toFixed(1);
- 
- c_rectangle.scale.set(scaleRx, scaleRy);
-
-
-/*
-   if (prevDiff > 0) {
-     if (curDiff > prevDiff) {
-       
-    scaleRx += scale_c;
-        scaleRy += scale_c;
-    
-        text3.text = "x"+ scaleRx.toFixed(1);
-    
-    c_rectangle.scale.set(scaleRx, scaleRy);
-       
-     }
-     if (curDiff < prevDiff) {
-       scaleRx -= scale_c;
-        scaleRy -= scale_c;
-    
-        if( scaleRx < 1 ) {
-            scaleRx = 1;
-            scaleRy = 1;
-        }
-    
-        text3.text = "x"+ scaleRx.toFixed(1);
-    
-        c_rectangle.scale.set(scaleRx, scaleRy);
-
-     }
+   for (var i = 0; i < evCache.length; i++) {
+      if (ev.pointerId == evCache[i].pointerId) {
+         evCache[i] = ev;
+         break;
+      }
    }
 
-   prevDiff = curDiff;
-   */
+   if (evCache.length == 2) {
+
+      /// curDiff = Math.abs( f1 - evCache[1].data.getLocalPosition(this.parent).x );
+      // curDiff = Math.sqrt(Math.pow(Math.abs( f1x - evCache[1].data.getLocalPosition(this.parent).x ), 2) +
+      // Math.pow(Math.abs( f1y - evCache[1].data.getLocalPosition(this.parent).y ), 2) );
 
 
 
 
-
- }
-
-
-
-
+      console.log(" evCache 2 run   curDiff: " + curDiff +
+         "   prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x +
+         " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x
+      );
 
 
 
+      textl.text = " evCache 2 run   curDiff: " + curDiff +
+         "  \n prevDiff: " + prevDiff + " clientX: " + evCache[0].data.getLocalPosition(this.parent).x +
+         " clientX2: " + evCache[1].data.getLocalPosition(this.parent).x + "  f1: " + f1 +
 
-    if (this.dragging) {
+         " \n  pointer-id:   " + evCache[0].pointerId + " pointer-id2: " + evCache[1].pointerId +
+         " \n pointeridc: " + ev.pointerId + "  cache length: " + evCache.length;
+
+      // scale_c = (dx * 0.1);
+
+      scale_c = dx < 0 ? -Math.sqrt(Math.pow(Math.abs(dx), 2) + Math.pow(Math.abs(dy), 2)) :
+         Math.sqrt(Math.pow(Math.abs(dx), 2) + Math.pow(Math.abs(dy), 2));
+
+      scaleRx = (scale_a + (scale_c * 0.01)) < 1 ? 1 : (scale_a + (scale_c * 0.01));
+      scaleRy = (scale_a + (scale_c * 0.01)) < 1 ? 1 : (scale_a + (scale_c * 0.01));
+
+      text3.text = "x" + scaleRx.toFixed(1);
+
+      c_rectangle.scale.set(scaleRx, scaleRy);
+
+
+      /*
+         if (prevDiff > 0) {
+           if (curDiff > prevDiff) {
+             
+          scaleRx += scale_c;
+              scaleRy += scale_c;
+          
+              text3.text = "x"+ scaleRx.toFixed(1);
+          
+          c_rectangle.scale.set(scaleRx, scaleRy);
+             
+           }
+           if (curDiff < prevDiff) {
+             scaleRx -= scale_c;
+              scaleRy -= scale_c;
+          
+              if( scaleRx < 1 ) {
+                  scaleRx = 1;
+                  scaleRy = 1;
+              }
+          
+              text3.text = "x"+ scaleRx.toFixed(1);
+          
+              c_rectangle.scale.set(scaleRx, scaleRy);
+
+           }
+         }
+
+         prevDiff = curDiff;
+         */
+
+
+   }
 
 
 
 
+   if (this.dragging) {
 
+      const newPosition = this.data.getLocalPosition(this.parent);
 
-        const newPosition = this.data.getLocalPosition(this.parent);
-
-
-        var b_x = ((scaleRx * start_p) - start_p)/2;
+      var b_x = ((scaleRx * start_p) - start_p) / 2;
 
       //  var gx = Math.abs(cx - rx)
+	   
+      dx = newPosition.x - (cx);
+      dy = newPosition.y - (cy);
 
 
-        dx = newPosition.x - (cx );
-        dy = newPosition.y - (cy );
+      var cx1 = Math.abs((rx + dx) - start_p);
 
-
-        var cx1 = Math.abs((rx + dx) - start_p);
-
-        if( cx1 < b_x ) {
-
-           // dc_x = dx;
-
+      if (cx1 < b_x) {
+         // dc_x = dx;
          //  dx = 0;
-       
-        }
+	      
+      }
 
-
-        c_rectangle.x = rx + dx;
-        c_rectangle.y = ry + dy;
-        
-        
+      c_rectangle.x = rx + dx;
+      c_rectangle.y = ry + dy;
 
       //  this.x = dx;
       //  this.y = dy;
 
-
       //  this.x = newPosition.x;
-    //   this.y = newPosition.y;
+      //   this.y = newPosition.y;
 
-
-	  console.log("x: " + newPosition.x + "  y: " + newPosition.y  + "  dx: " + dx   + "  dy: " + dy
-       + "  rx: " + rx  + "   ry: " + ry + "  cx1: " + cx1 );
-
-
-
-
-
-    }
+      console.log("x: " + newPosition.x + "  y: " + newPosition.y + "  dx: " + dx + "  dy: " + dy +
+         "  rx: " + rx + "   ry: " + ry + "  cx1: " + cx1);
+	   
+   }
 }
-
-
-
-
 
 
 
@@ -869,28 +676,18 @@ text3.y = 93;
 c_rectangle.addChild(text3);
 
 
-
-
-
-
 var scale_r = 0.2;
-
-
 
 
 window.addEventListener("gestureend", function(e) {
 
-    console.log(" e scale: " + e.scale );
+   console.log(" e scale: " + e.scale);
 
-    if( e.scale < 1.0 ) {
+   if (e.scale < 1.0) {
 
+   } else if (e.scale > 1.0) {
 
-    } else if ( e.scale > 1.0 ) {
-
-
-    }
-
-
+   }
 
 });
 
@@ -901,149 +698,122 @@ var scale_m = 5;
 var scroll_c = 0;
 
 window.addEventListener("wheel", event => {
- //event.preventDefault();
-    const value = event.deltaY;
+   //event.preventDefault();
+   const value = event.deltaY;
 
+   if (Math.abs(value) == 100) {
+      scale_r = 0.01 * scale_m;
+   } else {
+
+      scale_r = 0.01 * scale_m;;
+   }
+
+
+   if (value > 0) {
+      scroll_c += 1;
+
+      scaleRx -= scale_r;
+      scaleRy -= scale_r;
+
+      if (scaleRx * 10 < 5) {
+         scaleRx = 0.5;
+         scaleRy = 0.5;
+      }
+
+      text3.text = "x" + scaleRx.toFixed(1);
+
+      c_rectangle.scale.set(scaleRx, scaleRy);
+
+
+   } else if (value < 0) {
+      scroll_c -= 1;
+
+
+      scaleRx += scale_r;
+      scaleRy += scale_r;
+
+
+      if (scaleRx > 2) {
+         scaleRx = 2;
+         scaleRy = 2;
+      }
+
+
+      text3.text = "x" + scaleRx.toFixed(1);
+
+      c_rectangle.scale.set(scaleRx, scaleRy);
+
+   }
+
+   console.log("value:" + value + " scroll c: " + scroll_c);
 	
-	if( Math.abs(value) == 100 ) {
-	    scale_r = 0.01 * scale_m;
-	  } else {
-
-	    scale_r = 0.01 * scale_m;;
-	  }
-	
-	
-    if( value > 0 ) {
-        scroll_c += 1;
-
-        scaleRx -= scale_r;
-        scaleRy -= scale_r;
-    
-        if( scaleRx*10 < 5 ) {
-            scaleRx = 0.5;
-            scaleRy = 0.5;
-        }
-    
-        text3.text = "x"+ scaleRx.toFixed(1);
-    
-        c_rectangle.scale.set(scaleRx, scaleRy);
-
-
-    } else if( value < 0 ) {
-        scroll_c -= 1;
-
-
-        scaleRx += scale_r;
-        scaleRy += scale_r;
-
-
-        if( scaleRx > 2 ) {
-            scaleRx = 2;
-            scaleRy = 2;
-        }
-
-    
-        text3.text = "x"+ scaleRx.toFixed(1);
-    
-    c_rectangle.scale.set(scaleRx, scaleRy);
-
-    }
-
-
-
-
-    console.log("value:" + value + " scroll c: " + scroll_c);
-
-
-   
-
-
-
-
 
 });
 
 
 
 
-
-
-
-
-
 var scaleRx = 1;
-
 var scaleRy = 1;
 
 
-
 function onButtonDown2() {
-    this.isdown = true;
-    
-    this.alpha = 0.7;
+   this.isdown = true;
 
-    scaleRx -= 1;
-    scaleRy -= 1;
+   this.alpha = 0.7;
 
-    if( scaleRx < 1 ) {
-        scaleRx = 1;
-        scaleRy = 1;
-    }
+   scaleRx -= 1;
+   scaleRy -= 1;
 
-    text3.text = "x"+ scaleRx + ".0";
+   if (scaleRx < 1) {
+      scaleRx = 1;
+      scaleRy = 1;
+   }
 
-    c_rectangle.scale.set(scaleRx, scaleRy);
+   text3.text = "x" + scaleRx + ".0";
+
+   c_rectangle.scale.set(scaleRx, scaleRy);
 
 }
 
 
 
 function onButtonDown() {
-    this.isdown = true;
-    
-    this.alpha = 0.7;
+   this.isdown = true;
 
-    scaleRx += 1;
-    scaleRy += 1;
+   this.alpha = 0.7;
 
-    text3.text = "x"+ scaleRx + ".0";
+   scaleRx += 1;
+   scaleRy += 1;
 
-c_rectangle.scale.set(scaleRx, scaleRy);
+   text3.text = "x" + scaleRx + ".0";
+
+   c_rectangle.scale.set(scaleRx, scaleRy);
 
 }
 
 function onButtonUp() {
-    this.isdown = false; this.alpha = 1;
-    if (this.isOver) {
-       
-    } else {
-       
-    }
+   this.isdown = false;
+   this.alpha = 1;
+   if (this.isOver) {
+
+   } else {
+
+   }
 }
 
 function onButtonOver() {
-    this.isOver = true;
-    if (this.isdown) {
-        return;
-    }
-      this.alpha = 1;
+   this.isOver = true;
+   if (this.isdown) {
+      return;
+   }
+   this.alpha = 1;
 }
 
 function onButtonOut() {
-    this.isOver = false;
-    if (this.isdown) {
-        return;
-    }
-     this.alpha = 1;
+   this.isOver = false;
+   if (this.isdown) {
+      return;
+   }
+   this.alpha = 1;
 }
-
-
-
-
-
-
-
-
-
-
-
