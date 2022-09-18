@@ -41,6 +41,49 @@ window.onload = window.onresize = function () {
 
 };
 
+
+var fscreen = 0; 
+
+  
+
+ var elementd = document.documentElement; 
+
+  
+
+ function fullScreen() { 
+
+      
+
+     if(fscreen == 0) 
+
+        { 
+
+          //  elementd.requestFullscreen(); 
+
+             canvas.requestFullscreen(); 
+
+            fscreen = 1; 
+
+             
+
+             
+
+            } else if(fscreen == 1) { 
+
+                document.exitFullscreen(); 
+
+                 
+
+                fscreen = 0; 
+
+                } 
+
+      
+
+      
+
+     }
+
 function main() {
 
     WIDTH = window.innerWidth;
