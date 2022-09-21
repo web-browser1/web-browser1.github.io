@@ -199,7 +199,7 @@ let ratio = Math.min(
 
  // ctx.scale(ratio, ratio); //adjust this!
 
-ctx.scale(ratio * dpr, ratio * dpr); //adjust this!
+ctx.scale(ratio * dpr * 0.5F, ratio * dpr 0.5F); //adjust this!
 
 
     canvas.addEventListener('touchstart', function(e) {
@@ -1129,7 +1129,8 @@ function game_loop() {
     ctx.beginPath();
     ctx.arc(sunX, sunY, 250, 0, 2 * Math.PI);
 
-    ctx.fillStyle = grd1;
+   // ctx.fillStyle = grd1;
+    ctx.fillStyle = '#FFF';
     ctx.fill();
 
 
