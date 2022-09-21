@@ -84,6 +84,67 @@ var fscreen = 0;
 
      }
 
+
+
+
+
+function getObjectFitSize(
+
+  contains /* true = contain, false = cover */,
+
+  containerWidth,
+
+  containerHeight,
+
+  width,
+
+  height
+
+) {
+
+  var doRatio = width / height;
+
+  var cRatio = containerWidth / containerHeight;
+
+  var targetWidth = 0;
+
+  var targetHeight = 0;
+
+  var test = contains ? doRatio > cRatio : doRatio < cRatio;
+
+  if (test) {
+
+    targetWidth = containerWidth;
+
+    targetHeight = targetWidth / doRatio;
+
+  } else {
+
+    targetHeight = containerHeight;
+
+    targetWidth = targetHeight * doRatio;
+
+  }
+
+  return {
+
+    width: targetWidth,
+
+    height: targetHeight,
+
+    x: (containerWidth - targetWidth) / 2,
+
+    y: (containerHeight - targetHeight) / 2
+
+  };
+
+}
+
+
+
+
+
+
 function main() {
 
     WIDTH = window.innerWidth;
@@ -91,18 +152,54 @@ function main() {
     HEIGHT = window.innerHeight;
 
     canvas = document.getElementById('canvas');
+    
+    const originalHeight = canvas.height;
+
+const originalWidth = canvas.width;
   
 
-    canvas.width = WIDTH;
-    canvas.height = HEIGHT;
+    const dimensions = getObjectFitSize(
+
+    true,
+
+    canvas.clientWidth,
+
+    canvas.clientHeight,
+
+    canvas.width,
+
+    canvas.height
+
+  );
+
+  const dpr = window.devicePixelRatio || 1;
+
+  canvas.width = dimensions.width * dpr;
+
+  canvas.height = dimensions.height * dpr;
+    
+    
+    
+    
+    
+  //  canvas.width = WIDTH;
+  //  canvas.height = HEIGHT;
 
     ctx = canvas.getContext("2d");
 
     
 
+let ratio = Math.min(
 
+    canvas.clientWidth / originalWidth,
 
+    canvas.clientHeight / originalHeight
 
+  );
+
+ // ctx.scale(ratio, ratio); //adjust this!
+
+ctx.scale(ratio * dpr, ratio * dpr); //adjust this!
 
 
     canvas.addEventListener('touchstart', function(e) {
