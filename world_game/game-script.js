@@ -622,9 +622,9 @@ var camera_1 = 0;
 
 // 200   260   blue
 
-var hsl_h = 36;
-var hsl_s = 40;
-var hsl_l = 21;
+var hsl_h = 36;  // 36
+var hsl_s = 50;  // 40
+var hsl_l = 21;   // 21
 
 var hsl_l1 = 21;
 
