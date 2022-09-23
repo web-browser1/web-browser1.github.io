@@ -1126,12 +1126,12 @@ function game_loop() {
     grd1.addColorStop(0, '#FFFFFFFF');
     grd1.addColorStop(1, '#FFFFFF00');
  
-    ctx.beginPath();
-    ctx.arc(sunX, sunY, 250, 0, 2 * Math.PI);
+   // ctx.beginPath();
+   // ctx.arc(sunX, sunY, 250, 0, 2 * Math.PI);
 
    // ctx.fillStyle = grd1;
-    ctx.fillStyle = '#FFF';
-    ctx.fill();
+   // ctx.fillStyle = '#FFF';
+   (( ctx.fill();
 
 
 
