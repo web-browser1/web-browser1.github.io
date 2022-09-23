@@ -1131,7 +1131,7 @@ function game_loop() {
 
    // ctx.fillStyle = grd1;
    // ctx.fillStyle = '#FFF';
-   (( ctx.fill();
+   // ctx.fill();
 
 
 
