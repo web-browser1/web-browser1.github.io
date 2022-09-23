@@ -1046,7 +1046,7 @@ function game_loop() {
         ctx.lineTo(mounts[m].x-(startXC*0.2)+(mounts[m].width/2), mounts[m].y-mounts[m].height);
         ctx.lineTo(mounts[m].x-(startXC*0.2)+mounts[m].width, mounts[m].y);
         ctx.lineTo(mounts[m].x+-(startXC*0.2), mounts[m].y);
-        ctx.fillStyle = 'hsl('+hsl_h+'deg '+5+'% '+(hsl_l+mounts[m].hsl_l+25)+'%)';
+        ctx.fillStyle = 'hsl('+hsl_h+'deg '+45+'% '+(hsl_l+mounts[m].hsl_l+25)+'%)';
         ctx.fill();
 
      }
@@ -1087,7 +1087,7 @@ function game_loop() {
      /// ctx.fillStyle = 'hsl(120deg 53% 32%)';
 
 
-    ctx.fillStyle = 'hsl('+hsl_h+'deg '+hsl_s+'% '+(hsl_l+15)+'%)';
+    ctx.fillStyle = 'hsl('+hsl_h+'deg '+85+'% '+(hsl_l+15)+'%)';
 
 
     ctx.fillRect(player.x, player.y, player.width, player.height);
@@ -1385,7 +1385,7 @@ function game_loop() {
         ctx.lineTo(mounts_f[m].x-(startXC*1.1), mounts_f[m].y);
         ctx.fillStyle = 'hsl('+hsl_h+'deg '+5+'% '+(hsl_l+5)+'%)';
         ctx.fill();
-//       ctx.fillStyle = 'hsl('+hsl_h+'deg '+5+'% '+(hsl_l+mounts[m].hsl_l+15)+'%)';
+//       ctx.fillStyle = 'hsl('+hsl_h+'deg '+85+'% '+(hsl_l+mounts[m].hsl_l+15)+'%)';
      }
 
 
