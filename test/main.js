@@ -732,7 +732,7 @@ var e_c = 0;
 
 var b_x = 0;
 
-var b_y = 0;
+var b_y = 300;
 
 var b_i = 0;
 
