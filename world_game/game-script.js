@@ -1285,7 +1285,7 @@ function game_loop() {
         bricks[b].x -= 1;
        }*/
 
-        ctx.fillStyle = 'hsl('+(hsl_h+180)+'deg '+(85)+'% '+(hsl_l + 15)+'%)';
+        ctx.fillStyle = 'hsl('+(hsl_h+180)+'deg '+(85)+'% '+(10)+'%)';
 
         var b_velY = 0;
 
@@ -1383,7 +1383,7 @@ function game_loop() {
         ctx.lineTo(mounts_f[m].x-(startXC*1.1)+(mounts_f[m].width/2), mounts_f[m].y-mounts_f[m].height);
         ctx.lineTo(mounts_f[m].x-(startXC*1.1)+mounts_f[m].width, mounts_f[m].y);
         ctx.lineTo(mounts_f[m].x-(startXC*1.1), mounts_f[m].y);
-        ctx.fillStyle = 'hsl('+hsl_h+'deg '+95+'% '+(hsl_l+5)+'%)';
+        ctx.fillStyle = 'hsl('+hsl_h+'deg '+95+'% '+(5)+'%)';
         ctx.fill();
 //       ctx.fillStyle = 'hsl('+hsl_h+'deg '+85+'% '+(hsl_l+mounts[m].hsl_l+15)+'%)';
      }
