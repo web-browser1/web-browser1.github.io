@@ -199,7 +199,7 @@ let ratio = Math.min(
 
  // ctx.scale(ratio, ratio); //adjust this!
 
-ctx.scale(ratio * dpr * 0.5, ratio * dpr * 0.5); //adjust this!
+ctx.scale(ratio * dpr * 0.3, ratio * dpr * 0.3); //adjust this!
 
 
     canvas.addEventListener('touchstart', function(e) {
@@ -431,10 +431,10 @@ function init() {
 
 
 
-    b_y = (HEIGHT/2) + 70;
+    b_y = (canvas.height/2) + 70;
 
     var bx = 0;
-    var by = (HEIGHT/2) + 30;
+    var by = (canvas.height/2) + 30;
 
 var s = 0;
 
