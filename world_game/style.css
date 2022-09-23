@@ -101,4 +101,5 @@ p {
 canvas {
     display: inline-block; 
     /*border-radius: 20px;*/
+  object-fit: contain;
 }
