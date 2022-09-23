@@ -69,6 +69,60 @@ var ontouch_1 = 0;
 
 
 
+function getObjectFitSize(
+
+  contains /* true = contain, false = cover */,
+
+  containerWidth,
+
+  containerHeight,
+
+  width,
+
+  height
+
+) {
+
+  var doRatio = width / height;
+
+  var cRatio = containerWidth / containerHeight;
+
+  var targetWidth = 0;
+
+  var targetHeight = 0;
+
+  var test = contains ? doRatio > cRatio : doRatio < cRatio;
+
+  if (test) {
+
+    targetWidth = containerWidth;
+
+    targetHeight = targetWidth / doRatio;
+
+  } else {
+
+    targetHeight = containerHeight;
+
+    targetWidth = targetHeight * doRatio;
+
+  }
+
+  return {
+
+    width: targetWidth,
+
+    height: targetHeight,
+
+    x: (containerWidth - targetWidth) / 2,
+
+    y: (containerHeight - targetHeight) / 2
+
+  };
+
+}
+
+
+
 
 function main() {
     setCookie("start1", 2300, 365);
@@ -84,14 +138,73 @@ function main() {
 
     canvas = document.getElementById('canvas');
   
+    
+    
+   
+    const originalHeight = canvas.height;
+
+const originalWidth = canvas.width;
+  
+
+    const dimensions = getObjectFitSize(
+
+    true,
+
+    canvas.clientWidth,
+
+    canvas.clientHeight,
+
+    canvas.width,
+
+    canvas.height
+
+  );
+
+  const dpr = window.devicePixelRatio || 1;
+
+  canvas.width = dimensions.width * dpr;
+
+  canvas.height = dimensions.height * dpr;
+    
+    
+    
+    
+    
+  //  canvas.width = WIDTH;
+  //  canvas.height = HEIGHT;
+
+    ctx = canvas.getContext("2d");
+
+    
+
+let ratio = Math.min(
+
+    canvas.clientWidth / originalWidth,
+
+    canvas.clientHeight / originalHeight
+
+  );
+
+ // ctx.scale(ratio, ratio); //adjust this!
+
+ctx.scale(ratio * dpr * 0.3, ratio * dpr * 0.3); //adjust this!
+
+
+    
+    
+    
+    
+    
 
     var loading = document.getElementById("loading");
     
     
      scale = 0.6 * (window.innerWidth / 1000);
     
-
+    
     loading.style.visibility = "hidden";
+    
+    /*
  WIDTH = window.innerWidth * 0.7;
     HEIGHT = 400;
     if( window.innerWidth  > window.innerHeight ) {
@@ -136,7 +249,7 @@ function main() {
   
 
     canvas.width = WIDTH;
-    canvas.height = HEIGHT;
+    canvas.height = HEIGHT;*/
 
     ctx = canvas.getContext("2d");
 
