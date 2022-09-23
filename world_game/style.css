@@ -93,13 +93,13 @@ p {
 .paper {
 
     position: relative;
-    display: inline-block;
+    
    /* padding-top: 1em;
     height: 400px;*/
 }
 
 canvas {
-    display: inline-block; 
+  
     /*border-radius: 20px;*/
   object-fit: contain;
   width: 100%;
