@@ -744,8 +744,8 @@ function game_loop() {
  // Create gradient
 
  var grd = ctx.createLinearGradient(0, 0, 0, HEIGHT);
- grd.addColorStop(0, 'hsl('+((hsl_h-180))+'deg '+(hsl_s+20)+'% '+((hsl_l-sunB*0.1)+45)+'%)');
- grd.addColorStop(1, 'hsl('+(hsl_h)+'deg '+(hsl_s+20+sunB)+'% '+((hsl_l+sunB*0.2)+45)+'%)');
+ grd.addColorStop(0, 'hsl('+((hsl_h-180))+'deg '+(hsl_s+30)+'% '+((hsl_l-sunB*0.1)+45)+'%)');
+ grd.addColorStop(1, 'hsl('+(hsl_h)+'deg '+(hsl_s+30+sunB)+'% '+((hsl_l+sunB*0.2)+45)+'%)');
 
  //  ctx.rotate(20 * Math.PI / 180);
  
@@ -1087,7 +1087,7 @@ function game_loop() {
      /// ctx.fillStyle = 'hsl(120deg 53% 32%)';
 
 
-    ctx.fillStyle = 'hsl('+hsl_h+'deg '+85+'% '+(hsl_l+15)+'%)';
+    ctx.fillStyle = 'hsl('+hsl_h+'deg '+95+'% '+(hsl_l+15)+'%)';
 
 
     ctx.fillRect(player.x, player.y, player.width, player.height);
@@ -1285,7 +1285,7 @@ function game_loop() {
         bricks[b].x -= 1;
        }*/
 
-        ctx.fillStyle = 'hsl('+(hsl_h+180)+'deg '+(hsl_s-30)+'% '+(hsl_l + 15)+'%)';
+        ctx.fillStyle = 'hsl('+(hsl_h+180)+'deg '+(85)+'% '+(hsl_l + 15)+'%)';
 
         var b_velY = 0;
 
@@ -1383,7 +1383,7 @@ function game_loop() {
         ctx.lineTo(mounts_f[m].x-(startXC*1.1)+(mounts_f[m].width/2), mounts_f[m].y-mounts_f[m].height);
         ctx.lineTo(mounts_f[m].x-(startXC*1.1)+mounts_f[m].width, mounts_f[m].y);
         ctx.lineTo(mounts_f[m].x-(startXC*1.1), mounts_f[m].y);
-        ctx.fillStyle = 'hsl('+hsl_h+'deg '+5+'% '+(hsl_l+5)+'%)';
+        ctx.fillStyle = 'hsl('+hsl_h+'deg '+95+'% '+(hsl_l+5)+'%)';
         ctx.fill();
 //       ctx.fillStyle = 'hsl('+hsl_h+'deg '+85+'% '+(hsl_l+mounts[m].hsl_l+15)+'%)';
      }
