@@ -134,7 +134,7 @@ function main() {
     
     
     
-    f_sc = 0.3 * (window.innerWidth/1000);
+    f_sc = 0.03 * (window.innerWidth/100);
       
 
 
