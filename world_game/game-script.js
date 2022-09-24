@@ -167,7 +167,8 @@ const originalWidth = canvas.width;
   canvas.height = dimensions.height * dpr;
     
     
-    
+    WIDTH = canvas.width;
+    HEIGHT = canvas.height;
     
     
   //  canvas.width = WIDTH;
