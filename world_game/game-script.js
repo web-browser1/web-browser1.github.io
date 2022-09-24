@@ -376,6 +376,8 @@ function init() {
     bricks = [];
 
 
+    
+    var f_sc = 0.5;
  
 
 
@@ -421,7 +423,7 @@ function init() {
 
 
     var mx = 0;
-    var my = ((HEIGHT/2) + 200);
+    var my = (((HEIGHT*f_sc)/2) + 200);
 
 
     for (var i = 0; i < mountsCount; i++) {
@@ -443,22 +445,22 @@ function init() {
         mx += 300 + 30;
 
         if( i == 10  ) {
-            my = ((HEIGHT/2) + 200) + 30;
+            my = (((HEIGHT*f_sc)/2) + 200) + 30;
             mx = 0;
         }
         if( i == 20  ) {
-            my = ((HEIGHT/2) + 200) + 50;
+            my = (((HEIGHT*f_sc)/2) + 200) + 50;
             mx = 0;
         }
         if( i == 23 || i == 16 || i == 4  ) {
-            my = ((HEIGHT/2) + 200) + 60;
+            my = (((HEIGHT*f_sc)/2) + 200) + 60;
             mx = 0;
         }
     }
 
 
     var fx = 0;
-    var fy = HEIGHT + 70;
+    var fy = (HEIGHT*f_sc) + 70;
 
 
     for (var c = 0; c < mountsCount_f; c++) {
@@ -482,7 +484,7 @@ function init() {
 
 
     var clx = 0;
-    var cly = ((HEIGHT/2) + 100);
+    var cly = (((HEIGHT*f_sc)/2) + 100);
 
 
     for (var c = 0; c < cloudCount; c++) {
@@ -510,7 +512,7 @@ function init() {
 
 
     var tlx = 0;
-    var tly = ((HEIGHT/2) + 100);
+    var tly = (((HEIGHT*f_sc)/2) + 100);
 
 
     for (var c = 0; c < coinsCount; c++) {
@@ -537,7 +539,7 @@ function init() {
 
 
     var bx = 0;
-    var by = (HEIGHT) - 120;
+    var by = ((HEIGHT*f_sc)) - 120;
 
 var s = 0;
 
