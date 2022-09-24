@@ -131,6 +131,10 @@ function main() {
     var ck = getCookie("start1");
    
     console.log("ck: " + ck);
+    
+    
+    
+    f_sc = 0.3 * (window.innerWidth/1000);
       
 
 
