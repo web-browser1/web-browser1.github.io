@@ -333,6 +333,8 @@ ctx.scale(ratio * dpr * 0.3, ratio * dpr * 0.3); //adjust this!
 }
 
 
+    var f_sc = 0.5;
+
 var player;
 
 var bricks = [];
@@ -377,7 +379,6 @@ function init() {
 
 
     
-    var f_sc = 0.5;
  
 
 
@@ -1217,11 +1218,11 @@ function game_loop() {
 
     }*/
 
-    if( cameraC == 0 && player.x < (WIDTH/2)  ) {
+    if( cameraC == 0 && player.x < ((WIDTH*f_sc)/2)  ) {
 
         player.x += player.velX;
         
-    } else if( cameraC == 0 && player.x >= (WIDTH/2)  ) {
+    } else if( cameraC == 0 && player.x >= ((WIDTH*f_sc)/2)  ) {
 
         cameraC = 1;
     }
@@ -1402,9 +1403,9 @@ function game_loop() {
 
    ctx.fillStyle = "#FFF";
    ctx.font = "700 30px Raleway";
-   ctx.fillText("W O R L D", (WIDTH/2)-110, 100);
+   ctx.fillText("W O R L D", ((WIDTH*f_sc)/2)-110, 100);
    ctx.font = "700 17px Raleway";
-   ctx.fillText("A D V E N T U R E", (WIDTH/2)-106, 124);
+   ctx.fillText("A D V E N T U R E", ((WIDTH*f_sc)/2)-106, 124);
 
 
 
@@ -1428,18 +1429,18 @@ function game_loop() {
  
     
  
-    ctx.fillRect(WIDTH/3, 100, 3, HEIGHT-200);
-    ctx.fillText("GO BACK", (WIDTH*0.1), HEIGHT/2);
+    ctx.fillRect((WIDTH*f_sc)/3, 100, 3, (HEIGHT*f_sc)-200);
+    ctx.fillText("GO BACK", (WIDTH*f_sc*0.1), (HEIGHT*f_sc)/2);
  
  
-    ctx.fillText("JUMP", (WIDTH/3)+(WIDTH*0.1), HEIGHT/2);
+    ctx.fillText("JUMP", ((WIDTH*f_sc)/3)+(WIDTH*f_sc*0.1), (HEIGHT*f_sc)/2);
  
-    ctx.fillRect((WIDTH/3)*2, 100, 3, HEIGHT-200);
+    ctx.fillRect(((WIDTH*f_sc)/3)*2, 100, 3, (HEIGHT*f_sc)-200);
  
-    ctx.fillText("GO FORWARD", (WIDTH/3)*2+(WIDTH*0.1), HEIGHT/2);
+    ctx.fillText("GO FORWARD", ((WIDTH*f_sc)/3)*2+(WIDTH*f_sc*0.1), (HEIGHT*f_sc)/2);
      } else {
  
-         ctx.fillText("- U s e  a r r o w k e y s  t o  m o v e  p l a y e r", (WIDTH/3)+0, HEIGHT/2);
+         ctx.fillText("- U s e  a r r o w k e y s  t o  m o v e  p l a y e r", ((WIDTH*f_sc)/3)+0, (HEIGHT*f_sc)/2);
      }
    }
 
@@ -1455,9 +1456,9 @@ function game_loop() {
 
     ctx.fillStyle = "#edfbff";
     ctx.font = "700 60px Raleway";
-    ctx.fillText("G A M E", (WIDTH/2)-110, HEIGHT-150+120);
+    ctx.fillText("G A M E", ((WIDTH*f_sc)/2)-110, (f_sc*HEIGHT)-150+120);
     ctx.font = "700 63px Raleway";
-    ctx.fillText("O V E R", (WIDTH/2)-110, HEIGHT-100+120);
+    ctx.fillText("O V E R", ((f_sc*WIDTH)/2)-110, (f_sc*HEIGHT)-100+120);
 
    }
 
