@@ -765,7 +765,7 @@ function game_loop() {
    
     ctx.font = "700 23px Raleway";
     ctx.fillStyle = "#FFFFFF66";
-    ctx.fillText("S C O R E", (WIDTH)-144, 100);
+    ctx.fillText("S C O R E", ((WIDTH*f_sc))-144, 100);
  
  
     var score_1 = 0;
@@ -791,7 +791,7 @@ function game_loop() {
  
     ctx.font = "700 45px Raleway";
     ctx.fillStyle = "#FFFFFF";
-    ctx.fillText(score_t, (WIDTH)-146, 136);
+    ctx.fillText(score_t, (WIDTH*f_sc)-146, 136);
  
  
  
@@ -1117,7 +1117,7 @@ function game_loop() {
         
         }
 
-     //  tapToStart();
+        tapToStart();
 
            
 
