@@ -122,6 +122,7 @@ function getObjectFitSize(
 }
 
 
+var m_sc = 0;
 
 
 function main() {
@@ -132,9 +133,10 @@ function main() {
    
     console.log("ck: " + ck);
     
+    m_sc = 0.03 * (window.innerWidth/100);
     
     
-    f_sc = 0.03 * (window.innerWidth/100);
+    f_sc = 0.5 * (window.innerWidth/100);
       
 
 
@@ -192,7 +194,7 @@ let ratio = Math.min(
 
  // ctx.scale(ratio, ratio); //adjust this!
 
-ctx.scale(ratio * dpr * 0.3, ratio * dpr * 0.3); //adjust this!
+ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
 
 
     
