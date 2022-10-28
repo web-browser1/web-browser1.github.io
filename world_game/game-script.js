@@ -599,6 +599,7 @@ var s = 0;
         y: null,
         width: 35*scale,
         height: 50*scale,
+        radius: 6*scale,
         speed: 0.3,
         velX: 0,
         velY: 0,
@@ -1100,8 +1101,36 @@ function game_loop() {
     ctx.fillStyle = 'hsl('+hsl_h+'deg '+95+'% '+(hsl_l+15)+'%)';
 
 
-    ctx.fillRect(player.x, player.y, player.width, player.height);
+  //  ctx.fillRect(player.x, player.y, player.width, player.height);
 
+    ctx.beginPath();
+
+        ctx.moveTo(player.x, player.y);
+
+        ctx.lineTo(player.x+player.width-player.radius, player.y);
+
+        ctx.arcTo(player.x+player.width, player.y, player.x+player.width, player.y+player.radius, player.radius);
+
+        ctx.lineTo(player.x+player.width, player.y+player.height-player.radius);
+
+        ctx.arcTo(player.x+player.width, player.y+player.height, player.x+player.width-player.radius, player.y+player.height, player.radius);
+
+        ctx.lineTo(player.x+player.radius, player.y+player.height);
+
+        ctx.arcTo(player.x, player.y+player.height, player.x, player.y+player.height-player.radius, player.radius);
+
+        ctx.lineTo(player.x, player.y+player.radius);
+
+        ctx.arcTo(player.x, player.y, player.x+player.radius, player.y, player.radius);
+        
+
+      //  ctx.fillStyle = 'hsl(0deg 0% 100% / '+ (r > 13 ? 90 : 50) +'%)';
+
+        ctx.fill();
+    
+    
+    
+    
     
     
     ctx.beginPath();
