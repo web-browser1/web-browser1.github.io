@@ -373,6 +373,23 @@ var scale = 0.6;
 
 var tapToStart_btn;
 
+
+function left() {
+    ontouch_1 = 0;
+    }
+function right() {
+ontouch_1 = 3;
+    
+
+    }
+function jump() {
+    ontouch_1 = 2;
+    }
+
+
+
+
+
 function init() {
 
 
