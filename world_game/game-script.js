@@ -443,8 +443,8 @@ function init() {
             id: i,
             x: mx+(r*10),
             y: my,
-            width: 400*r*0.2*scale,
-            height: 200*r*0.2*scale,
+            width: 600*r*0.2*scale,
+            height: 170*r*0.2*scale,
             hsl_l: r
 
         });
@@ -478,7 +478,7 @@ function init() {
             id: c,
             x: fx,
             y: fy-((10+r)),
-            width: 400*r*0.06*scale,
+            width: 700*r*0.06*scale,
             height: 150*r*0.06*scale,
             hsl_l: r*0.3
         });
@@ -1102,6 +1102,19 @@ function game_loop() {
 
     ctx.fillRect(player.x, player.y, player.width, player.height);
 
+    
+    
+    ctx.beginPath();
+
+        ctx.arc(player.x+26*scale,   player.y+15*scale, 5*scale, 0, 2 * Math.PI);
+
+
+
+      ctx.fillStyle = '#FFF';
+
+        ctx.fill();
+    
+    /*
     ctx.beginPath();
     ctx.moveTo(player.x+23*scale, player.y+10*scale);
     ctx.lineTo(player.x+28*scale, player.y+15*scale);
@@ -1110,6 +1123,8 @@ function game_loop() {
 
     ctx.fillStyle = '#FFF';
     ctx.fill();
+    
+    */
 
 
 
