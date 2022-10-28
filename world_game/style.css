@@ -17,6 +17,36 @@
     letter-spacing: 4px;
 }
 
+
+.ctrlb {
+  position: absolute;
+  font-size: 10px;
+  
+  width: 60px;
+  height: 60px;
+  
+  border-radius: 7px;
+  border: #fff solid 4px;
+  
+  bottom: 4px;
+
+  
+  }
+
+
+#btnl {
+  left: 20px;
+  }
+#btnr {
+
+  right: 90px;
+
+  }
+#btnj {
+  right: 70px;
+  }
+
+
 #btn3 {
     position: absolute;
 
