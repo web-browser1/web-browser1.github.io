@@ -369,7 +369,7 @@ var stars = [];
 var starsCount = 70;
 
 
-var scale = 0.6;
+var scale = 0.5;
 
 var tapToStart_btn;
 
@@ -616,7 +616,7 @@ var s = 0;
         y: null,
         width: 35*scale,
         height: 50*scale,
-        radius: 6*scale,
+        radius: 9*scale,
         speed: 0.3,
         velX: 0,
         velY: 0,
@@ -1475,11 +1475,11 @@ ctx.fill();
 
    if( game_state == 0 ) {
 
-   ctx.fillStyle = "#FFF";
-   ctx.font = "700 30px Raleway";
-   ctx.fillText("W O R L D", ((WIDTH*f_sc)/2)-110, 100);
-   ctx.font = "700 17px Raleway";
-   ctx.fillText("A D V E N T U R E", ((WIDTH*f_sc)/2)-106, 124);
+  // ctx.fillStyle = "#FFF";
+ //  ctx.font = "700 30px Raleway";
+  // ctx.fillText("W O R L D", ((WIDTH*f_sc)/2)-110, 100);
+  // ctx.font = "700 17px Raleway";
+   //ctx.fillText("A D V E N T U R E", ((WIDTH*f_sc)/2)-106, 124);
 
 
 
