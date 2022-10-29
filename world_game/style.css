@@ -29,6 +29,7 @@
   border: #fff solid 4px;
   
   bottom: 4px;
+  color: #fff;
 
   
   }
@@ -39,7 +40,7 @@
   }
 #btnr {
 
-  right: 90px;
+  left: 90px;
 
   }
 #btnj {
