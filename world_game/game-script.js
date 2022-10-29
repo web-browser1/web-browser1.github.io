@@ -1035,9 +1035,16 @@ function game_loop() {
 
             ctx.fillStyle = 'hsl('+(hsl_h+120)+'deg '+(hsl_s-50)+'% '+(hsl_l+15)+'%)';
 
+ctx.beginPath();
+
+        ctx.arc(coins[t].x-(startXC), coins[t].y , coins[t].width, 0, 2 * Math.PI);
+ctx.fill();
+            
+            
+            
 
 
-            ctx.fillRect(coins[t].x-(startXC), coins[t].y, coins[t].width, coins[t].height);
+           // ctx.fillRect(coins[t].x-(startXC), coins[t].y, coins[t].width, coins[t].height);
 
               /*  ctx.beginPath();
         ctx.moveTo(mounts[m].x-(startXC*0.2), mounts[m].y);
