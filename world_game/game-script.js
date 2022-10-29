@@ -896,7 +896,7 @@ function game_loop() {
       // Fill with gradient
      
       ctx.beginPath();
-      ctx.arc(500, sunY, 250, 0, 2 * Math.PI);
+      ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 4)) , 0, 2 * Math.PI);
     //  ctx.stroke();
     ctx.fillStyle = grd2;
     ctx.fill();
