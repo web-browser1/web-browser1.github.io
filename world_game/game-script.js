@@ -124,6 +124,7 @@ function getObjectFitSize(
 
 var m_sc = 0;
 
+var title_sq;
 
 function main() {
     setCookie("start1", 2300, 365);
@@ -268,8 +269,13 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
     tapToStart_btn.style.visibility = "visible";
 
 
+    title_sq = document.getElementById("title");
+    title_sq.style.left = (WIDTH/Math.pow(1.618, 1)) + 'px';
 
+    title_sq.style.top = (WIDTH/Math.pow(1.618, 5)) + 'px';
+    title_sq.style.fontSize = (WIDTH/Math.pow(1.618, 4)) + 'px';
 
+    
    // document.getElementById('c1').style.backgroundColor = 'hsl('+hsl_h+'deg '+hsl_s+'% '+(hsl_l)+'%)';;
 
    // document.getElementById('c2').style.backgroundColor = 'hsl('+(hsl_h+120)+'deg '+hsl_s+'% '+(hsl_l)+'%)';;
@@ -882,7 +888,7 @@ function game_loop() {
         ctx.beginPath();
         ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 4)) , 0, 2 * Math.PI);
       //  ctx.stroke();
-      ctx.fillStyle = grd1;
+      ctx.fillStyle = '#FFF';
       ctx.fill();
 
 
