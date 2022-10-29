@@ -17,6 +17,17 @@
     letter-spacing: 4px;
 }
 
+#title {
+  position: absolute;
+  
+  right: 10px;
+  top: 10px;
+  
+  font-size: 10px;
+  color: #fff;
+  
+  }
+
 
 .ctrlb {
   position: absolute;
