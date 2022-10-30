@@ -873,9 +873,9 @@ function game_loop() {
      py = (start_y - py) * 0.1 + py;
       
     
-    if((start_y - py) < 0) {
+        if((start_y - py) < 0) {
          
-        
+         start_y = py;
         }
 
 
