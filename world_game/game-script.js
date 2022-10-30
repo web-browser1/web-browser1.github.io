@@ -630,6 +630,7 @@ var s = 0;
         grounded: false
     };
 
+    start_y = by;
 
     player.x = 100*scale;
     player.y = 250*scale;
@@ -753,7 +754,9 @@ function setCookie(cname, cvalue, exdays) {
 
 
 
+var start_y = 0;
 
+var py = 0;
 
 
 
@@ -865,13 +868,18 @@ function game_loop() {
 
    // ctx.rotate(10 * Math.PI / 180);
 
-
+  if(game_state == 1) {
        
-
+     py = (start_y - py) * 0.1 + py;
       
+    
+    if((start_y - py) < 0) {
+         
+        
+        }
 
 
-     
+     }
 
 
 
