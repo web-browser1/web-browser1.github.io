@@ -751,7 +751,7 @@ function setCookie(cname, cvalue, exdays) {
 
 
 
-
+var player_y2 = 0;
 
 
 var start_y = 0;
@@ -869,14 +869,16 @@ function game_loop() {
    // ctx.rotate(10 * Math.PI / 180);
 
   if(game_state == 1) {
+      
+      player_y2 = player.y;
        
-     py = (start_y - py) * 0.1 + py;
+     py = (start_y - player_y2) * 0.1 + player_y2;
       
     
-        if((start_y - py) < 0) {
+      /*  if((start_y - py) < 0) {
          
          start_y = py;
-        }
+        }*/
 
 
      }
@@ -1143,9 +1145,9 @@ ctx.fill();
 
     ctx.beginPath();
 
-        ctx.moveTo(player.x, player.y);
+        ctx.moveTo(player.x, player.y + py);
 
-        ctx.lineTo(player.x+player.width-player.radius, player.y);
+        ctx.lineTo(player.x+player.width-player.radius, player.y + py);
 
         ctx.arcTo(player.x+player.width, player.y, player.x+player.width, player.y+player.radius, player.radius);
 
@@ -1406,9 +1408,9 @@ ctx.fill();
 
 
 
-       var by_1 = bricks[b].y + bricks[b].velY;
+       var by_1 = bricks[b].y + py + bricks[b].velY;
 
-       var by_2 = bricks[b].y + bricks[b].velY + bricks[b].height;
+       var by_2 = bricks[b].y + py + bricks[b].velY + bricks[b].height;
 
 
 
