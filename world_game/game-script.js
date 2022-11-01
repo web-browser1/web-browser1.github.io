@@ -1143,27 +1143,27 @@ ctx.fill();
 
   //  ctx.fillRect(player.x, player.y, player.width, player.height);
 
-    ctx.beginPath();
+        ctx.beginPath();
 
         ctx.moveTo(player.x, player.y + py);
 
         ctx.lineTo(player.x+player.width-player.radius, player.y + py);
 
-        ctx.arcTo(player.x+player.width, player.y, player.x+player.width, player.y+player.radius, player.radius);
+        ctx.arcTo(player.x+player.width, player.y + py, player.x+player.width, player.y + py+player.radius, player.radius);
 
-        ctx.lineTo(player.x+player.width, player.y+player.height-player.radius);
+        ctx.lineTo(player.x+player.width, player.y + py+player.height-player.radius);
 
-        ctx.arcTo(player.x+player.width, player.y+player.height, player.x+player.width-player.radius, player.y+player.height, player.radius);
+        ctx.arcTo(player.x+player.width, player.y + py+player.height, player.x+player.width-player.radius, player.y + py+player.height, player.radius);
 
-        ctx.lineTo(player.x+player.radius, player.y+player.height);
+        ctx.lineTo(player.x+player.radius, player.y + py+player.height);
 
-        ctx.arcTo(player.x, player.y+player.height, player.x, player.y+player.height-player.radius, player.radius);
+        ctx.arcTo(player.x, player.y + py+player.height, player.x, player.y + py+player.height-player.radius, player.radius);
 
-        ctx.lineTo(player.x, player.y+player.radius);
+        ctx.lineTo(player.x, player.y + py+player.radius);
 
-        ctx.arcTo(player.x, player.y, player.x+player.radius, player.y, player.radius);
+        ctx.arcTo(player.x, player.y + py, player.x+player.radius, player.y + py, player.radius);
+
         
-
       //  ctx.fillStyle = 'hsl(0deg 0% 100% / '+ (r > 13 ? 90 : 50) +'%)';
 
         ctx.fill();
@@ -1175,7 +1175,7 @@ ctx.fill();
     
     ctx.beginPath();
 
-        ctx.arc(player.x+26*scale,   player.y+15*scale, 5*scale, 0, 2 * Math.PI);
+        ctx.arc(player.x+26*scale, py +  player.y+15*scale, 5*scale, 0, 2 * Math.PI);
 
 
 
@@ -1433,10 +1433,10 @@ ctx.fill();
 
 
    
-        if( ((player.y + player.velY + player.height) > by_1)  
+        if( ((player.y + py + player.velY + player.height) > by_1)  
             && (player.x + player.width) > bricks[b].x-startXC  && player.x < (bricks[b].x-startXC+bricks[b].width) ) {
 
-            player.velY = (player.velY - ((player.y + player.velY + player.height)-by_1));
+            player.velY = (player.velY - ((player.y + py + player.velY + player.height)-by_1));
 
             player.grounded = true;
 
@@ -1447,7 +1447,7 @@ ctx.fill();
 
 
         if( player.x + player.width > bricks[b].x-startXC && player.x > bricks[b].x - 30 && player.x < bricks[b].x  
-            && player.y+player.height > by_1+10 && player.y < by_1 + bricks[b].height-4 ) {
+            && player.y+py+player.height > by_1+10 && player.y+py < by_1 + bricks[b].height-4 ) {
 
              player.velX = 0;
         }
