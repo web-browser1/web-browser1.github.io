@@ -282,27 +282,27 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
   //  document.getElementById('c3').style.backgroundColor = 'hsl('+(hsl_h+240)+'deg '+hsl_s+'% '+(hsl_l)+'%)';;
 
     
-    document.getElementById('btnl').addEventListener('mousedown', function(e) {
+    document.getElementById("btnl").addEventListener('mousedown', function(e) {
         ontouch_1 = 1; 
         });
-document.getElementById('btnr').addEventListener('mousedown', function(e) {
+document.getElementById("btnr").addEventListener('mousedown', function(e) {
 
         
 ontouch_1 = 3; 
         });
-    document.getElementById('btnj').addEventListener('mousedown', function(e) {
+    document.getElementById("btnj").addEventListener('mousedown', function(e) {
         ontouch_1 = 2; 
         });
     
-    document.getElementById('btnl').addEventListener('mouseup', function(e) {
+    document.getElementById("btnl").addEventListener('mouseup', function(e) {
         ontouch_1 = 0; 
         });
-    document.getElementById('btnr').addEventListener('mouseup', function(e) {
+    document.getElementById("btnr").addEventListener('mouseup', function(e) {
 
         ontouch_1 = 0; 
 
         });
-    document.getElementById('btnj').addEventListener('mouseup', function(e) {
+    document.getElementById("btnj").addEventListener('mouseup', function(e) {
         ontouch_1 = 0; 
         });
     
@@ -312,7 +312,7 @@ ontouch_1 = 3;
       //  console.log("touch start  x: " + e.touches[0].pageX + "  y: " + e.touches[0].pageY);
 
 
-        var trhd = WIDTH / 3;
+        var trhd = f_sc*WIDTH / 3;
         var pX = e.touches[0].pageX;
 
       //  console.log("touch start  px: " + pX + "  tthrdr: " + trhd);
