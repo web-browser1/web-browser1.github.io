@@ -680,10 +680,16 @@ var c_1 = 0;
 var game_state = 0;
 
 
+var player_d = 0;
+
+var player_c = 0;
+
 function tapToStart() {
     
   //  console.log("tap to start");
 
+    player_d = player.y;
+    
     
 
     tapToStart_btn.style.visibility = "hidden";
@@ -867,12 +873,16 @@ function game_loop() {
         }
 
    // ctx.rotate(10 * Math.PI / 180);
+    
+    
 
   if(game_state == 1) {
       
+      player_c = player_d - player.y;
+      
       player_y2 = player.y + player.height;
        
-     py = (start_y - player_y2) * 0.03 + py;
+     py = (player_c - py) * 0.03 + py;
       
     
       /*  if((start_y - py) < 0) {
