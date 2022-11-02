@@ -907,7 +907,7 @@ function game_loop() {
       
       player_y2 = player.y + player.height;
        
-     py = (player_c - py) * 0.01 + py;
+     py = (player_c - py) * 0.003 + py;
       
     
       /*  if((start_y - py) < 0) {
