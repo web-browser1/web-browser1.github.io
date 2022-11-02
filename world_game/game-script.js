@@ -345,7 +345,7 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
 }
 
 
-    var f_sc = 0.5;
+    var f_sc = 0.6;
 
 var player;
 
@@ -698,7 +698,7 @@ function tapToStart() {
 
     
      if( rscreen == 2) {
-               canvas.requestFullscreen();
+             //  canvas.requestFullscreen();
                 fscreen = 1;
          }
 }
@@ -882,7 +882,7 @@ function game_loop() {
       
       player_y2 = player.y + player.height;
        
-     py = (player_c - py) * 0.03 + py;
+     py = (player_c - py) * 0.01 + py;
       
     
       /*  if((start_y - py) < 0) {
