@@ -281,6 +281,31 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
    // document.getElementById('c2').style.backgroundColor = 'hsl('+(hsl_h+120)+'deg '+hsl_s+'% '+(hsl_l)+'%)';;
   //  document.getElementById('c3').style.backgroundColor = 'hsl('+(hsl_h+240)+'deg '+hsl_s+'% '+(hsl_l)+'%)';;
 
+    
+    document.getElementById('btnl').addEventListener('mousedown', function(e) {
+        ontouch_1 = 1; 
+        });
+document.getElementById('btnr').addEventListener('mousedown', function(e) {
+
+        
+ontouch_1 = 3; 
+        });
+    document.getElementById('btnj').addEventListener('mousedown', function(e) {
+        ontouch_1 = 2; 
+        });
+    
+    document.getElementById('btnl').addEventListener('mouseup', function(e) {
+        ontouch_1 = 0; 
+        });
+    document.getElementById('btnr').addEventListener('mouseup', function(e) {
+
+        ontouch_1 = 0; 
+
+        });
+    document.getElementById('btnj').addEventListener('mouseup', function(e) {
+        ontouch_1 = 0; 
+        });
+    
 
     canvas.addEventListener('touchstart', function(e) {
 
@@ -375,7 +400,7 @@ var stars = [];
 var starsCount = 70;
 
 
-var scale = 0.5;
+var scale = 0.6;
 
 var tapToStart_btn;
 
