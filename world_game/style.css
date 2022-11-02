@@ -141,7 +141,7 @@ p {
 }
 
 canvas {
-  
+  position: relative;
     /*border-radius: 20px;*/
   object-fit: contain;
   width: 100%;
