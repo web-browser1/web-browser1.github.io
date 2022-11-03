@@ -272,8 +272,8 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
     title_sq = document.getElementById("title");
     title_sq.style.left = ((WIDTH*f_sc)/Math.pow(1.618, 1)) + 'px';
 
-    title_sq.style.top = ((WIDTH*f_sc)/Math.pow(1.618, 5)) + 'px';
-    title_sq.style.fontSize = ((WIDTH*f_sc)/Math.pow(1.618, 4)) + 'px';
+    title_sq.style.top = ((HEIGHT*f_sc)/Math.pow(1.618, 5)) + 'px';
+    title_sq.style.fontSize = ((HEIGHT*f_sc)/Math.pow(1.618, 3)) + 'px';
 
     
    // document.getElementById('c1').style.backgroundColor = 'hsl('+hsl_h+'deg '+hsl_s+'% '+(hsl_l)+'%)';;
@@ -679,7 +679,7 @@ var start_cy = 0;
 
 var uparrow = 38, downarrow = 40, leftarrow = 37, rightarrow = 39, spacebar = 32;
 
-var gravity = 0.3;
+var gravity = 0.2;
 
 
 var cameraC = 0;
