@@ -656,6 +656,8 @@ var s = 0;
     };
 
     start_y = by;
+    
+    start_cy = (HEIGHT*f_sc)/2;
 
     player.x = 100*scale;
     player.y = 250*scale;
@@ -664,6 +666,9 @@ var s = 0;
     player.grounded = true;
 
 }
+
+
+var start_cy = 0; 
 
 
 var uparrow = 38, downarrow = 40, leftarrow = 37, rightarrow = 39, spacebar = 32;
@@ -900,7 +905,7 @@ function game_loop() {
    // ctx.rotate(10 * Math.PI / 180);
     
     
-
+/*
   if(game_state == 1) {
       
       player_c = player_d - player.y;
@@ -909,14 +914,22 @@ function game_loop() {
        
      py = (player_c - py) * 0.006 + py;
       
+
+
+
+
+     }*/
     
-      /*  if((start_y - py) < 0) {
-         
-         start_y = py;
-        }*/
-
-
-     }
+    
+    
+    if(game_state == 1) {
+        
+        
+        var cd2 = player.y - start_cy;
+        
+        py = (cd2 - py) * 0.01 + py;
+        
+        }
 
 
 
