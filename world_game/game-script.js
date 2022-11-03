@@ -933,7 +933,7 @@ function game_loop() {
         
         var cd2 = start_cy - player.y;
         
-        py = (cd2 - py) * 0.06 + py;
+        py = (cd2 - py) * 0.1 + py;
         
         }
 
