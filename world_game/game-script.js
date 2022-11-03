@@ -270,10 +270,10 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
 
 
     title_sq = document.getElementById("title");
-    title_sq.style.left = (WIDTH/Math.pow(1.618, 1)) + 'px';
+    title_sq.style.left = ((WIDTH*f_sc)/Math.pow(1.618, 1)) + 'px';
 
-    title_sq.style.top = (WIDTH/Math.pow(1.618, 5)) + 'px';
-    title_sq.style.fontSize = (WIDTH/Math.pow(1.618, 4)) + 'px';
+    title_sq.style.top = ((WIDTH*f_sc)/Math.pow(1.618, 5)) + 'px';
+    title_sq.style.fontSize = ((WIDTH*f_sc)/Math.pow(1.618, 4)) + 'px';
 
     
    // document.getElementById('c1').style.backgroundColor = 'hsl('+hsl_h+'deg '+hsl_s+'% '+(hsl_l)+'%)';;
@@ -933,7 +933,7 @@ function game_loop() {
         
         var cd2 = start_cy - player.y;
         
-        py = (cd2 - py) * 0.1 + py;
+        py = (cd2 - py) * 0.3 + py;
         
         }
 
