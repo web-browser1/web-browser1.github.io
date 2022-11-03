@@ -925,7 +925,7 @@ function game_loop() {
     if(game_state == 1) {
         
         
-        var cd2 = player.y - start_cy;
+        var cd2 = start_cy - player.y;
         
         py = (cd2 - py) * 0.01 + py;
         
