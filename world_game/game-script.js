@@ -281,6 +281,10 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
    // document.getElementById('c2').style.backgroundColor = 'hsl('+(hsl_h+120)+'deg '+hsl_s+'% '+(hsl_l)+'%)';;
   //  document.getElementById('c3').style.backgroundColor = 'hsl('+(hsl_h+240)+'deg '+hsl_s+'% '+(hsl_l)+'%)';;
 
+
+window.addEventListener('load',function(){
+
+    
     
     document.getElementById("btnl").addEventListener('mousedown', function(e) {
         ontouch_1 = 1; 
@@ -305,6 +309,8 @@ ontouch_1 = 3;
     document.getElementById("btnj").addEventListener('mouseup', function(e) {
         ontouch_1 = 0; 
         });
+    
+    )};
     
 
     canvas.addEventListener('touchstart', function(e) {
@@ -1174,8 +1180,8 @@ ctx.fill();
      level_player = startXC / 1000;
 
      
-        player.width = level_player;
-        player.height = level_player;
+        player.width = level_player + 12;
+        player.height = level_player + 12;
 
 
     ctx.fillStyle = "#edfbff";
