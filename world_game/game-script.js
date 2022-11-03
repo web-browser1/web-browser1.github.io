@@ -310,7 +310,7 @@ ontouch_1 = 3;
         ontouch_1 = 0; 
         });
     
-    )};
+    });
     
 
     canvas.addEventListener('touchstart', function(e) {
