@@ -137,7 +137,7 @@ function main() {
     
   //  m_sc = 0.03 * (window.innerWidth/100);
     
-    m_sc = 0.3;
+    m_sc = 0.03;
     
     f_sc = 0.3; //* (window.innerWidth/100);
       
