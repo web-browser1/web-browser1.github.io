@@ -44,7 +44,7 @@ function fullScreen() {
     if(fscreen == 0)
        {
          //  elementd.requestFullscreen();
-            canvas.requestFullscreen();
+            paper.requestFullscreen();
            fscreen = 1;
            
            
@@ -122,6 +122,7 @@ function getObjectFitSize(
 }
 
 
+var paper;
 var m_sc = 0;
 
 var title_sq;
@@ -139,7 +140,7 @@ function main() {
     
     f_sc = 0.3; //* (window.innerWidth/100);
       
-
+   paper = document.getElementById('paper');
 
    // checkCookie();
 
@@ -273,7 +274,7 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
     title_sq.style.left = ((WIDTH*f_sc)/Math.pow(1.618, 1)) + 'px';
 
     title_sq.style.top = ((HEIGHT*f_sc)/Math.pow(1.618, 5)) + 'px';
-    title_sq.style.fontSize = ((HEIGHT*f_sc)/Math.pow(1.618, 3)) + 'px';
+    title_sq.style.fontSize = ((HEIGHT*f_sc)/Math.pow(1.618, 2)) + 'px';
 
     
    // document.getElementById('c1').style.backgroundColor = 'hsl('+hsl_h+'deg '+hsl_s+'% '+(hsl_l)+'%)';;
@@ -521,7 +522,7 @@ function init() {
 
 
     var fx = 0;
-    var fy = (HEIGHT*f_sc) + 70;
+    var fy = (HEIGHT*f_sc) + 200;
 
 
     for (var c = 0; c < mountsCount_f; c++) {
@@ -1186,7 +1187,7 @@ ctx.fill();
 
     ctx.fillStyle = "#edfbff";
     ctx.font = "700 10px Raleway";
-    ctx.fillText("L e v e l  " + level_player, player.x+ 30, player.y-10);
+    ctx.fillText("L e v e l  " + level_player, player.x+ 30, (player.y-10)+py);
 
 
      /// ctx.fillStyle = 'hsl(120deg 53% 32%)';
