@@ -137,7 +137,7 @@ function main() {
     
   //  m_sc = 0.03 * (window.innerWidth/100);
     
-    m_sc = 0.1;
+    m_sc = 1;
     
     f_sc = 0.3; //* (window.innerWidth/100);
       
@@ -176,8 +176,8 @@ const originalWidth = canvas.width;
   canvas.height = dimensions.height * dpr;
     
     
-    WIDTH = canvas.width;
-    HEIGHT = canvas.height;
+    WIDTH = originalWidth;
+    HEIGHT = originalHeight;
     
     
   //  canvas.width = WIDTH;
@@ -832,7 +832,7 @@ function game_loop() {
 
  // Create gradient
 
- var grd = ctx.createLinearGradient(0, 0, 0, canvas.height);
+ var grd = ctx.createLinearGradient(0, 0, 0, HEIGHT);
  grd.addColorStop(0, 'hsl('+((hsl_h-180))+'deg '+(hsl_s+30)+'% '+((hsl_l-sunB*0.1)+45)+'%)');
  grd.addColorStop(1, 'hsl('+(hsl_h)+'deg '+(hsl_s+30+sunB)+'% '+((hsl_l+sunB*0.2)+45)+'%)');
 
