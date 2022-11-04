@@ -137,7 +137,7 @@ function main() {
     
   //  m_sc = 0.03 * (window.innerWidth/100);
     
-    m_sc = 1;
+    m_sc = 0.3;
     
     f_sc = 0.3; //* (window.innerWidth/100);
       
@@ -442,11 +442,11 @@ function init() {
 
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    if (!isMobile) {
+   
          f_sc = 0.6;
-        } else {
-            f_sc = 1;
-            }
+      
+        
+
  
 
 
