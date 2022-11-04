@@ -44,7 +44,7 @@ function fullScreen() {
     if(fscreen == 0)
        {
          //  elementd.requestFullscreen();
-            paper.requestFullscreen();
+            canvas.requestFullscreen();
            fscreen = 1;
            
            
@@ -274,7 +274,7 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
     title_sq.style.left = ((WIDTH*f_sc)/Math.pow(1.618, 1)) + 'px';
 
     title_sq.style.top = ((HEIGHT*f_sc)/Math.pow(1.618, 5)) + 'px';
-    title_sq.style.fontSize = ((HEIGHT*f_sc)/Math.pow(1.618, 2)) + 'px';
+    title_sq.style.fontSize = ((HEIGHT*f_sc)/Math.pow(1.618, 7)) + 'px';
 
     
    // document.getElementById('c1').style.backgroundColor = 'hsl('+hsl_h+'deg '+hsl_s+'% '+(hsl_l)+'%)';;
@@ -439,7 +439,13 @@ function init() {
     bricks = [];
 
 
-    
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (!isMobile) {
+         f_sc = 0.6;
+        } else {
+            f_sc = 1;
+            }
  
 
 
@@ -666,7 +672,7 @@ var s = 0;
     
    // start_cy = (HEIGHT*f_sc)/2;
     
-   start_cy = (HEIGHT*f_sc) - ((HEIGHT*f_sc)/Math.pow(1.618, 2))
+   start_cy = (HEIGHT*f_sc) - ((HEIGHT*f_sc)/Math.pow(1.618, 3))
 
     player.x = 100*scale;
     player.y = 250*scale;
