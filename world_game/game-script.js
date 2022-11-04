@@ -209,7 +209,7 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
     var loading = document.getElementById("loading");
     
     
-     scale = 0.02;
+     scale = 0.1;
     
     
     loading.style.visibility = "hidden";
@@ -492,7 +492,7 @@ function init() {
 
 
     var mx = 0;
-    var my = (((HEIGHT*f_sc)/2) + 200);
+    var my = (((HEIGHT*f_sc)/2));
 
 
     for (var i = 0; i < mountsCount; i++) {
@@ -529,7 +529,7 @@ function init() {
 
 
     var fx = 0;
-    var fy = (HEIGHT*f_sc) + 200;
+    var fy = (HEIGHT*f_sc);
 
 
     for (var c = 0; c < mountsCount_f; c++) {
@@ -553,7 +553,7 @@ function init() {
 
 
     var clx = 0;
-    var cly = (((HEIGHT*f_sc)/2) + 100);
+    var cly = (((HEIGHT*f_sc)/2) + 10);
 
 
     for (var c = 0; c < cloudCount; c++) {
@@ -581,7 +581,7 @@ function init() {
 
 
     var tlx = 0;
-    var tly = (((HEIGHT*f_sc)/2) + 100);
+    var tly = (((HEIGHT*f_sc)/2) + 10);
 
 
     for (var c = 0; c < coinsCount; c++) {
@@ -608,7 +608,7 @@ function init() {
 
 
     var bx = 0;
-    var by = ((HEIGHT*f_sc)) - 120;
+    var by = ((HEIGHT*f_sc)) - 20;
 
 var s = 0;
 
@@ -644,7 +644,7 @@ var s = 0;
             velY: 0,
             moveY: 40+r*2,
             state: s,
-            radius: 14
+            radius: 14*scale
         });
 
         bx += 300*scale + r;
