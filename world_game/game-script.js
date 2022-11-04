@@ -209,7 +209,7 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
     var loading = document.getElementById("loading");
     
     
-     scale = 0.3;
+     scale = 1;
     
     
     loading.style.visibility = "hidden";
