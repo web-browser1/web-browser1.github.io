@@ -664,7 +664,9 @@ var s = 0;
 
     start_y = by;
     
-    start_cy = (HEIGHT*f_sc)/2;
+   // start_cy = (HEIGHT*f_sc)/2;
+    
+   start_cy = (HEIGHT*f_sc) - ((HEIGHT*f_sc)/Math.pow(1.618, 2))
 
     player.x = 100*scale;
     player.y = 250*scale;
