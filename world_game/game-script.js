@@ -320,7 +320,7 @@ ontouch_1 = 3;
       //  console.log("touch start  x: " + e.touches[0].pageX + "  y: " + e.touches[0].pageY);
 
 
-        var trhd = f_sc*WIDTH / 3;
+        var trhd = WIDTH / 3;
         var pX = e.touches[0].pageX;
 
       //  console.log("touch start  px: " + pX + "  tthrdr: " + trhd);
@@ -492,7 +492,7 @@ function init() {
 
 
     var mx = 0;
-    var my = (((HEIGHT*f_sc)/2));
+    var my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1));
 
 
     for (var i = 0; i < mountsCount; i++) {
@@ -529,17 +529,17 @@ function init() {
 
 
     var fx = 0;
-    var fy = (HEIGHT*f_sc);
+    var fy = (HEIGHT);
 
 
     for (var c = 0; c < mountsCount_f; c++) {
 
-        var r = Math.random(1)*30;
+        var r = Math.random(1)*10;
 
         mounts_f.push({
             id: c,
             x: fx,
-            y: fy-((10+r)),
+            y: fy-(150*r*0.06*scale),
             width: 700*r*0.06*scale,
             height: 150*r*0.06*scale,
             hsl_l: r*0.3
@@ -850,7 +850,7 @@ function game_loop() {
    
     ctx.font = "700 23px Raleway";
     ctx.fillStyle = "#FFFFFF66";
-    ctx.fillText("S C O R E", ((WIDTH*f_sc))-144, 100);
+    ctx.fillText("S C O R E", ((WIDTH))-(WIDTH/Math.pow(1.618, 5)), 10);
  
  
     var score_1 = 0;
@@ -876,7 +876,7 @@ function game_loop() {
  
     ctx.font = "700 45px Raleway";
     ctx.fillStyle = "#FFFFFF";
-    ctx.fillText(score_t, (WIDTH*f_sc)-146, 136);
+    ctx.fillText(score_t, (WIDTH)-(WIDTH/Math.pow(1.618, 5)), 16);
  
  
  
@@ -976,7 +976,7 @@ function game_loop() {
       // Fill with gradient
      
       ctx.beginPath();
-      ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 4)) , 0, 2 * Math.PI);
+      ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 5)) , 0, 2 * Math.PI);
     //  ctx.stroke();
     ctx.fillStyle = grd2;
     ctx.fill();
@@ -1583,18 +1583,18 @@ ctx.fill();
  
     
  
-    ctx.fillRect((WIDTH*f_sc)/3, 100, 3, (HEIGHT*f_sc)-200);
-    ctx.fillText("GO BACK", (WIDTH*f_sc*0.1), (HEIGHT*f_sc)/2);
+    ctx.fillRect((WIDTH)/3, 100, 3, (HEIGHT)-200);
+    ctx.fillText("GO BACK", (WIDTH*0.1), (HEIGHT)/2);
  
  
-    ctx.fillText("JUMP", ((WIDTH*f_sc)/3)+(WIDTH*f_sc*0.1), (HEIGHT*f_sc)/2);
+    ctx.fillText("JUMP", ((WIDTH)/3)+(WIDTH*0.1), (HEIGHT)/2);
  
-    ctx.fillRect(((WIDTH*f_sc)/3)*2, 100, 3, (HEIGHT*f_sc)-200);
+    ctx.fillRect(((WIDTH)/3)*2, 100, 3, (HEIGHT)-200);
  
-    ctx.fillText("GO FORWARD", ((WIDTH*f_sc)/3)*2+(WIDTH*f_sc*0.1), (HEIGHT*f_sc)/2);
+    ctx.fillText("GO FORWARD", ((WIDTH)/3)*2+(WIDTH*0.1), (HEIGHT)/2);
      } else {
  
-         ctx.fillText("- U s e  a r r o w k e y s  t o  m o v e  p l a y e r", ((WIDTH*f_sc)/3)+0, (HEIGHT*f_sc)/2);
+         ctx.fillText("- U s e  a r r o w k e y s  t o  m o v e  p l a y e r", ((WIDTH)/3)+0, (HEIGHT)/2);
      }
    }
 
