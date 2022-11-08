@@ -820,7 +820,7 @@ var scale_r = 1.0;
 var level_player = 1;
 
 
-var sf = 0.1;
+var sf = 0.01;
 
 
 function game_loop() {
