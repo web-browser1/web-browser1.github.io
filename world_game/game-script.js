@@ -496,7 +496,7 @@ function init() {
 
 
     var mx = 0;
-    var my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1));
+    var my = (HEIGHT)-(HEIGHT/Math.pow(1.618,3));
 
 
     for (var i = 0; i < mountsCount; i++) {
@@ -518,15 +518,15 @@ function init() {
         mx += 300 + 30;
 
         if( i == 10  ) {
-            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1)) + 0;
+            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,3)) + 0;
             mx = 0;
         }
         if( i == 20  ) {
-            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1)) + 0;
+            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,3)) + 0;
             mx = 0;
         }
         if( i == 23 || i == 16 || i == 4  ) {
-            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1)) + 0;
+            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,3)) + 0;
             mx = 0;
         }
     }
@@ -1335,7 +1335,7 @@ ctx.fill();
 
             player.grounded = false;
             
-            player.velY = -4 * 2;
+            player.velY = -4; //-4 * 2
 
 
           
