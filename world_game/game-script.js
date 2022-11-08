@@ -560,7 +560,7 @@ function init() {
 
         var r = Math.random(1)*10;
         
-        var rd = (WIDTH/Math.pow(1.618, 4+r);
+        var rd = (WIDTH/Math.pow(1.618, 4+r));
                                 
 
         clouds.push({
