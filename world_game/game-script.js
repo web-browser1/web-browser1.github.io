@@ -806,8 +806,13 @@ function setCookie(cname, cvalue, exdays) {
 
 
 
+var scale_z = 0; 
 
+var sc_z = 0;
 
+var start_cz = 1.0;
+
+var zf = 0.3;
 
 
 var player_y2 = 0;
@@ -900,7 +905,7 @@ function game_loop() {
 
     // hue  360
     // 360 / 3   ,   360 / 2
-
+/*
     if( player.grounded == false && game_state == 1 ) {
 
 
@@ -926,10 +931,19 @@ function game_loop() {
                 ctx.scale(1.02, 1.02);
             }
 
-        }
+        }*/
 
    // ctx.rotate(10 * Math.PI / 180);
     
+    if(game_state == 1) {
+        
+        var cz2 = start_cz - scale_z;
+        
+        sc_z = (cz2 - sc_z) * zf + sc_z;
+        
+        ctx.scale(sc_z, sc_z);
+        
+        }
     
 /*
   if(game_state == 1) {
@@ -1578,8 +1592,26 @@ ctx.fill();
 
    }
 
+    
+    
+    if(startXC > 50 && startXC < 55) {
+        scale_z = 0.3;
+        }
+    
+    if(startXC > 150 && startXC < 155) {
 
+        scale_z = -0.3;
 
+        }
+    if(startXC > 350 && startXC < 355) {
+        scale_z = -0.3;
+        }
+if(startXC > 450 && startXC < 455) {
+        scale_z = 0.5;
+        }
+if(startXC > 650 && startXC < 655) {
+        scale_z = -0.3;
+        }
 
    
    if( game_state == 1 && startXC < 50 ) {
