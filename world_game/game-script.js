@@ -812,7 +812,7 @@ var sc_z = 0;
 
 var start_cz = 1.0;
 
-var zf = 0.3;
+var zf = 0.03;
 
 
 var player_y2 = 0;
@@ -1214,8 +1214,8 @@ ctx.fill();
      level_player = startXC / 1000;
 
      
-        player.width = level_player + 12;
-        player.height = level_player + 12;
+        player.width = level_player + (12*scale);
+        player.height = level_player + (12*scale);
 
 
     ctx.fillStyle = "#edfbff";
@@ -1598,18 +1598,18 @@ ctx.fill();
         scale_z = 0.3;
         }
     
-    if(startXC > 150 && startXC < 155) {
+    if(startXC > 650 && startXC < 655) {
 
         scale_z = -0.3;
 
         }
-    if(startXC > 350 && startXC < 355) {
+    if(startXC > 1350 && startXC < 1355) {
         scale_z = -0.3;
         }
-if(startXC > 450 && startXC < 455) {
+if(startXC > 2450 && startXC < 2455) {
         scale_z = 0.5;
         }
-if(startXC > 650 && startXC < 655) {
+if(startXC > 3650 && startXC < 3655) {
         scale_z = -0.3;
         }
 
