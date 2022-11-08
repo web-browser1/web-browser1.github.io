@@ -46,7 +46,11 @@ function fullScreen() {
          //  elementd.requestFullscreen();
             canvas.requestFullscreen();
            fscreen = 1;
-           
+           if (screen.orientation && screen.orientation.lock) {
+
+                screen.orientation.lock('landscape');
+
+              }
            
            } else if(fscreen == 1) {
                document.exitFullscreen();
@@ -504,7 +508,7 @@ function init() {
         mounts.push({
             id: i,
             x: mx+(r*10),
-            y: my-(170*r*0.2*scale),
+            y: my,
             width: 600*r*0.2*scale,
             height: 170*r*0.2*scale,
             hsl_l: r
@@ -539,7 +543,7 @@ function init() {
         mounts_f.push({
             id: c,
             x: fx,
-            y: fy-(150*r*0.06*scale),
+            y: fy,
             width: 700*r*0.06*scale,
             height: 150*r*0.06*scale,
             hsl_l: r*0.3
@@ -553,7 +557,7 @@ function init() {
 
 
     var clx = 0;
-    var cly = (((HEIGHT*f_sc)/2) + 10);
+    var cly = (HEIGHT/Math.pow(1.618,3));
 
 
     for (var c = 0; c < cloudCount; c++) {
@@ -584,7 +588,7 @@ function init() {
 
 
     var tlx = 0;
-    var tly = (((HEIGHT*f_sc)/2) + 10);
+    var tly = (HEIGHT/Math.pow(1.618,2));
 
 
     for (var c = 0; c < coinsCount; c++) {
@@ -856,7 +860,7 @@ function game_loop() {
    
     ctx.font = "700 " + ((HEIGHT/Math.pow(1.618,7)))+"px Raleway";
     ctx.fillStyle = "#FFFFFF66";
-    ctx.fillText("S C O R E", ((WIDTH))-(WIDTH/Math.pow(1.618, 4)), (HEIGHT)-(HEIGHT/Math.pow(1.618,6)));
+    ctx.fillText("S C O R E", ((WIDTH))-(WIDTH/Math.pow(1.618, 4)), (HEIGHT/Math.pow(1.618,6)));
  
  
     var score_1 = 0;
@@ -882,7 +886,7 @@ function game_loop() {
  
     ctx.font = "700 "+ ((HEIGHT/Math.pow(1.618,6))) +"px Raleway";
     ctx.fillStyle = "#FFFFFF";
-    ctx.fillText(score_t, (WIDTH)-(WIDTH/Math.pow(1.618, 4)), (HEIGHT)-(HEIGHT/Math.pow(1.618,5)));
+    ctx.fillText(score_t, (WIDTH)-(WIDTH/Math.pow(1.618, 4)), (HEIGHT/Math.pow(1.618,5)));
  
  
  
