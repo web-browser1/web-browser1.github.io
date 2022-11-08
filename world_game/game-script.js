@@ -673,7 +673,7 @@ var s = 0;
     
    // start_cy = (HEIGHT*f_sc)/2;
     
-   start_cy = (HEIGHT*f_sc) - ((HEIGHT*f_sc)/Math.pow(1.618, 3))
+   start_cy = (HEIGHT) - ((HEIGHT)/Math.pow(1.618, 2))
 
     player.x = 100*scale;
     player.y = 250*scale;
@@ -848,9 +848,9 @@ function game_loop() {
 
   if( game_state == 1 ) {
    
-    ctx.font = "700 23px Raleway";
+    ctx.font = "700 " + ((HEIGHT)-(HEIGHT/Math.pow(1.618,7)))+"px Raleway";
     ctx.fillStyle = "#FFFFFF66";
-    ctx.fillText("S C O R E", ((WIDTH))-(WIDTH/Math.pow(1.618, 5)), 10);
+    ctx.fillText("S C O R E", ((WIDTH))-(WIDTH/Math.pow(1.618, 4)), (HEIGHT)-(HEIGHT/Math.pow(1.618,6)));
  
  
     var score_1 = 0;
@@ -874,9 +874,9 @@ function game_loop() {
     var score_t = score_1 + " " + score_2 + " " + score_3;
  
  
-    ctx.font = "700 45px Raleway";
+    ctx.font = "700 "+ ((HEIGHT)-(HEIGHT/Math.pow(1.618,6))) +"px Raleway";
     ctx.fillStyle = "#FFFFFF";
-    ctx.fillText(score_t, (WIDTH)-(WIDTH/Math.pow(1.618, 5)), 16);
+    ctx.fillText(score_t, (WIDTH)-(WIDTH/Math.pow(1.618, 4)), (HEIGHT)-(HEIGHT/Math.pow(1.618,5)));
  
  
  
@@ -960,7 +960,7 @@ function game_loop() {
         // Fill with gradient
        
         ctx.beginPath();
-        ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 4)) , 0, 2 * Math.PI);
+        ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 7)) , 0, 2 * Math.PI);
       //  ctx.stroke();
       ctx.fillStyle = '#FFF';
       ctx.fill();
@@ -976,7 +976,7 @@ function game_loop() {
       // Fill with gradient
      
       ctx.beginPath();
-      ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 5)) , 0, 2 * Math.PI);
+      ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 7)) , 0, 2 * Math.PI);
     //  ctx.stroke();
     ctx.fillStyle = grd2;
     ctx.fill();
