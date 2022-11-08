@@ -820,6 +820,9 @@ var scale_r = 1.0;
 var level_player = 1;
 
 
+var sf = 0.1;
+
+
 function game_loop() {
 
     ctx.save();
@@ -901,7 +904,7 @@ function game_loop() {
         if( 1.00 - scale_r < 0 ) {
                 scale_r -= 0.6 * 0.001;
                 
-                        ctx.scale( (( 1.00 - scale_r) * 0.01 + scale_r), ((1.00 - scale_r) * 0.01 + scale_r ));
+                        ctx.scale( (( 1.00 - scale_r) * sf + scale_r), ((1.00 - scale_r) * sf + scale_r ));
                 
          }
      }
@@ -912,7 +915,7 @@ function game_loop() {
             if( 1.02 - scale_r > 0 ) {
             scale_r += 0.3 * 0.001;
 
-            ctx.scale( ((  1.02 - scale_r) * 0.01 + scale_r), ((1.02 - scale_r) * 0.01 + scale_r ));
+            ctx.scale( ((  1.02 - scale_r) * sf + scale_r), ((1.02 - scale_r) * sf + scale_r ));
 
             } else {
 
