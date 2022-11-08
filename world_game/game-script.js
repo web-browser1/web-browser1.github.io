@@ -492,7 +492,7 @@ function init() {
 
 
     var mx = 0;
-    var my = (HEIGHT)-(HEIGHT/Math.pow(1.618,2));
+    var my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1));
 
 
     for (var i = 0; i < mountsCount; i++) {
@@ -504,7 +504,7 @@ function init() {
         mounts.push({
             id: i,
             x: mx+(r*10),
-            y: my,
+            y: my-(170*r*0.2*scale),
             width: 600*r*0.2*scale,
             height: 170*r*0.2*scale,
             hsl_l: r
@@ -514,15 +514,15 @@ function init() {
         mx += 300 + 30;
 
         if( i == 10  ) {
-            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1)) + 30;
+            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1)) + 0;
             mx = 0;
         }
         if( i == 20  ) {
-            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1)) + 50;
+            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1)) + 0;
             mx = 0;
         }
         if( i == 23 || i == 16 || i == 4  ) {
-            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1)) + 60;
+            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1)) + 0;
             mx = 0;
         }
     }
@@ -813,7 +813,7 @@ var start_y = 0;
 
 var py = 0;
 
-
+var pf = 0.3;
 
 var scale_r = 1.0;
 
@@ -851,7 +851,7 @@ function game_loop() {
 
   if( game_state == 1 ) {
    
-    ctx.font = "700 " + ((HEIGHT)-(HEIGHT/Math.pow(1.618,7)))+"px Raleway";
+    ctx.font = "700 " + ((HEIGHT/Math.pow(1.618,7)))+"px Raleway";
     ctx.fillStyle = "#FFFFFF66";
     ctx.fillText("S C O R E", ((WIDTH))-(WIDTH/Math.pow(1.618, 4)), (HEIGHT)-(HEIGHT/Math.pow(1.618,6)));
  
@@ -877,7 +877,7 @@ function game_loop() {
     var score_t = score_1 + " " + score_2 + " " + score_3;
  
  
-    ctx.font = "700 "+ ((HEIGHT)-(HEIGHT/Math.pow(1.618,6))) +"px Raleway";
+    ctx.font = "700 "+ ((HEIGHT/Math.pow(1.618,6))) +"px Raleway";
     ctx.fillStyle = "#FFFFFF";
     ctx.fillText(score_t, (WIDTH)-(WIDTH/Math.pow(1.618, 4)), (HEIGHT)-(HEIGHT/Math.pow(1.618,5)));
  
@@ -946,7 +946,7 @@ function game_loop() {
         
         var cd2 = start_cy - player.y;
         
-        py = (cd2 - py) * 0.3 + py;
+        py = (cd2 - py) * pf + py;
         
         }
 
