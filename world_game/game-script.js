@@ -492,7 +492,7 @@ function init() {
 
 
     var mx = 0;
-    var my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1));
+    var my = (HEIGHT)-(HEIGHT/Math.pow(1.618,2));
 
 
     for (var i = 0; i < mountsCount; i++) {
@@ -514,15 +514,15 @@ function init() {
         mx += 300 + 30;
 
         if( i == 10  ) {
-            my = (((HEIGHT*f_sc)/2) + 200) + 30;
+            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1)) + 30;
             mx = 0;
         }
         if( i == 20  ) {
-            my = (((HEIGHT*f_sc)/2) + 200) + 50;
+            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1)) + 50;
             mx = 0;
         }
         if( i == 23 || i == 16 || i == 4  ) {
-            my = (((HEIGHT*f_sc)/2) + 200) + 60;
+            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,1)) + 60;
             mx = 0;
         }
     }
@@ -558,17 +558,20 @@ function init() {
 
     for (var c = 0; c < cloudCount; c++) {
 
-        var r = Math.random(1)*100;
+        var r = Math.random(1)*10;
+        
+        var rd = (WIDTH/Math.pow(1.618, 4+r);
+                                
 
         clouds.push({
             id: c,
             x: clx,
-            y: cly-((10+r)),
+            y: cly-((rd)),
             width: 100*scale,
             height: 250*scale,
             velX: 0,
             velY: 0,
-            radius: 10+r
+            radius: rd
         });
 
         clx += 10*scale + r*1;
