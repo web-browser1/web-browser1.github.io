@@ -208,8 +208,9 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
     start_cz = ratio * dpr;
     
     
-    scale_z = start_cz;
+    scale_z = 0;
     
+    sc_z = start_cz;
 
     var loading = document.getElementById("loading");
     
@@ -1598,22 +1599,22 @@ ctx.fill();
     
     
     if(startXC > 50 && startXC < 55) {
-        scale_z = start_cz + 0.1;
+        scale_z = 0.1;
         }
     
     if(startXC > 650 && startXC < 655) {
 
-        scale_z = start_cz + -0.1;
+        scale_z = -0.1;
 
         }
     if(startXC > 1350 && startXC < 1355) {
-        scale_z = start_cz + -0.2;
+        scale_z = -0.2;
         }
 if(startXC > 2450 && startXC < 2455) {
-        scale_z = start_cz + 0.2;
+        scale_z = 0.2;
         }
 if(startXC > 3650 && startXC < 3655) {
-        scale_z = start_cz + -0.3;
+        scale_z = -0.3;
         }
 
    
