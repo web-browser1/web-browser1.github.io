@@ -1598,11 +1598,11 @@ ctx.fill();
 
     
     
-    if(startXC > 50 && startXC < 55) {
+    if(startXC > 750 && startXC < 755) {
         scale_z = 0.1;
         }
     
-    if(startXC > 650 && startXC < 655) {
+    if(startXC > 1650 && startXC < 1655) {
 
         scale_z = -0.1;
 
