@@ -267,7 +267,7 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
     canvas.width = WIDTH;
     canvas.height = HEIGHT;*/
 
-    ctx = canvas.getContext("2d");
+ //   ctx = canvas.getContext("2d");
 
     
     tapToStart_btn = document.getElementById("btn1");
