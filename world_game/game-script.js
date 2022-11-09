@@ -678,7 +678,7 @@ var s = 0;
 
     start_y = by;
     
-    player_q = (WIDTH/Math.pow(1.618, 7);
+    player_q = (WIDTH/Math.pow(1.618, 7));
     
    // start_cy = (HEIGHT*f_sc)/2;
     
