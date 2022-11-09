@@ -205,7 +205,7 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
 
 
     
-    
+    start_cz = ratio * dpr;
     
     
     
@@ -533,7 +533,7 @@ function init() {
 
 
     var fx = 0;
-    var fy = (HEIGHT);
+    var fy = (HEIGHT)+(HEIGHT/2);
 
 
     for (var c = 0; c < mountsCount_f; c++) {
@@ -544,8 +544,8 @@ function init() {
             id: c,
             x: fx,
             y: fy,
-            width: 700*r*0.06*scale,
-            height: 150*r*0.06*scale,
+            width: 700*r*2.06*scale,
+            height: 150*r*2.06*scale,
             hsl_l: r*0.3
         });
 
@@ -578,7 +578,7 @@ function init() {
             radius: rd
         });
 
-        clx += 10*scale + r*1;
+        clx += rd + r*1;
 
     }
 
@@ -677,6 +677,8 @@ var s = 0;
     };
 
     start_y = by;
+    
+    player_q = (WIDTH/Math.pow(1.618, 7);
     
    // start_cy = (HEIGHT*f_sc)/2;
     
@@ -800,7 +802,7 @@ function setCookie(cname, cvalue, exdays) {
 
 
 
-
+var player_q = 0;
 
 
 
@@ -812,7 +814,7 @@ var sc_z = 0;
 
 var start_cz = 1.0;
 
-var zf = 0.03;
+var zf = 0.003;
 
 
 var player_y2 = 0;
@@ -1214,8 +1216,8 @@ ctx.fill();
      level_player = startXC / 1000;
 
      
-        player.width = level_player + (12*scale);
-        player.height = level_player + (12*scale);
+        player.width = level_player + player_q;
+        player.height = level_player + player_q;
 
 
     ctx.fillStyle = "#edfbff";
@@ -1552,9 +1554,9 @@ ctx.fill();
     grd3.addColorStop(1, '#FFFFFFCC');
     grd3.addColorStop(0, '#FFFFFF00');
  
-    ctx.fillStyle = grd3;
+   // ctx.fillStyle = grd3;
  
-    ctx.fillRect(0, HEIGHT-100, WIDTH, 100);
+  //  ctx.fillRect(0, HEIGHT-100, WIDTH, 100);
 
 
 
@@ -1595,19 +1597,19 @@ ctx.fill();
     
     
     if(startXC > 50 && startXC < 55) {
-        scale_z = 0.3;
+        scale_z = 0.1;
         }
     
     if(startXC > 650 && startXC < 655) {
 
-        scale_z = -0.3;
+        scale_z = -0.1;
 
         }
     if(startXC > 1350 && startXC < 1355) {
-        scale_z = -0.3;
+        scale_z = -0.2;
         }
 if(startXC > 2450 && startXC < 2455) {
-        scale_z = 0.5;
+        scale_z = 0.2;
         }
 if(startXC > 3650 && startXC < 3655) {
         scale_z = -0.3;
