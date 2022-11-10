@@ -208,7 +208,7 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
     start_cz = ratio * dpr;
     
     
-    scale_z = start_cz;
+    scale_z = 0;
     
     sc_z = start_cz;
 
@@ -535,7 +535,7 @@ function init() {
 
 
     var fx = 0;
-    var fy = (HEIGHT)+(HEIGHT);
+    var fy = (HEIGHT)+(HEIGHT*2);
 
 
     for (var c = 0; c < mountsCount_f; c++) {
@@ -546,8 +546,8 @@ function init() {
             id: c,
             x: fx,
             y: fy,
-            width: 700*r*1.06*scale,
-            height: 150*r*1.06*scale,
+            width: 700*r*0.65*scale,
+            height: 150*r*0.65*scale,
             hsl_l: r*0.3
         });
 
@@ -1597,7 +1597,7 @@ ctx.fill();
    }
 
     
-    
+    /*
     if(startXC > 750 && startXC < 755) {
         scale_z = 0.1;
         }
@@ -1616,6 +1616,7 @@ if(startXC > 2450 && startXC < 2455) {
 if(startXC > 3650 && startXC < 3655) {
         scale_z = -0.3;
         }
+    */
 
    
    if( game_state == 1 && startXC < 50 ) {
