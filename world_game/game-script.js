@@ -945,7 +945,7 @@ function game_loop() {
         
         sc_z = (cz2 - sc_z) * zf + sc_z;
         
-        ctx.scale(sc_z, sc_z);
+     //   ctx.scale(sc_z, sc_z);
         
         }
     
