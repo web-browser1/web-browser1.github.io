@@ -208,7 +208,7 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
     start_cz = ratio * dpr;
     
     
-    scale_z = 0;
+    scale_z = start_cz;
     
     sc_z = start_cz;
 
