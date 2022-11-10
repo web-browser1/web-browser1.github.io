@@ -816,7 +816,7 @@ var sc_z = 0;
 
 var start_cz = 1.0;
 
-var zf = 0.0003;
+var zf = 0.03;
 
 
 var player_y2 = 0;
