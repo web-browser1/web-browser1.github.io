@@ -203,9 +203,11 @@ let ratio = Math.min(
 
 ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
 
-
+console.log("ratio dpr: " + (ratio*dpr));
     
     start_cz = ratio * dpr;
+    
+    console.log("startcz: " + start_cz);
     
     
     scale_z = 0;
@@ -214,6 +216,8 @@ ctx.scale(ratio * dpr * m_sc, ratio * dpr * m_sc); //adjust this!
 
     var loading = document.getElementById("loading");
     
+    
+    console.log("sc_z: " + sc_z + "  scale_z: " + scale_z);
     
      scale = 1;
     
@@ -945,7 +949,9 @@ function game_loop() {
         
         sc_z = (cz2 - sc_z) * zf + sc_z;
         
-     //   ctx.scale(sc_z, sc_z);
+        ctx.scale(sc_z, sc_z);
+        
+        console.log("cz2: " + cz2 + "sc_z: " + sc_z);
         
         }
     
