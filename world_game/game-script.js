@@ -212,6 +212,8 @@ console.log("ratio dpr: " + (ratio*dpr));
     
     scale_z = 0;
     
+    start_cz = 1;
+    
     sc_z = start_cz;
 
     var loading = document.getElementById("loading");
@@ -1603,7 +1605,7 @@ ctx.fill();
    }
 
     
-    /*
+    
     if(startXC > 750 && startXC < 755) {
         scale_z = 0.1;
         }
@@ -1622,7 +1624,7 @@ if(startXC > 2450 && startXC < 2455) {
 if(startXC > 3650 && startXC < 3655) {
         scale_z = -0.3;
         }
-    */
+    
 
    
    if( game_state == 1 && startXC < 50 ) {
