@@ -1548,12 +1548,12 @@ ctx.fill();
             brickCurrent = b; 
            // ctx.scale(1.0, 1.0);
             
-            scale_z = (py * 0.001);
+            scale_z = (py * 0.003);
         } 
 
 
         if( 
-            (player.x + player.width > (bricks[b].x - 6) -startXC 
+          (  (player.x + player.width > (bricks[b].x - 6) -startXC 
            && player.x + player.width < (bricks[b].x + 4) -startXC 
            
 
@@ -1561,7 +1561,7 @@ ctx.fill();
             
            ( player.x < (bricks[b].x + bricks[b].width + 6) -startXC 
            && player.x > (bricks[b].x + bricks[b].width -4) -startXC  
-            && player.x < (bricks[b].x + bricks[b].width) -startXC )
+            && player.x < (bricks[b].x + bricks[b].width) -startXC ) )
            
         
             && player.y+py+player.height > by_1+10 && player.y+py < by_1 + bricks[b].height-4 ) {
