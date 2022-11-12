@@ -842,6 +842,10 @@ var level_player = 1;
 var sf = 0.01;
 
 
+
+var xf = 0.3; // 0.05
+
+
 function game_loop() {
 
     ctx.save();
@@ -1435,7 +1439,7 @@ ctx.fill();
         
                     c_1 = 0;
                 }
-                startXC = ((((camera_1+40) - cameraXC) * 0.05) + cameraXC);
+                startXC = ((((camera_1+40) - cameraXC) * xf) + cameraXC);
             }
       //  
     }
@@ -1543,6 +1547,8 @@ ctx.fill();
 
             brickCurrent = b; 
            // ctx.scale(1.0, 1.0);
+            
+            scale_z = (py * 0.01);
         } 
 
 
@@ -1558,7 +1564,7 @@ ctx.fill();
             && player.x < (bricks[b].x + bricks[b].width) -startXC )
            
         
-            && player.y+py+player.height > by_1+1 && player.y+py < by_1 + bricks[b].height-4 ) {
+            && player.y+py+player.height > by_1+10 && player.y+py < by_1 + bricks[b].height-4 ) {
 
              player.velX = 0;
         }
