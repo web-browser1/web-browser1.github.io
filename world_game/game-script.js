@@ -1548,7 +1548,7 @@ ctx.fill();
             brickCurrent = b; 
            // ctx.scale(1.0, 1.0);
             
-            scale_z = (py * 0.01);
+            scale_z = (py * 0.001);
         } 
 
 
