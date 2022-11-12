@@ -1546,8 +1546,19 @@ ctx.fill();
         } 
 
 
-        if( player.x + player.width > bricks[b].x-startXC && player.x > bricks[b].x - 30 && player.x < bricks[b].x  
-            && player.y+py+player.height > by_1+10 && player.y+py < by_1 + bricks[b].height-4 ) {
+        if( 
+            (player.x + player.width > (bricks[b].x - 6) -startXC 
+           && player.x + player.width < (bricks[b].x + 4) -startXC 
+           
+
+&& player.x + player.width > bricks[b].x-startXC ) ||
+            
+           ( player.x < (bricks[b].x + bricks[b].width + 6) -startXC 
+           && player.x > (bricks[b].x + bricks[b].width -4) -startXC  
+            && player.x < (bricks[b].x + bricks[b].width) -startXC )
+           
+        
+            && player.y+py+player.height > by_1+1 && player.y+py < by_1 + bricks[b].height-4 ) {
 
              player.velX = 0;
         }
