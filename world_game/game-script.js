@@ -401,7 +401,7 @@ var brickCount = 1230;
 var brickCurrent = 0;
 
 var clouds = [];
-var cloudCount = 130;
+var cloudCount = 330;
 
 
 var mounts = [];
@@ -847,7 +847,7 @@ var sf = 0.01;
 var xf = 0.05; // 0.05
 
 
-var sunf = 0.02;
+var sunf = 0.003;
 
 var sun_m = 5;
 
@@ -996,8 +996,8 @@ function game_loop() {
 
 
 
-        var grd1 = ctx.createRadialGradient((WIDTH/Math.pow(1.618, 1)), sunY, (WIDTH/Math.pow(1.618, 7)) ,(WIDTH/Math.pow(1.618, 1)), sunY, (WIDTH/Math.pow(1.618, 3)) );
-        grd1.addColorStop(0,'hsl('+hsl_h+'deg '+100+'% '+(50)+'% / 43%)');
+        var grd1 = ctx.createRadialGradient((WIDTH/Math.pow(1.618, 1)), sunY, (WIDTH/Math.pow(1.618, 10)) ,(WIDTH/Math.pow(1.618, 1)), sunY, (WIDTH/Math.pow(1.618, 2)) );
+        grd1.addColorStop(0,'hsl('+hsl_h+'deg '+100+'% '+(50)+'% / 33%)');
         grd1.addColorStop(1, 'hsl('+hsl_h+'deg '+100+'% '+(50)+'% / 0%)');
      
         //  ctx.rotate(20 * Math.PI / 180);
@@ -1005,7 +1005,7 @@ function game_loop() {
         // Fill with gradient
        
         ctx.beginPath();
-        ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 3)) , 0, 2 * Math.PI);
+        ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 2)) , 0, 2 * Math.PI);
       //  ctx.stroke();
       ctx.fillStyle = grd1;
       ctx.fill();
