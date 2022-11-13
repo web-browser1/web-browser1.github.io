@@ -1232,7 +1232,7 @@ ctx.fill();
 
      
     
-    player_xc = startXC;
+    player_xc = -startXC;
     
     
         player.width = level_player + player_q;
@@ -1286,7 +1286,7 @@ ctx.fill();
     
     ctx.beginPath();
 
-        ctx.arc(player.x+26*scale, py +  player.y+15*scale, 5*scale, 0, 2 * Math.PI);
+        ctx.arc(player.x + player_xc + 26*scale, py +  player.y+15*scale, 5*scale, 0, 2 * Math.PI);
 
 
 
