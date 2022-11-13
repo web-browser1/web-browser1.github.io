@@ -849,7 +849,7 @@ var xf = 0.05; // 0.05
 
 var sunf = 0.003;
 
-var sun_m = 5;
+var sun_m = 0.9;
 
 function game_loop() {
 
@@ -1033,7 +1033,7 @@ function game_loop() {
 
 
 
-        if( sunC == 0 && sunY < (HEIGHT*0.7) ) {
+        if( sunC == 0 && sunY < (HEIGHT*sun_m) ) {
 
             sunB += 0.03;
 
@@ -1041,17 +1041,17 @@ function game_loop() {
 
             hsl_l -= sunf;
          
-        } else if( sunY >= (HEIGHT*0.7) ) {
+        } else if( sunY >= (HEIGHT*sun_m) ) {
             sunC = 1;
         }
 
-        if( sunC == 1 && sunY > (HEIGHT*0.3) ) {
+        if( sunC == 1 && sunY > (HEIGHT*0.4) ) {
 
             sunY -= 0.05;
 
             hsl_l += sunf;
 
-        } else if( sunY <= (HEIGHT*0.3) ) {
+        } else if( sunY <= (HEIGHT*0.4) ) {
             sunC = 0;
         }
 
