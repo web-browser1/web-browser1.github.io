@@ -504,7 +504,7 @@ function init() {
 
 
     var mx = 0;
-    var my = (HEIGHT)-(HEIGHT/Math.pow(1.618,3));
+    var my = (HEIGHT)-(HEIGHT/Math.pow(1.618,5));
 
 
     for (var i = 0; i < mountsCount; i++) {
@@ -526,22 +526,22 @@ function init() {
         mx += 300 + 30;
 
         if( i == 10  ) {
-            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,3)) + 0;
+            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,5)) + 0;
             mx = 0;
         }
         if( i == 20  ) {
-            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,3)) + 0;
+            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,5)) + 0;
             mx = 0;
         }
         if( i == 23 || i == 16 || i == 4  ) {
-            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,3)) + 0;
+            my = (HEIGHT)-(HEIGHT/Math.pow(1.618,5)) + 0;
             mx = 0;
         }
     }
 
 
     var fx = 0;
-    var fy = (HEIGHT)+(HEIGHT*2);
+    var fy = (HEIGHT)+(HEIGHT*1.6);
 
 
     for (var c = 0; c < mountsCount_f; c++) {
@@ -906,7 +906,7 @@ function game_loop() {
  
     ctx.font = "700 "+ ((HEIGHT/Math.pow(1.618,6))) +"px Raleway";
     ctx.fillStyle = "#FFFFFF";
-    ctx.fillText(score_t, (WIDTH)-(WIDTH/Math.pow(1.618, 4)), (HEIGHT/Math.pow(1.618,5)));
+    ctx.fillText(score_t, (WIDTH)-(WIDTH/Math.pow(1.618, 4)), (HEIGHT/Math.pow(1.618,4)));
  
  
  
@@ -1032,24 +1032,25 @@ function game_loop() {
 
 
 
-        if( sunC == 0 && sunY < 300 ) {
+        if( sunC == 0 && sunY < (HEIGHT*0.7) ) {
 
             sunB += 0.03;
 
             sunY += 0.05;
 
-            hsl_l -= 0.005;
-        } else if( sunY >= 300 ) {
+            hsl_l -= 0.015;
+         
+        } else if( sunY >= (HEIGHT*0.7) ) {
             sunC = 1;
         }
 
-        if( sunC == 1 && sunY > 150 ) {
+        if( sunC == 1 && sunY > (HEIGHT*0.2) ) {
 
             sunY -= 0.05;
 
-            hsl_l += 0.005;
+            hsl_l += 0.015;
 
-        } else if( sunY <= 150 ) {
+        } else if( sunY <= (HEIGHT*0.2) ) {
             sunC = 0;
         }
 
