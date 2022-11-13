@@ -1425,22 +1425,29 @@ ctx.fill();
 
         
 
-            if(   c_1 == 1 ) {
+           /* if(   c_1 == 1 ) {
 
                 startXC += player.velX;
-            }
+            }*/
 
-            else if(   c_1 == 2 ) {
+          //  else if(   c_1 == 2 ) {
 
-                if( startXC < camera_1+40 ) {
+                
+                
+                cameraXC += player.velX;
+              /*  if( startXC < camera_1+40 ) {
 
                     cameraXC += 3; 
                 } else if( startXC >= camera_1+40 ) {
         
                     c_1 = 0;
-                }
-                startXC = ((((camera_1+40) - cameraXC) * xf) + cameraXC);
-            }
+                }*/
+               // startXC = ((((camera_1+40) - cameraXC) * xf) + cameraXC);
+                
+                var cx2 = camera_1 - cameraXC;
+                
+                startXC = (cx2 - startXC) * xf + startXC;
+           // }
       //  
     }
 
