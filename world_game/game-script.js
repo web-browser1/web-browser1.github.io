@@ -808,7 +808,7 @@ function setCookie(cname, cvalue, exdays) {
 
 
 
-var scale_ms = 0.7;
+var scale_ms = 0.2;
 
 
 var player_q = 0;
@@ -833,7 +833,7 @@ var start_y = 0;
 
 var py = 0;
 
-var pf = 0.3;
+var pf = 0.03;
 
 var scale_r = 1.0;
 
@@ -846,6 +846,10 @@ var sf = 0.01;
 
 var xf = 0.05; // 0.05
 
+
+var sunf = 0.02;
+
+var sun_m = 5;
 
 function game_loop() {
 
@@ -1001,7 +1005,7 @@ function game_loop() {
         // Fill with gradient
        
         ctx.beginPath();
-        ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 7)) , 0, 2 * Math.PI);
+        ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 3)) , 0, 2 * Math.PI);
       //  ctx.stroke();
       ctx.fillStyle = grd1;
       ctx.fill();
@@ -1035,7 +1039,7 @@ function game_loop() {
 
             sunY += 0.05;
 
-            hsl_l -= 0.005;
+            hsl_l -= sunf;
          
         } else if( sunY >= (HEIGHT*0.7) ) {
             sunC = 1;
@@ -1045,7 +1049,7 @@ function game_loop() {
 
             sunY -= 0.05;
 
-            hsl_l += 0.005;
+            hsl_l += sunf;
 
         } else if( sunY <= (HEIGHT*0.3) ) {
             sunC = 0;
@@ -1196,10 +1200,10 @@ ctx.fill();
      for( var m = 0; m<mountsCount; m++ ) {
 
         ctx.beginPath();
-        ctx.moveTo(mounts[m].x-(startXC*0.2), mounts[m].y);
-        ctx.lineTo(mounts[m].x-(startXC*0.2)+(mounts[m].width/2), mounts[m].y-mounts[m].height);
-        ctx.lineTo(mounts[m].x-(startXC*0.2)+mounts[m].width, mounts[m].y);
-        ctx.lineTo(mounts[m].x+-(startXC*0.2), mounts[m].y);
+        ctx.moveTo(mounts[m].x-(startXC*0.2), mounts[m].y+(py*0.8));
+        ctx.lineTo(mounts[m].x-(startXC*0.2)+(mounts[m].width/2), mounts[m].y+(py*0.8)-mounts[m].height);
+        ctx.lineTo(mounts[m].x-(startXC*0.2)+mounts[m].width, mounts[m].y+(py*0.8));
+        ctx.lineTo(mounts[m].x+-(startXC*0.2), mounts[m].y+(py*0.8));
         ctx.fillStyle = 'hsl('+hsl_h+'deg '+45+'% '+(hsl_l+mounts[m].hsl_l+25)+'%)';
         ctx.fill();
 
