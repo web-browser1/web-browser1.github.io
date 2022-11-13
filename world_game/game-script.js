@@ -808,7 +808,7 @@ function setCookie(cname, cvalue, exdays) {
 
 
 
-
+var scale_ms = 0.7;
 
 
 var player_q = 0;
@@ -992,9 +992,9 @@ function game_loop() {
 
 
 
-        var grd1 = ctx.createRadialGradient(500, sunY, 30, 500, sunY, 32);
-        grd1.addColorStop(0, '#FFFFFFFF');
-        grd1.addColorStop(1, '#FFFFFF00');
+        var grd1 = ctx.createRadialGradient((WIDTH/Math.pow(1.618, 1)), sunY, (WIDTH/Math.pow(1.618, 7)) ,(WIDTH/Math.pow(1.618, 1)), sunY, (WIDTH/Math.pow(1.618, 3)) );
+        grd1.addColorStop(0,'hsl('+hsl_h+'deg '+100+'% '+(50)+'% / 43%)');
+        grd1.addColorStop(1, 'hsl('+hsl_h+'deg '+100+'% '+(50)+'% / 0%)');
      
         //  ctx.rotate(20 * Math.PI / 180);
         
@@ -1003,15 +1003,12 @@ function game_loop() {
         ctx.beginPath();
         ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 7)) , 0, 2 * Math.PI);
       //  ctx.stroke();
-      ctx.fillStyle = '#FFF';
+      ctx.fillStyle = grd1;
       ctx.fill();
 
 
 
-      var grd2 = ctx.createRadialGradient(500, sunY, 30, 500, sunY, 150);
-      grd2.addColorStop(0, '#FFFFFF77');
-      grd2.addColorStop(1, '#FFFFFF00');
-   
+      
       //  ctx.rotate(20 * Math.PI / 180);
       
       // Fill with gradient
@@ -1019,7 +1016,7 @@ function game_loop() {
       ctx.beginPath();
       ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 7)) , 0, 2 * Math.PI);
     //  ctx.stroke();
-    ctx.fillStyle = grd2;
+    ctx.fillStyle = '#FFF';
     ctx.fill();
 
 
@@ -1038,19 +1035,19 @@ function game_loop() {
 
             sunY += 0.05;
 
-            hsl_l -= 0.015;
+            hsl_l -= 0.005;
          
         } else if( sunY >= (HEIGHT*0.7) ) {
             sunC = 1;
         }
 
-        if( sunC == 1 && sunY > (HEIGHT*0.2) ) {
+        if( sunC == 1 && sunY > (HEIGHT*0.3) ) {
 
             sunY -= 0.05;
 
-            hsl_l += 0.015;
+            hsl_l += 0.005;
 
-        } else if( sunY <= (HEIGHT*0.2) ) {
+        } else if( sunY <= (HEIGHT*0.3) ) {
             sunC = 0;
         }
 
@@ -1501,7 +1498,7 @@ ctx.fill();
         bricks[b].x -= 1;
        }*/
 
-        ctx.fillStyle = 'hsl('+(hsl_h+180)+'deg '+(85)+'% '+(10)+'%)';
+        ctx.fillStyle = 'hsl('+(hsl_h+180)+'deg '+(85)+'% '+(hsl_l)+'%)';
 
         var b_velY = 0;
 
@@ -1566,7 +1563,7 @@ ctx.fill();
             brickCurrent = b; 
            // ctx.scale(1.0, 1.0);
             
-            scale_z = (py * 0.002);
+            scale_z = scale_ms + (py * 0.002);
         } 
 
 
@@ -1608,11 +1605,11 @@ ctx.fill();
     for( var m = 0; m<mountsCount_f; m++ ) {
 
         ctx.beginPath();
-        ctx.moveTo(mounts_f[m].x-(startXC*1.1), mounts_f[m].y);
-        ctx.lineTo(mounts_f[m].x-(startXC*1.1)+(mounts_f[m].width/2), mounts_f[m].y-mounts_f[m].height);
-        ctx.lineTo(mounts_f[m].x-(startXC*1.1)+mounts_f[m].width, mounts_f[m].y);
-        ctx.lineTo(mounts_f[m].x-(startXC*1.1), mounts_f[m].y);
-        ctx.fillStyle = 'hsl('+hsl_h+'deg '+95+'% '+(5)+'%)';
+        ctx.moveTo(mounts_f[m].x-(startXC*1.1), mounts_f[m].y +(py*1.1) );
+        ctx.lineTo(mounts_f[m].x-(startXC*1.1)+(mounts_f[m].width/2), mounts_f[m].y+(py*1.1)-mounts_f[m].height);
+        ctx.lineTo(mounts_f[m].x-(startXC*1.1)+mounts_f[m].width, mounts_f[m].y +(py*1.1)  );
+        ctx.lineTo(mounts_f[m].x-(startXC*1.1), mounts_f[m].y +(py*1.1));
+        ctx.fillStyle = 'hsl('+hsl_h+'deg '+95+'% '+(hsl_l)+'%)';
         ctx.fill();
 //       ctx.fillStyle = 'hsl('+hsl_h+'deg '+85+'% '+(hsl_l+mounts[m].hsl_l+15)+'%)';
      }
