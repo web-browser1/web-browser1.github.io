@@ -1342,7 +1342,7 @@ ctx.fill();
         if( c_1 == 1 ) {
             c_1 = 2;
 
-            cameraXC = startXC;
+         //   cameraXC = startXC;
     
           //  camera_1 = startXC;
 
@@ -1435,7 +1435,7 @@ ctx.fill();
 
                 
                 
-                cameraXC += player.velX;
+                cameraXC += -player.velX;
               /*  if( startXC < camera_1+40 ) {
 
                     cameraXC += 3; 
@@ -1448,6 +1448,9 @@ ctx.fill();
                 var cx2 = camera_1 - cameraXC;
                 
                 startXC = (cx2 - startXC) * xf + startXC;
+        
+                
+        
            // }
       //  
     }
