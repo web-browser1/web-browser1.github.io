@@ -688,6 +688,7 @@ var s = 0;
     
     player_q = (WIDTH/Math.pow(1.618, 7));
     
+    camera_1 = ((WIDTH*f_sc)/2);
    // start_cy = (HEIGHT*f_sc)/2;
     
    start_cy = (HEIGHT) - ((HEIGHT)/Math.pow(1.618, 2))
@@ -1343,7 +1344,7 @@ ctx.fill();
 
             cameraXC = startXC;
     
-            camera_1 = startXC;
+          //  camera_1 = startXC;
 
         }
         
