@@ -1232,7 +1232,7 @@ ctx.fill();
 
      
     
-    player_xc = -startXC;
+    player_xc = -startXC + (WIDTH/Math.pow(1.618, 3));
     
     
         player.width = level_player + player_q;
