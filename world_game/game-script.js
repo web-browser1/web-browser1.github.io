@@ -1176,8 +1176,8 @@ ctx.fill();
         ctx.fill();*/
 
 
-            if( player.x + player.width >  coins[t].x-(startXC) && 
-                player.x < coins[t].x-(startXC) + coins[t].width &&   
+            if( player.x + player_xc + player.width >  coins[t].x-(startXC) && 
+                player.x + player_xc < coins[t].x-(startXC) + coins[t].width &&   
                 player.y + player.height >  coins[t].y && 
                 player.y < coins[t].y + coins[t].height   
                 
@@ -1555,7 +1555,7 @@ ctx.fill();
 
    
         if( ((player.y + py + player.velY + player.height) > by_1)  
-            && (player.x + player.width) > bricks[b].x-startXC  && player.x < (bricks[b].x-startXC+bricks[b].width) ) {
+            && (player.x + player_xc + player.width) > bricks[b].x-startXC  && player.x + player_xc < (bricks[b].x-startXC+bricks[b].width) ) {
 
             player.velY = (player.velY - ((player.y + py + player.velY + player.height)-by_1));
 
@@ -1570,15 +1570,15 @@ ctx.fill();
 
 
         if( 
-          (  (player.x + player.width > (bricks[b].x - 6) -startXC 
-           && player.x + player.width < (bricks[b].x + 4) -startXC 
+          (  (player.x + player_xc + player.width > (bricks[b].x - 6) -startXC 
+           && player.x + player_xc + player.width < (bricks[b].x + 4) -startXC 
            
 
-&& player.x + player.width > bricks[b].x-startXC ) ||
+&& player.x + player_xc + player.width > bricks[b].x-startXC ) ||
             
-           ( player.x < (bricks[b].x + bricks[b].width + 6) -startXC 
-           && player.x > (bricks[b].x + bricks[b].width -4) -startXC  
-            && player.x < (bricks[b].x + bricks[b].width) -startXC ) )
+           ( player.x + player_xc < (bricks[b].x + bricks[b].width + 6) -startXC 
+           && player.x + player_xc > (bricks[b].x + bricks[b].width -4) -startXC  
+            && player.x + player_xc < (bricks[b].x + bricks[b].width) -startXC ) )
            
         
             && player.y+py+player.height > by_1+10 && player.y+py < by_1 + bricks[b].height-4 ) {
