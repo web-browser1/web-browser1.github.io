@@ -814,7 +814,7 @@ function setCookie(cname, cvalue, exdays) {
 var player_q = 0;
 
 
-
+var player_xc = 0;
 
 
 var scale_z = 0; 
@@ -1228,16 +1228,20 @@ ctx.fill();
      }
 
 
-     level_player = cameraXC / 1000;
+     level_player = -(cameraXC / 1000); 
 
      
+    
+    player_xc = startXC;
+    
+    
         player.width = level_player + player_q;
         player.height = level_player + player_q;
 
 
     ctx.fillStyle = "#edfbff";
     ctx.font = "700 10px Raleway";
-    ctx.fillText("L e v e l  " + level_player, player.x+ 30, (player.y-10)+py);
+    ctx.fillText("L e v e l  " + level_player,player_xc+ player.x+ 30, (player.y-10)+py);
 
 
      /// ctx.fillStyle = 'hsl(120deg 53% 32%)';
@@ -1250,23 +1254,25 @@ ctx.fill();
 
         ctx.beginPath();
 
-        ctx.moveTo(player.x, player.y + py);
+        ctx.moveTo(player.x + player_xc, player.y + py);
 
-        ctx.lineTo(player.x+player.width-player.radius, player.y + py);
+        ctx.lineTo(player.x + player_xc+player.width-player.radius, player.y + py);
 
-        ctx.arcTo(player.x+player.width, player.y + py, player.x+player.width, player.y + py+player.radius, player.radius);
+        ctx.arcTo(player.x + player_xc+player.width, player.y + py, player.x + player_xc+player.width, player.y + py+player.radius, player.radius);
 
-        ctx.lineTo(player.x+player.width, player.y + py+player.height-player.radius);
+        ctx.lineTo(player.x + player_xc+player.width, player.y + py+player.height-player.radius);
 
-        ctx.arcTo(player.x+player.width, player.y + py+player.height, player.x+player.width-player.radius, player.y + py+player.height, player.radius);
+        ctx.arcTo(player.x + player_xc+player.width, player.y + py+player.height, player.x + player_xc+player.width-player.radius, player.y + py+player.height, player.radius);
 
-        ctx.lineTo(player.x+player.radius, player.y + py+player.height);
+        ctx.lineTo(player.x + player_xc+player.radius, player.y + py+player.height);
 
-        ctx.arcTo(player.x, player.y + py+player.height, player.x, player.y + py+player.height-player.radius, player.radius);
+        ctx.arcTo(player.x + player_xc, player.y + py+player.height, player.x + player_xc, player.y + py+player.height-player.radius, player.radius);
 
-        ctx.lineTo(player.x, player.y + py+player.radius);
+        ctx.lineTo(player.x + player_xc, player.y + py+player.radius);
 
-        ctx.arcTo(player.x, player.y + py, player.x+player.radius, player.y + py, player.radius);
+        ctx.arcTo(player.x + player_xc, player.y + py, player.x + player_xc+player.radius, player.y + py, player.radius);
+
+        
 
         
       //  ctx.fillStyle = 'hsl(0deg 0% 100% / '+ (r > 13 ? 90 : 50) +'%)';
@@ -1433,7 +1439,7 @@ ctx.fill();
 
           //  else if(   c_1 == 2 ) {
 
-                
+                player.x += player.velX;
                 
                 cameraXC += -player.velX;
               /*  if( startXC < camera_1+40 ) {
@@ -1559,7 +1565,7 @@ ctx.fill();
             brickCurrent = b; 
            // ctx.scale(1.0, 1.0);
             
-            scale_z = (py * 0.003);
+            scale_z = (py * 0.002);
         } 
 
 
