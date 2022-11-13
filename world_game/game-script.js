@@ -844,7 +844,7 @@ var sf = 0.01;
 
 
 
-var xf = 0.3; // 0.05
+var xf = 0.05; // 0.05
 
 
 function game_loop() {
@@ -1228,7 +1228,7 @@ ctx.fill();
      }
 
 
-     level_player = startXC / 1000;
+     level_player = cameraXC / 1000;
 
      
         player.width = level_player + player_q;
