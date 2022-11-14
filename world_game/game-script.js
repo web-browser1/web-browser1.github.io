@@ -707,7 +707,7 @@ var start_cy = 0;
 
 var uparrow = 38, downarrow = 40, leftarrow = 37, rightarrow = 39, spacebar = 32;
 
-var gravity = 0.2;
+var gravity = 0.1;
 
 
 var cameraC = 0;
@@ -844,7 +844,7 @@ var sf = 0.01;
 
 
 
-var xf = 0.05; // 0.05
+var xf = 0.02; // 0.05
 
 
 var sunf = 0.004;
@@ -996,7 +996,7 @@ function game_loop() {
 
 
 
-        var grd1 = ctx.createRadialGradient((WIDTH/Math.pow(1.618, 1)), sunY, (WIDTH/Math.pow(1.618, 10)) ,(WIDTH/Math.pow(1.618, 1)), sunY, (WIDTH/Math.pow(1.618, 2)) );
+        var grd1 = ctx.createRadialGradient((WIDTH/Math.pow(1.618, 1)), sunY+(py*0.3), (WIDTH/Math.pow(1.618, 10)) ,(WIDTH/Math.pow(1.618, 1)), sunY+(py*0.3), (WIDTH/Math.pow(1.618, 2)) );
         grd1.addColorStop(0,'hsl('+hsl_h+'deg '+100+'% '+(50)+'% / 33%)');
         grd1.addColorStop(1, 'hsl('+hsl_h+'deg '+100+'% '+(50)+'% / 0%)');
      
@@ -1005,7 +1005,7 @@ function game_loop() {
         // Fill with gradient
        
         ctx.beginPath();
-        ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY,(WIDTH/Math.pow(1.618, 2)) , 0, 2 * Math.PI);
+        ctx.arc((WIDTH/Math.pow(1.618, 1)), sunY+(py*0.3),(WIDTH/Math.pow(1.618, 2)) , 0, 2 * Math.PI);
       //  ctx.stroke();
       ctx.fillStyle = grd1;
       ctx.fill();
@@ -1383,7 +1383,7 @@ ctx.fill();
 
             player.grounded = false;
             
-            player.velY = -4; //-4 * 2
+            player.velY = -6; //-4 * 2
 
 
           
