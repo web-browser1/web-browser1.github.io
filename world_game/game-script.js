@@ -847,7 +847,7 @@ var sf = 0.01;
 var xf = 0.05; // 0.05
 
 
-var sunf = 0.003;
+var sunf = 0.005;
 
 var sun_m = 0.9;
 
@@ -866,7 +866,7 @@ function game_loop() {
 
  // Create gradient
 
- var grd = ctx.createLinearGradient(0, 0, 0, HEIGHT);
+ var grd = ctx.createLinearGradient(0, -(HEIGHT*0.2), 0, HEIGHT+(HEIGHT*0.2));
  grd.addColorStop(0, 'hsl('+((hsl_h-180))+'deg '+(hsl_s+30)+'% '+((hsl_l-sunB*0.1)+45)+'%)');
  grd.addColorStop(1, 'hsl('+(hsl_h)+'deg '+(hsl_s+30+sunB)+'% '+((hsl_l+sunB*0.2)+45)+'%)');
 
@@ -875,7 +875,7 @@ function game_loop() {
  // Fill with gradient
  ctx.fillStyle = grd;
 // ctx.rotate(20 * Math.PI / 180);
- ctx.fillRect(0, 0, WIDTH, HEIGHT);
+ ctx.fillRect(0, -(HEIGHT*0.2)+(py*0.3), WIDTH, HEIGHT+(HEIGHT*0.2));
 
 
 
@@ -1065,7 +1065,7 @@ function game_loop() {
 
         ctx.beginPath();
 
-        ctx.arc(clouds[r].x + clouds[r].velX, clouds[r].y, clouds[r].radius, 0, 2 * Math.PI);
+        ctx.arc(clouds[r].x + clouds[r].velX, clouds[r].y+(py*0.3), clouds[r].radius, 0, 2 * Math.PI);
 
       //  ctx.stroke();
 
