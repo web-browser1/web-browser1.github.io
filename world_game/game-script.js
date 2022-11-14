@@ -847,7 +847,7 @@ var sf = 0.01;
 var xf = 0.05; // 0.05
 
 
-var sunf = 0.005;
+var sunf = 0.004;
 
 var sun_m = 0.9;
 
@@ -1102,19 +1102,28 @@ function game_loop() {
 
         ctx.lineTo(stars[r].x, stars[r].y);*/
 
-
+       var starsp = (py*0.3);
 
 
         ctx.beginPath();
-        ctx.moveTo(stars[r].x, stars[r].y);
-        ctx.lineTo(stars[r].x+stars[r].width-stars[r].radius, stars[r].y);
-        ctx.arcTo(stars[r].x+stars[r].width, stars[r].y, stars[r].x+stars[r].width, stars[r].y+stars[r].radius, stars[r].radius);
-        ctx.lineTo(stars[r].x+stars[r].width, stars[r].y+stars[r].height-stars[r].radius);
-        ctx.arcTo(stars[r].x+stars[r].width, stars[r].y+stars[r].height, stars[r].x+stars[r].width-stars[r].radius, stars[r].y+stars[r].height, stars[r].radius);
-        ctx.lineTo(stars[r].x+stars[r].radius, stars[r].y+stars[r].height);
-        ctx.arcTo(stars[r].x, stars[r].y+stars[r].height, stars[r].x, stars[r].y+stars[r].height-stars[r].radius, stars[r].radius);
-        ctx.lineTo(stars[r].x, stars[r].y+stars[r].radius);
-        ctx.arcTo(stars[r].x, stars[r].y, stars[r].x+stars[r].radius, stars[r].y, stars[r].radius);
+        ctx.moveTo(stars[r].x+starsp, stars[r].y);
+
+        ctx.lineTo(stars[r].x+starsp+stars[r].width-stars[r].radius, stars[r].y);
+
+        ctx.arcTo(stars[r].x+starsp+stars[r].width, stars[r].y, stars[r].x+starsp+stars[r].width, stars[r].y+stars[r].radius, stars[r].radius);
+
+        ctx.lineTo(stars[r].x+starsp+stars[r].width, stars[r].y+stars[r].height-stars[r].radius);
+
+        ctx.arcTo(stars[r].x+starsp+stars[r].width, stars[r].y+stars[r].height, stars[r].x+starsp+stars[r].width-stars[r].radius, stars[r].y+stars[r].height, stars[r].radius);
+
+        ctx.lineTo(stars[r].x+starsp+stars[r].radius, stars[r].y+stars[r].height);
+
+        ctx.arcTo(stars[r].x+starsp, stars[r].y+stars[r].height, stars[r].x+starsp, stars[r].y+stars[r].height-stars[r].radius, stars[r].radius);
+
+        ctx.lineTo(stars[r].x+starsp, stars[r].y+stars[r].radius);
+
+        ctx.arcTo(stars[r].x+starsp, stars[r].y, stars[r].x+starsp+stars[r].radius, stars[r].y, stars[r].radius);
+
         
         ctx.fillStyle = 'hsl(0deg 0% 100% / '+ (r > 13 ? 90 : 50) +'%)';
         ctx.fill();
