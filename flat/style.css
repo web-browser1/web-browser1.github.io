@@ -2114,11 +2114,11 @@ input[type="submit"]:hover,
 .a-background-hover a:hover,
 .background-hover:hover, 
 .site-branding {
-    background: #1900FF; /* #3498db */
+    background: #3498db; /* #3498db */
 }
 
 .color, .a-color-hover a:hover, .color-hover:hover, .a-color a {
-    color: #FAD600; /* #DB9634 */
+    color: #DB9634; /* #DB9634 */
 }
 
 .a-underline-hover a:hover {
