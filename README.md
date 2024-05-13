@@ -1,3 +1,90 @@
+
+# Technical documentation - Webpages, JavaScript 
+
+**Overall Structure:**
+
+The code remains wrapped in a self-invoking function using jQuery (`$(function($) { ... })`).
+
+**Sections:**
+
+**1. Long Shadow Effects (`flat_long_shadow` function):**
+
+   - **Logic Flow:**
+      1. Define variables for targeted elements (`targetElement`), container element (`containerElement`), shadow length (`shadowLength`), and light offset (`lightOffset`).
+      2. Loop through each `targetElement` using jQuery's `each` method.
+      3. Inside the loop:
+         - Extract the background color (`backgroundColor`) of the `containerElement`.
+         - Calculate darker shades for the shadow based on `backgroundColor` and `lightOffset`.
+         - Construct a comma-separated string (`boxShadowString`) containing the shadow values (length, offset, and color) for different positions.
+         - Set the `box-shadow` CSS property of the `targetElement` using the `boxShadowString`.
+
+**2. Sidebar Columns (`#secondary` element):**
+
+   - **Logic Flow:**
+      1. Define variables for the sidebar element (`sidebarElement`) and an empty array to store column elements (`columnElements`).
+      2. Loop through each widget element within the `sidebarElement` using jQuery's `each` method.
+      3. Inside the loop:
+         - Based on the current element's index modulo 2 (even or odd):
+            - If even, append the element to the first column (not yet defined, we'll create it dynamically).
+            - If odd, append the element to the second column (not yet defined).
+      4. After the loop, iterate through the `columnElements` array (which now holds references to the dynamically created column elements) and append them to the actual sidebar (`sidebarElement`).
+
+**3. Tag Cloud Reset:**
+
+   - **Logic Flow:**
+      1. Define a variable for the tag cloud element (`tagCloudElement`).
+      2. Use jQuery to select all anchor tags (`a`) within the `tagCloudElement`.
+      3. Set the `style` property of these anchor tags to an empty string, effectively removing any inline styles.
+
+**4. Content Limit (`content-limit` element):**
+
+   - **Logic Flow:**
+      1. Define variables for the content limit element (`contentLimitElement`), a running total height (`totalHeight`), and a flag to indicate content exceeding the limit (`contentOverflow`).
+      2. Loop through each child element within the `contentLimitElement` using jQuery's `each` method.
+      3. Inside the loop:
+         - Get the height (`childHeight`) of the current child element.
+         - Add `childHeight` to `totalHeight`.
+         - If `totalHeight` exceeds a predefined limit (e.g., 500px):
+            - Set the `contentOverflow` flag to `true`.
+            - Hide the current child element using jQuery's `hide` method.
+         - If `contentOverflow` is `true` and the previous element exists:
+            - Check the previous element's height (`previousHeight`).
+            - If `previousHeight` is less than a minimum threshold (e.g., 100px) to avoid awkward cutoff, hide the previous element as well.
+      4. Reset `contentOverflow` to `false` for the next iteration.
+
+**5. Gallery Slider (`galleryslider` element):**
+
+   - **Variables:**
+      - `galleryElement`: The current gallery slider element.
+      - `galleryInner`: The inner container element holding the images.
+      - `galleryUl`: The unordered list element containing image list items.
+      - `imageWidth`: Width of each image in the slider.
+      - `currentPos`: Current position (index) of the displayed image.
+      - `galleryHeight`: Height of the slider based on the current image.
+   - **Logic Flow:**
+      1. Loop through each `galleryslider` element using jQuery's `each` method.
+      2. Inside the loop:
+         - Set references to various child elements within the `galleryElement`.
+         - Ensure the `galleryInner` element has overflow hidden and relative positioning for proper image scrolling.
+         - Calculate the total width of all image list items based on `imageWidth`.
+         - Set up smooth transition effects for image movement using `flat_gallery_transition`.
+         - Style each image list item to float left and display as a block.
+         - If there are less than two cloned images (for seamless looping), create and append the necessary clones.
+         - Retrieve the `data-pos` attribute (current image position
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Technical documentation - world_game folder
 
 
