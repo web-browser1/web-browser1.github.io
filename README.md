@@ -1,4 +1,4 @@
-#Technical documentation - world_game folder
+# Technical documentation - world_game folder
 
 
 The code you provided is written in JavaScript and appears to be for a side-scrolling game. Here's a breakdown of the code with explanations for each section:
