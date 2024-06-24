@@ -1,1 +1,1193 @@
-const canvas=document.getElementById("gameCanvas"),ctx=canvas.getContext("2d");var cellSize=80,gridWidth=canvas.width/cellSize,gridHeight=canvas.height/cellSize;let inMenu=!0;const colors={gameFloor:"#FFF",player:"#2F1AE8",box:"#5945FF",finishZone:"#B400FF",bricks:"#0F027A",uiText:"#BBB3FF",bunnyBody:"#F5A9BC",bunnyEars:"#FF99CC",bunnyEyes:"#000000",lightYellow:"#FFD700",mediumYellow:"#FFC200",darkYellow:"#FFB000",lightBrown:"#D2B48C",mediumBrown:"#C48A3D",darkBrown:"#A0522D",clickable:"#7D24B2",nonClickable:"#A9A9A9",completed:"#4F1571"};var cStart=1;let currentLevel=0,playerLevel=1;var completedLevels=[!1,!1,!1,!1,!1,!1,!1,!1,!1,!1];let player,box,finishZone,walls,carpets,particles=[],GAME_STATE=0;var tracks=[],sound=null,font=null,utils=null;function preloadAssets(){var e,t;let l=["/arcade1-142093.mp3","/arcade2-158813.mp3","/arcade3-158814.mp3"],a=e=>new Promise((t,l)=>{let a=new Audio(e);a.oncanplaythrough=()=>{t(a)},a.onerror=t=>{l(Error(`Failed to load audio file: ${e}`))}}),i=l.map(a),n=a("/beep3-98810.mp3"),c=(e="Pacifico",t="url(Pacifico-Regular.ttf)",new Promise((l,a)=>{let i=new FontFace(e,t);i.load().then(e=>{document.fonts.add(e),l(e)}).catch(t=>{a(Error(`Failed to load font: ${e}`))})})),o=new Promise((e,t)=>{try{let l=new Utils(this);e(l)}catch(a){t(Error("Failed to load Utils"))}});return Promise.all([...i,n,c,o]).then(e=>{tracks=e.slice(0,l.length),sound=e[l.length],font=e[l.length+1],(utils=e[l.length+2]).setTrack(tracks),console.log("All assets preloaded successfully.")}).catch(e=>{console.error("Error preloading assets:",e)})}function start(){preloadAssets().then(()=>{console.log("Game started"),init()}).catch(e=>{console.error("Error starting the game:",e)})}function init(){resizeCanvas(),ctx.clearRect(0,0,canvas.width,canvas.height),drawMenuStart(),document.getElementById("startButton").addEventListener("click",()=>{utils.playNextTrack(),console.log("start click"),inMenu=!0,utils.drawMenu(ctx,canvas,cellSize,colors),GAME_STATE=0,document.getElementById("startButton").style.display="none"}),window.addEventListener("keydown",function(e){movePlayerKeyboard(e)})}function resizeCanvas(){console.log("canvas width : "+canvas.width+"  canvas height : "+canvas.height),canvas.width=window.innerWidth,canvas.height=window.innerHeight,console.log("2 canvas width : "+canvas.width+"  canvas height : "+canvas.height),cellSize=Math.min(canvas.width,canvas.height)/10,gridWidth=canvas.width/cellSize,gridHeight=canvas.height/cellSize,console.log("window innerWidth: "+window.innerWidth+" innerHeight: "+window.innerHeight+"  cellSize: "+cellSize+" gridWidth: "+gridWidth+"  gridHeight: "+gridHeight)}function drawMenuStart(){ctx.clearRect(0,0,canvas.width,canvas.height);let e=utils.getLevels()[2];walls=[];for(let t=0;t<e.length;t++)for(let l=0;l<e[t].length;l++)1===e[t][l]&&walls.push({x:l,y:t});walls.forEach(e=>{ctx.save(),ctx.translate(e.x*cellSize,e.y*cellSize),utils.drawBrickPattern(ctx,e.x,e.y,cellSize,colors),ctx.restore()}),ctx.fillStyle="#444",ctx.font=1*cellSize+"px Pacifico",ctx.fillText("Brickbox",canvas.width/2-1.6*cellSize,2*cellSize),GAME_STATE=0}function createParticles(e,t){for(let l=0;l<20;l++)particles.push(new Particle(e+cellSize/2,t+cellSize/2,"#CCCCCC"))}function startLevel(e){cStart=2,utils.getSound()&&(utils.pauseAudio(),isPaused=!0,cancelAnimationFrame(animationFrame),utils.resumeAudio(),isPaused=!1,animationFrame=requestAnimationFrame(gameLoop)),currentLevel=e;let t=utils.getLevels()[currentLevel-1];finishZone={x:4,y:4},walls=[],carpets=[],GAME_STATE=1;for(let l=0;l<t.length;l++)for(let a=0;a<t[l].length;a++)1===t[l][a]?walls.push({x:a,y:l}):2===t[l][a]?finishZone={x:a,y:l}:3===t[l][a]?player={x:a,y:l,width:cellSize,height:cellSize}:4===t[l][a]?box={x:a,y:l}:5===t[l][a]&&carpets.push({x:a,y:l});animationFrame=requestAnimationFrame(gameLoop),isBoxInFinishZone=!1,inMenu=!1,ctx.clearRect(0,0,canvas.width,canvas.height),gameLoop()}function gameLoop(){if(isPaused||inMenu)return;let e=performance.now(),t=e-lastFrameTime;t>=frameInterval&&(updateGame(),ctx.clearRect(0,0,canvas.width,canvas.height),inMenu||drawGame(),lastFrameTime=e-t%frameInterval),animationFrame=requestAnimationFrame(gameLoop)}function showMenu(){cancelAnimationFrame(animationFrame),inMenu=!0,GAME_STATE=0,utils.drawMenu(ctx,canvas,cellSize,colors)}function shake(e=.08*cellSize){return{x:(Math.random()-.5)*e,y:(Math.random()-.5)*e}}function draw(){ctx.clearRect(0,0,canvas.width,canvas.height),drawGame()}function handleMouseClick(e){e.clientX,canvas.offsetLeft,e.clientY,canvas.offsetTop}function handleTouchStart(e){let t=e.touches[0].clientX-canvas.offsetLeft,l=e.touches[0].clientY-canvas.offsetTop;checkButtonClick(t,l)}function checkButtonClick(e,t){for(let l of utils.getButtons())if(l.active&&e>=l.x&&e<=l.x+l.width&&t>=l.y&&t<=l.y+l.height){l.onClick();break}}window.addEventListener("load",()=>{start(),console.log("page load")}),canvas.addEventListener("click",handleMouseClick),canvas.addEventListener("touchstart",handleTouchStart);let soundC=2;function toggleSound(){1==soundC?(utils.setSoundText("Sound: On"),utils.resumeAudio(),console.log("sound on"),soundC=2):2==soundC&&(utils.setSoundText("Sound: Off"),utils.pauseAudio(),console.log("sound off"),soundC=1),drawMenu()}let isPaused=!1,animationFrame;function togglePause(){isPaused?(utils.getSound()&&utils.resumeAudio(),isPaused=!1,animationFrame=requestAnimationFrame(gameLoop)):(utils.pauseAudio(),isPaused=!0,cancelAnimationFrame(animationFrame))}function pauseGame(){console.log("paused ")}function resumeGame(){console.log("resume ")}function resumeScreen(){updateGame(),utils.getSound()&&utils.resumeAudio(),isPaused=!1,animationFrame=requestAnimationFrame(gameLoop)}document.addEventListener("visibilitychange",()=>{document.hidden&&(pauseGame(),utils.pauseAudio(),isPaused=!0,cancelAnimationFrame(animationFrame),console.log("visibilitychange "),utils.drawPauseScreen(ctx,cellSize,resumeScreen,colors))});var currentTutorialStep=0;const tutorialSteps3=[{message:"Press the grey area that surround the player to move.",condition:()=>hasMoved()},{message:"Push the diamond to the finish zone.",condition:()=>box.x===finishZone.x&&box.y===finishZone.y},{message:"Well done! You have completed the 1st level.",condition:()=>!1}],tutorialSteps=[{message:"Direct thy brave knight by tapping <br>the grey tiles surrounding him <br>(Arrowkeys on PC) to advance.",condition:()=>hasMoved()},{message:"Move the mystical jewel to <br>the destined finish zone.",condition:()=>box.x===finishZone.x&&box.y===finishZone.y},{message:"Congratulations! <br>Thou has conquered the first quest.",condition:()=>!1}];function hasMoved(){return player.x>2}function updateTutorial(){tutorialSteps[currentTutorialStep].condition()&&currentTutorialStep++}let isBoxInFinishZone=!1;function checkBoxInFinishZone(){if(box.x===finishZone.x&&box.y===finishZone.y){isBoxInFinishZone=!0,playerLevel>currentLevel&&playerLevel++,completedLevels[currentLevel-1]=!0;let e=utils.getButtonById("nextLevel");e&&(e.active=!0)}else isBoxInFinishZone=!1}function updateGame(){updateCamera(),updateTutorial(),checkBoxInFinishZone(),(availableCellAlpha+=fadeDirection*fadeSpeed)>=1?(availableCellAlpha=1,fadeDirection=-1):availableCellAlpha<=0&&(availableCellAlpha=0,fadeDirection=1)}const fps=30,frameInterval=33.333333333333336;let lastFrameTime=performance.now(),availableCellAlpha=0,fadeDirection=1;const fadeSpeed=.06;let cameraX=0,cameraY=0;const interpolationSpeed=.03;function updateCamera(){let e=player.x*cellSize-canvas.width/2+cellSize/2,t=player.y*cellSize-canvas.height/2+cellSize/2;cameraX=lerp(cameraX,e,.03),cameraY=lerp(cameraY,t,.03)}function lerp(e,t,l){return e*(1-l)+t*l}function drawGame(){ctx.clearRect(0,0,canvas.width,canvas.height),updateCamera(),ctx.save(),ctx.translate(-cameraX,-cameraY);let e=shake();walls.forEach(t=>{ctx.save(),ctx.translate(t.x*cellSize+e.x,t.y*cellSize+e.y),utils.drawBrickPattern(ctx,t.x,t.y,cellSize,colors),ctx.restore()}),carpets.forEach(t=>{ctx.save(),ctx.translate(t.x*cellSize+e.x,t.y*cellSize+e.y),utils.drawCarpet(ctx,t.x,t.y,cellSize,cellSize),ctx.restore()}),ctx.fillStyle=colors.finishZone,ctx.save(),ctx.translate(finishZone.x*cellSize+e.x,finishZone.y*cellSize+e.y),utils.drawFinish(ctx,finishZone.x,finishZone.y,cellSize),ctx.restore(),ctx.save(),ctx.translate(box.x*cellSize+e.x,box.y*cellSize+e.y),utils.drawDiamond(ctx,box.x,box.y,cellSize,cellSize),ctx.restore();let t=utils.getAvailableCells(player);if(ctx.fillStyle="#dddddd",ctx.globalAlpha=availableCellAlpha,t.forEach(t=>{ctx.save(),ctx.translate(t.x*cellSize+e.x,t.y*cellSize+e.y),utils.drawRoundedRect(0,0,cellSize,cellSize,.1*cellSize),ctx.restore()}),ctx.globalAlpha=1,ctx.fillStyle=colors.player,ctx.save(),ctx.translate(player.x*cellSize,player.y*cellSize),utils.drawRoundedRectPlayer(0,0,player.width,player.height,.1*cellSize),ctx.restore(),ctx.fillStyle="#fff",ctx.beginPath(),ctx.arc((player.x+.7)*cellSize,(player.y+.4)*cellSize,cellSize/10,0,2*Math.PI),ctx.fill(),ctx.restore(),1==currentLevel){let l=tutorialSteps[currentTutorialStep].message;utils.drawTutorial(ctx,cellSize,l,availableCellAlpha),updateTutorial()}if(particles.forEach((e,t)=>{e.update(),e.draw(ctx,cameraX,cameraY),0===e.alpha&&particles.splice(t,1)}),checkBoxInFinishZone(),isBoxInFinishZone){utils.drawCongratulationsUI(ctx,canvas,colors,nextLevel,cellSize),1==GAME_STATE&&(sound.play(),GAME_STATE=3);let a=utils.getButtonById("nextLevel");a&&(a.active=!0)}else{let i=utils.getButtonById("nextLevel");i&&(i.active=!1)}utils.drawButton("menu",2,canvas.width-1.8*cellSize,.2*cellSize,1.6*cellSize,.6*cellSize,"MENU",showMenu,colors,!0,cellSize),utils.drawButton("restart",2,.2*cellSize,.2*cellSize,1.6*cellSize,.6*cellSize,"RESTART",restartLevel,colors,!0,cellSize),utils.drawButton("pause",2,canvas.width/2-cellSize/2,.2*cellSize,1.6*cellSize,.6*cellSize,"PAUSE",togglePause,colors,!0,cellSize)}function restartLevel(){startLevel(currentLevel)}function nextLevel(){showMenu(),currentLevel>2&&showInterstital(),3==currentLevel&&updateLevel(),isBoxInFinishZone=!1}function updateLevel(){GamePix.updateLevel(currentLevel),10==currentLevel&&GamePix.happyMoment()}function showInterstital(){utils.pauseAudio(),isPaused=!0,cancelAnimationFrame(animationFrame),GamePix.interstitialAd().then(function(e){utils.getSound()&&utils.resumeAudio(),isPaused=!1,animationFrame=requestAnimationFrame(gameLoop),e.success})}function isCollision(e,t){return walls.some(l=>l.x===e&&l.y===t)}function movePlayer(e,t){let l=player.x+e,a=player.y+t;if(!isCollision(l,a)){if(player.x,player.y,l===box.x&&a===box.y){let i=box.x+e,n=box.y+t;isCollision(i,n)||(box.x=i,box.y=n,animatePlayerMovement(l,a,()=>{player.x=l,player.y=a,player.width=cellSize,player.height=cellSize}))}else animatePlayerMovement(l,a,()=>{player.x=l,player.y=a,player.width=cellSize,player.height=cellSize})}}function animatePlayerMovement(e,t,l){let a=player.x*cellSize,i=player.y*cellSize,n=e*cellSize,c=t*cellSize,o=performance.now();function r(e){var t;let s=Math.min((e-o)/200,1),u=(t=s)<.5?2*t*t:-1+(4-2*t)*t;s<.5?(player.width=cellSize*(1+.30000000000000004*u),player.height=cellSize*(1-.15000000000000002*u)):(player.width=cellSize*(1+(1-u)*.30000000000000004),player.height=cellSize*(1-(1-u)*.15000000000000002));let d=a+(n-a)*u-(player.width-cellSize)/2,h=i+(c-i)*u-(player.height-cellSize)/2;ctx.clearRect(0,0,canvas.width,canvas.height),draw(d,h),s<1?requestAnimationFrame(r):(l(),draw(n,c))}requestAnimationFrame(r)}function movePlayerKeyboard(e){switch(e.key){case"ArrowUp":movePlayer(0,-1);break;case"ArrowDown":movePlayer(0,1);break;case"ArrowLeft":movePlayer(-1,0);break;case"ArrowRight":movePlayer(1,0)}}function isPushing(e,t){return e.x+e.width>=t.x&&e.x+e.width<=t.x+t.width&&e.y+e.height>t.y&&e.y<t.y+t.height&&e.isMovingRight}canvas.addEventListener("touchstart",function(e){let t=e.touches[0],l=canvas.getBoundingClientRect(),a=t.clientX-l.left,i=t.clientY-l.top;if(utils.getButtons().forEach(e=>{a>=e.x&&a<=e.x+e.width&&i>=e.y&&i<=e.y+e.height&&(1==e.state&&0==GAME_STATE?e.onClick():2==e.state&&1==GAME_STATE?e.onClick():3==e.state&&3==GAME_STATE&&e.onClick())}),!inMenu){let n=Math.floor((a+cameraX)/cellSize),c=Math.floor((i+cameraY)/cellSize);Math.abs(n-player.x)+Math.abs(c-player.y)===1&&(movePlayer(n-player.x,c-player.y),console.log("move player  x "+(n-player.x)+"  y "+(c-player.y)))}});
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+var cellSize = 80;
+var gridWidth = canvas.width / cellSize;
+var gridHeight = canvas.height / cellSize;
+
+let inMenu = true;
+
+
+//var utils = new Utils();
+
+//  camera = new Camera(shapes, canvas, bricks);
+
+
+const colors = {
+  gameFloor: "#FFF",
+  player: "#2F1AE8",
+  box: "#5945FF",
+  finishZone: "#B400FF",
+  bricks: "#0F027A",
+  uiText: "#BBB3FF",
+
+  bunnyBody: "#F5A9BC", // Light pink
+  bunnyEars: "#FF99CC", // Pink
+  bunnyEyes: "#000000", // Black
+
+  lightYellow: '#FFD700', // Example color
+  mediumYellow: '#FFC200', // Example color
+  darkYellow: '#FFB000', // Example color
+  lightBrown: '#D2B48C', // Example color
+  mediumBrown: '#C48A3D', // Example color
+  darkBrown: '#A0522D', // Example color
+
+
+  clickable: "#7D24B2",
+  nonClickable: "#A9A9A9",
+  completed: "#4F1571",
+};
+
+
+var cStart = 1;
+
+
+let currentLevel = 0;
+
+let playerLevel = 1;
+
+var completedLevels = [false, false, false, false, false, false, false, false, false, false]; // Assuming there are 3 levels
+
+
+//var completedLevels = [true, true, true, true, true, true, true, true, true, true]; 
+
+
+let player, box, finishZone, walls, carpets;
+
+let particles = [];
+
+let GAME_STATE = 0;
+
+
+
+
+
+
+var tracks = [];
+var sound = null;
+var font = null;
+var utils = null;
+
+
+
+
+function updateLevel() {
+
+  //let currentLevel = 10;
+  GamePix.updateLevel(currentLevel);
+
+  if (currentLevel == 10) {
+    GamePix.happyMoment();
+  }
+}
+
+
+function showInterstital() {
+
+  utils.pauseAudio();
+  isPaused = true;
+  cancelAnimationFrame(animationFrame);
+
+  GamePix.interstitialAd().then(function(res) {
+
+    // IMPORTANT: *** RESUME YOUR GAME ***
+    if (utils.getSound()) {
+      utils.resumeAudio();
+    }
+    isPaused = false;
+    animationFrame = requestAnimationFrame(gameLoop);
+
+    if (res.success) {
+      // Log the success if you want
+      //   info();
+    } else {
+
+      // Log the error if you want
+      //    errorInfo();
+
+    }
+
+
+  });
+
+
+}
+
+
+
+
+
+
+
+
+
+function preloadAssets() {
+  const audioFiles = [
+      '/arcade1-142093.mp3',
+      '/arcade2-158813.mp3',
+      '/arcade3-158814.mp3'
+    ];
+
+  const soundFile = '/beep3-98810.mp3';
+  const fontName = 'Pacifico';
+  const fontUrl = 'url(Pacifico-Regular.ttf)';
+
+  const loadAudio = (file) => {
+    return new Promise((resolve, reject) => {
+      const audio = new Audio(file);
+      audio.oncanplaythrough = () => {
+        resolve(audio);
+      };
+      audio.onerror = (e) => {
+        reject(new Error(`Failed to load audio file: ${file}`));
+      };
+    });
+  };
+
+  const loadFont = (name, url) => {
+    return new Promise((resolve, reject) => {
+      const font = new FontFace(name, url);
+      font.load().then(loadedFont => {
+        document.fonts.add(loadedFont);
+        resolve(loadedFont);
+      }).catch(error => {
+        reject(new Error(`Failed to load font: ${name}`));
+      });
+    });
+  };
+
+  const loadUtils = () => {
+    return new Promise((resolve, reject) => {
+      try {
+        const utils = new Utils(this);
+        resolve(utils);
+      } catch (error) {
+        reject(new Error('Failed to load Utils'));
+      }
+    });
+  };
+
+  const audioPromises = audioFiles.map(loadAudio);
+  const soundPromise = loadAudio(soundFile);
+  const fontPromise = loadFont(fontName, fontUrl);
+  const utilsPromise = loadUtils();
+
+  return Promise.all([...audioPromises, soundPromise, fontPromise, utilsPromise])
+    .then(results => {
+      // Assign loaded assets to the class properties
+      tracks = results.slice(0, audioFiles.length);
+      sound = results[audioFiles.length];
+      font = results[audioFiles.length + 1];
+      utils = results[audioFiles.length + 2];
+
+      utils.setTrack(tracks);
+
+
+      console.log('All assets preloaded successfully.');
+    })
+    .catch(error => {
+      console.error('Error preloading assets:', error);
+    });
+}
+
+
+
+
+
+
+
+// 1
+window.addEventListener('load', () => {
+  //  init();
+  //  window.addEventListener('resize', resizeCanvas);
+  start();
+
+  console.log("page load");
+});
+
+
+
+
+// 2
+function start() {
+  preloadAssets()
+    .then(() => {
+      // Initialize game or show start screen
+      console.log('Game started');
+      init();
+    })
+    .catch((error) => {
+      console.error('Error starting the game:', error);
+    });
+}
+
+
+
+
+
+
+// 3
+
+function init() {
+  //  utils.playNextTrack();
+//  cStart = 1;
+
+  resizeCanvas();
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  
+  drawMenuStart();
+
+
+  document.getElementById('startButton').addEventListener('click', () => {
+    
+    
+    utils.playNextTrack();
+    
+    console.log("start click");
+
+
+    inMenu = true;
+    
+    utils.drawMenu(ctx, canvas, cellSize, colors);
+    
+    GAME_STATE = 0;
+
+  document.getElementById('startButton').style.display = 'none';
+
+  });
+  
+  
+  
+  // Event listener for keydown event
+    window.addEventListener('keydown', function(event) {
+      movePlayerKeyboard(event);
+    
+    });
+
+  
+}
+
+
+
+
+
+
+
+function resizeCanvas() {
+  // Set canvas size to window size
+
+  console.log("canvas width : " + canvas.width + "  canvas height : " + canvas.height);
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  console.log("2 canvas width : " + canvas.width + "  canvas height : " + canvas.height);
+
+
+  //  cellSize = Math.min(window.innerWidth, window.innerHeight) / 10;
+
+  cellSize = Math.min(canvas.width, canvas.height) / 10;
+
+  // Call to update the canvas and cellSize initially
+
+  // Recalculate grid dimensions based on new canvas size
+  gridWidth = canvas.width / cellSize;
+  gridHeight = canvas.height / cellSize;
+
+  if (GAME_STATE == 1) {
+    //    movePlayer(0, 0);
+  }
+
+
+  console.log("window innerWidth: " + window.innerWidth + " innerHeight: " + window.innerHeight + "  cellSize: " + cellSize + " gridWidth: " + gridWidth + "  gridHeight: " + gridHeight);
+
+
+}
+
+
+
+
+// 4
+
+function drawMenuStart() {
+  
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+
+  const layout = utils.getLevels()[2];
+
+  walls = [];
+
+  for (let y = 0; y < layout.length; y++) {
+
+    for (let x = 0; x < layout[y].length; x++) {
+      if (layout[y][x] === 1) {
+        walls.push({ x, y });
+      } 
+
+    }
+
+  }
+
+
+  walls.forEach(wall => {
+    ctx.save();
+    ctx.translate((wall.x * cellSize), (wall.y * cellSize));
+    //  drawRoundedRect(0, 0, cellSize, cellSize, 10);
+
+    utils.drawBrickPattern(ctx, wall.x, wall.y, cellSize, colors);
+
+    ctx.restore();
+  });
+
+
+  ctx.fillStyle = "#444";
+
+  ctx.font = (cellSize * 1) + "px Pacifico";
+  ctx.fillText("Brickbox", canvas.width / 2 - (cellSize * 1.6), (cellSize * 2));
+
+  /*  utils.drawButton('startGame', 1, canvas.width / 2 - 100, 100, cellSize * 3, cellSize, "Start Game", () => navigateToLevelSelection(), colors, true);
+   */
+  GAME_STATE = 0;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+// Start the loop
+
+
+function createParticles(x, y) {
+  const numParticles = 20;
+  for (let i = 0; i < numParticles; i++) {
+    particles.push(new Particle(x + cellSize / 2, y + cellSize / 2, '#CCCCCC')); // You can adjust the color as needed
+  }
+}
+
+
+
+// 5
+
+
+function startLevel(level) {
+
+  cStart = 2;
+
+
+  if (level == 1) {
+
+
+  }
+
+  if (utils.getSound()) {
+    
+    utils.pauseAudio();
+    isPaused = true;
+    cancelAnimationFrame(animationFrame);
+
+    utils.resumeAudio();
+    isPaused = false;
+    animationFrame = requestAnimationFrame(gameLoop);
+
+  }
+
+
+
+  currentLevel = level;
+  const layout = utils.getLevels()[currentLevel - 1];
+  finishZone = { x: 4, y: 4 }; // Update according to layout
+  walls = [];
+
+  carpets = [];
+
+
+  GAME_STATE = 1;
+
+  for (let y = 0; y < layout.length; y++) {
+
+    for (let x = 0; x < layout[y].length; x++) {
+      if (layout[y][x] === 1) {
+        walls.push({ x, y });
+      } else if (layout[y][x] === 2) {
+        finishZone = { x, y };
+
+
+      } else if (layout[y][x] === 3) {
+        player = { x: x, y: y, width: cellSize, height: cellSize };
+
+      } else if (layout[y][x] === 4) {
+        box = { x: x, y: y }; // Update according to layout
+
+      }
+      else if (layout[y][x] === 5) {
+
+        carpets.push({ x, y }); // Update according to layout
+
+      }
+
+
+    }
+
+  }
+
+  animationFrame = requestAnimationFrame(gameLoop);
+
+  //  buttons = [];
+  isBoxInFinishZone = false;
+
+  inMenu = false;
+  
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+//    drawGame();
+  
+  
+  gameLoop();
+
+}
+
+
+
+
+
+
+
+
+// 6
+
+
+function gameLoop() {
+
+  if (isPaused || inMenu) return;
+
+  // animationFrame = requestAnimationFrame(gameLoop);
+
+  const now = performance.now();
+  const delta = now - lastFrameTime;
+
+  if (delta >= frameInterval) {
+    updateGame();
+    
+  
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+   if(!inMenu) {
+    drawGame();
+   }
+    
+    lastFrameTime = now - (delta % frameInterval);
+
+
+  }
+
+  animationFrame = requestAnimationFrame(gameLoop);
+}
+
+
+
+
+
+
+
+
+
+
+function showMenu() {
+  cancelAnimationFrame(animationFrame);
+  inMenu = true;
+    GAME_STATE = 0;
+
+      utils.drawMenu(ctx, canvas, cellSize, colors);
+
+  
+
+}
+
+function shake(intensity = (cellSize * 0.08)) {
+  return {
+    x: (Math.random() - 0.5) * intensity,
+    y: (Math.random() - 0.5) * intensity
+  };
+}
+
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawGame();
+  
+}
+
+
+
+
+
+
+
+
+canvas.addEventListener('click', handleMouseClick);
+canvas.addEventListener('touchstart', handleTouchStart);
+
+function handleMouseClick(event) {
+  const mouseX = event.clientX - canvas.offsetLeft;
+  const mouseY = event.clientY - canvas.offsetTop;
+//  checkButtonClick(mouseX, mouseY);
+}
+
+function handleTouchStart(event) {
+  const touchX = event.touches[0].clientX - canvas.offsetLeft;
+  const touchY = event.touches[0].clientY - canvas.offsetTop;
+  checkButtonClick(touchX, touchY);
+}
+
+function checkButtonClick(x, y) {
+  for (const button of utils.getButtons()) {
+    if (button.active && x >= button.x && x <= button.x + button.width && y >= button.y && y <= button.y + button.height) {
+      button.onClick();
+      // playNextTrack();
+
+      break;
+    }
+  }
+}
+
+
+
+
+
+let soundC = 2;
+
+
+function toggleSound() {
+  // utils.setSound(!utils.getSound());
+
+  if (soundC == 1) {
+    utils.setSoundText('Sound: On');
+    utils.resumeAudio();
+
+    console.log("sound on"); //
+
+    soundC = 2;
+
+  } else if (soundC == 2) {
+    utils.setSoundText('Sound: Off');
+    utils.pauseAudio();
+
+    console.log("sound off"); //
+
+    soundC = 1;
+
+  }
+
+    drawMenu();
+
+}
+
+
+
+
+
+let isPaused = false;
+let animationFrame;
+
+function togglePause() {
+  if (isPaused) {
+    if (utils.getSound()) {
+      utils.resumeAudio();
+    }
+    isPaused = false;
+    animationFrame = requestAnimationFrame(gameLoop);
+  } else {
+    utils.pauseAudio();
+    isPaused = true;
+    cancelAnimationFrame(animationFrame);
+  }
+}
+
+
+
+
+
+function pauseGame() {
+  //  isPaused = true;
+
+  console.log("paused ");
+
+}
+
+function resumeGame() {
+  //  isPaused = false;
+  // gameLoop();
+
+  console.log("resume ");
+
+}
+
+
+
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    pauseGame();
+    utils.pauseAudio();
+    isPaused = true;
+    cancelAnimationFrame(animationFrame);
+    console.log("visibilitychange ");
+
+    utils.drawPauseScreen(ctx, cellSize, resumeScreen, colors);
+
+
+  }
+});
+
+
+
+
+
+function resumeScreen() {
+
+  updateGame();
+
+  if (utils.getSound()) {
+    utils.resumeAudio();
+  }
+  isPaused = false;
+  animationFrame = requestAnimationFrame(gameLoop);
+
+}
+
+
+
+var currentTutorialStep = 0;
+
+
+const tutorialSteps3 = [
+  {
+    message: "Press the grey area that surround the player to move.",
+    condition: () => hasMoved()
+    },
+  {
+    message: "Push the diamond to the finish zone.",
+    condition: () => box.x === finishZone.x && box.y === finishZone.y
+    },
+  {
+    message: "Well done! You have completed the 1st level.",
+    condition: () => false // No more steps after this
+    }
+];
+
+
+const tutorialSteps = [
+  {
+    message: "Direct thy brave knight by tapping <br>the grey tiles surrounding him <br>(Arrowkeys on PC) to advance.",
+    condition: () => hasMoved()
+  },
+  {
+    message: "Move the mystical jewel to <br>the destined finish zone.",
+    condition: () => box.x === finishZone.x && box.y === finishZone.y
+  },
+  {
+    message: "Congratulations! <br>Thou has conquered the first quest.",
+    condition: () => false // No more steps after this
+  }
+];
+
+
+
+function hasMoved() {
+  return player.x > 2;
+}
+
+function updateTutorial() {
+  if (tutorialSteps[currentTutorialStep].condition()) {
+    currentTutorialStep++;
+  }
+}
+
+
+
+
+
+let isBoxInFinishZone = false;
+
+function checkBoxInFinishZone() {
+  if (box.x === finishZone.x && box.y === finishZone.y) {
+    isBoxInFinishZone = true;
+
+    if (playerLevel > currentLevel) {
+      playerLevel++;
+    }
+
+    completedLevels[currentLevel - 1] = true;
+
+    const nextLevelButton = utils.getButtonById('nextLevel');
+    if (nextLevelButton) {
+      nextLevelButton.active = true;
+    }
+
+  } else {
+    isBoxInFinishZone = false;
+  }
+}
+
+
+function updateGame() {
+  // Update game logic here (e.g., player movement, collision detection)
+  updateCamera();
+  updateTutorial();
+  checkBoxInFinishZone();
+
+  // Update alpha value for fade in and out effect
+  availableCellAlpha += fadeDirection * fadeSpeed;
+  if (availableCellAlpha >= 1) {
+    availableCellAlpha = 1;
+    fadeDirection = -1; // Start fading out
+  } else if (availableCellAlpha <= 0) {
+    availableCellAlpha = 0;
+    fadeDirection = 1; // Start fading in
+  }
+
+
+}
+
+const fps = 30;
+const frameInterval = 1000 / fps;
+let lastFrameTime = performance.now();
+
+// Start the game loop
+
+
+let availableCellAlpha = 0;
+let fadeDirection = 1; // 1 for fade in, -1 for fade out
+const fadeSpeed = 0.06; // Adjust this for speed of the fade
+
+
+// Define Camera Parameters
+let cameraX = 0;
+let cameraY = 0;
+const interpolationSpeed = 0.03; // Adjust this value for desired interpolation speed
+
+// Update Camera Position
+function updateCamera() {
+  // Calculate target position to center the player
+  const targetX = player.x * cellSize - canvas.width / 2 + cellSize / 2;
+  const targetY = player.y * cellSize - canvas.height / 2 + cellSize / 2;
+
+  // Apply linear interpolation to move the camera towards the target position
+  cameraX = lerp(cameraX, targetX, interpolationSpeed);
+  cameraY = lerp(cameraY, targetY, interpolationSpeed);
+}
+
+// Linear Interpolation function
+function lerp(start, end, t) {
+  return start * (1 - t) + end * t;
+}
+
+// Draw with Camera Offset
+
+
+function drawGame() {
+
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Update camera position
+  updateCamera();
+
+  // Apply camera offset to drawing context
+  ctx.save();
+  ctx.translate(-cameraX, -cameraY);
+
+  // Draw game elements relative to camera position
+
+
+
+  const shakeOffset = shake();
+
+  // Draw walls with rounded corners and pattern
+
+  walls.forEach(wall => {
+    ctx.save();
+    ctx.translate((wall.x * cellSize) + shakeOffset.x, (wall.y * cellSize) + shakeOffset.y);
+    //  drawRoundedRect(0, 0, cellSize, cellSize, 10);
+
+    utils.drawBrickPattern(ctx, wall.x, wall.y, cellSize, colors);
+
+    ctx.restore();
+  });
+
+
+
+  carpets.forEach(carpet => {
+    ctx.save();
+    ctx.translate((carpet.x * cellSize) + shakeOffset.x, (carpet.y * cellSize) + shakeOffset.y);
+    //  drawRoundedRect(0, 0, cellSize, cellSize, 10);
+
+    utils.drawCarpet(ctx, carpet.x, carpet.y, cellSize, cellSize);
+
+    ctx.restore();
+  });
+
+
+
+
+  // Draw finish zone with rounded corners
+  ctx.fillStyle = colors.finishZone;
+  ctx.save();
+  ctx.translate((finishZone.x * cellSize) + shakeOffset.x, (finishZone.y * cellSize) + shakeOffset.y);
+  //  drawRoundedRect(0, 0, cellSize, cellSize, 10);
+
+  utils.drawFinish(ctx, finishZone.x, finishZone.y, cellSize);
+
+  ctx.restore();
+
+
+
+  // Draw box with rounded corners and pattern
+
+  ctx.save();
+  ctx.translate((box.x * cellSize) + shakeOffset.x, (box.y * cellSize) + shakeOffset.y);
+  // drawRoundedRect(0, 0, cellSize, cellSize, 10);
+  // drawHexagon(ctx, box.x, box.y, cellSize, cellSize);
+
+  utils.drawDiamond(ctx, box.x, box.y, cellSize, cellSize);
+  //   drawHexagonWithTriangles(ctx, box.x, box.y, cellSize, cellSize);
+  ctx.restore();
+
+
+  // Draw available cells with rounded corners and fade in/out effect
+  const availableCells = utils.getAvailableCells(player);
+  ctx.fillStyle = '#dddddd';
+  ctx.globalAlpha = availableCellAlpha; // Set transparency
+  availableCells.forEach(cell => {
+    ctx.save();
+    ctx.translate((cell.x * cellSize) + shakeOffset.x, (cell.y * cellSize) + shakeOffset.y);
+    utils.drawRoundedRect(0, 0, cellSize, cellSize, cellSize * 0.1);
+    ctx.restore();
+  });
+  ctx.globalAlpha = 1.0; // Reset transparency
+
+
+
+  // Draw player with rounded corners
+  ctx.fillStyle = colors.player;
+  ctx.save();
+  ctx.translate(player.x * cellSize, player.y * cellSize);
+
+  utils.drawRoundedRectPlayer(0, 0, player.width, player.height, (cellSize * 0.1));
+
+  ctx.restore();
+
+
+  // Inside the rendering loop (drawGame function)
+  // Calculate player movement direction (dx, dy) based on the previous and current player positions
+
+
+  // Draw bunny eyes with animated pupils
+  // Update pupil position based on player movement
+  // Draw bunny eyes
+  ctx.fillStyle = "#fff"; // Set eyes color
+  ctx.beginPath();
+  //   ctx.arc((player.x + 0.2) * cellSize, (player.y + 0.4) * cellSize, cellSize / 10, 0, Math.PI * 2);
+  ctx.arc((player.x + 0.7) * cellSize, (player.y + 0.4) * cellSize, cellSize / 10, 0, Math.PI * 2);
+  ctx.fill();
+
+
+
+  ctx.restore();
+
+
+
+
+  // Update tutorial
+  if (currentLevel == 1) {
+    // Draw tutorial
+    const message = tutorialSteps[currentTutorialStep].message;
+
+    utils.drawTutorial(ctx, cellSize, message, availableCellAlpha);
+    updateTutorial();
+  }
+
+
+  particles.forEach((particle, index) => {
+    particle.update();
+    particle.draw(ctx, cameraX, cameraY);
+    if (particle.alpha === 0) {
+      particles.splice(index, 1);
+    }
+  });
+
+  // Check if box is in finish zone
+  checkBoxInFinishZone();
+
+  // Show UI if box is in finish zone
+  if (isBoxInFinishZone) {
+
+
+    utils.drawCongratulationsUI(ctx, canvas, colors, nextLevel, cellSize);
+
+
+    if (GAME_STATE == 1) {
+
+      sound.play();
+      GAME_STATE = 3;
+
+    }
+
+
+    // Set the next level button to active
+    const nextLevelButton = utils.getButtonById('nextLevel');
+    if (nextLevelButton) {
+      nextLevelButton.active = true;
+    }
+
+
+  } else {
+
+    // Set the next level button to active
+    const nextLevelButton = utils.getButtonById('nextLevel');
+    if (nextLevelButton) {
+      nextLevelButton.active = false;
+    }
+
+
+
+  }
+
+
+  // Draw menu drawButton
+  utils.drawButton('menu', 2, canvas.width - (cellSize * 1.8), cellSize * 0.2, cellSize * 1.6, cellSize * 0.6, "MENU", showMenu, colors, true, cellSize);
+
+
+
+  // Draw restart button
+  utils.drawButton('restart', 2, cellSize * 0.2, cellSize * 0.2, cellSize * 1.6, cellSize * 0.6, "RESTART", restartLevel, colors, true, cellSize);
+
+
+  utils.drawButton('pause', 2, (canvas.width / 2) - (cellSize / 2), cellSize * 0.2, cellSize * 1.6, cellSize * 0.6, "PAUSE", togglePause, colors, true, cellSize);
+
+
+
+}
+
+
+function restartLevel() {
+
+  startLevel(currentLevel);
+
+}
+
+function nextLevel() {
+  //  currentLevel++;
+  //     playerLevel = playerLevel + 1;
+
+  showMenu();
+
+  if (currentLevel > 2) {
+
+    showInterstital();
+  }
+  //    startLevel(currentLevel + 1);
+
+  if (currentLevel == 3) {
+    updateLevel();
+  }
+
+  isBoxInFinishZone = false;
+}
+
+
+
+
+
+
+
+function isCollision(x, y) {
+  return walls.some(wall => wall.x === x && wall.y === y);
+}
+
+function movePlayer(dx, dy) {
+  const newPlayerX = player.x + dx;
+  const newPlayerY = player.y + dy;
+
+  //sound.play();
+
+  if (isCollision(newPlayerX, newPlayerY)) return;
+
+  const prevX = player.x * cellSize;
+
+  const prevY = player.y * cellSize;
+
+  if (newPlayerX === box.x && newPlayerY === box.y) {
+    const newBoxX = box.x + dx;
+    const newBoxY = box.y + dy;
+    if (!isCollision(newBoxX, newBoxY)) {
+      box.x = newBoxX;
+      box.y = newBoxY;
+      animatePlayerMovement(newPlayerX, newPlayerY, () => {
+        player.x = newPlayerX;
+        player.y = newPlayerY;
+        player.width = cellSize;
+        player.height = cellSize;
+      });
+
+      // createParticles(prevX, prevY);
+    }
+  } else {
+    animatePlayerMovement(newPlayerX, newPlayerY, () => {
+      player.x = newPlayerX;
+      player.y = newPlayerY;
+      player.width = cellSize;
+      player.height = cellSize;
+    });
+    //createParticles(prevX, prevY);
+
+  }
+}
+
+
+function animatePlayerMovement(targetX, targetY, onComplete) {
+  const duration = 200;
+  const startX = player.x * cellSize;
+  const startY = player.y * cellSize;
+  const targetPosX = targetX * cellSize;
+  const targetPosY = targetY * cellSize;
+  const startTime = performance.now();
+
+  const sensitivity = 3;
+
+  function easeInOutQuad(t) {
+    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+  }
+
+  function animate(time) {
+    const elapsed = time - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easedProgress = easeInOutQuad(progress);
+
+    const currentX = startX + (targetPosX - startX) * easedProgress;
+    const currentY = startY + (targetPosY - startY) * easedProgress;
+
+    // Subtle squeeze and stretch effect with adjustable sensitivity
+    const stretchFactor = 0.1 * sensitivity;
+    const squeezeFactor = 0.05 * sensitivity;
+
+    if (progress < 0.5) {
+      player.width = cellSize * (1 + easedProgress * stretchFactor);
+      player.height = cellSize * (1 - easedProgress * squeezeFactor);
+    } else {
+      player.width = cellSize * (1 + (1 - easedProgress) * stretchFactor);
+      player.height = cellSize * (1 - (1 - easedProgress) * squeezeFactor);
+    }
+
+    // Adjust the player position to stretch to all sides
+    const adjustedX = currentX - (player.width - cellSize) / 2;
+    const adjustedY = currentY - (player.height - cellSize) / 2;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    draw(adjustedX, adjustedY);
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      onComplete();
+      draw(targetPosX, targetPosY);
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+
+  
+  function movePlayerKeyboard(event) {
+    switch (event.key) {
+      case 'ArrowUp':
+       movePlayer(0, -1);
+
+        break;
+      case 'ArrowDown':
+       movePlayer(0, 1);
+
+        break;
+      case 'ArrowLeft':
+        movePlayer(-1, 0);
+
+        break;
+      case 'ArrowRight':
+        movePlayer(1, 0);
+
+        break;
+    }
+  
+}
+
+
+
+
+
+
+canvas.addEventListener('touchstart', function(event) {
+  const touch = event.touches[0];
+  const rect = canvas.getBoundingClientRect();
+  const x = touch.clientX - rect.left;
+  const y = touch.clientY - rect.top;
+
+
+  // Check if touch is within any button
+  utils.getButtons().forEach(button => {
+    if (x >= button.x && x <= button.x + button.width && y >= button.y && y <= button.y + button.height) {
+      if (button.state == 1 && GAME_STATE == 0) {
+        button.onClick();
+      } else if (button.state == 2 && GAME_STATE == 1) {
+        button.onClick();
+
+      } else if (button.state == 3 && GAME_STATE == 3) {
+        button.onClick();
+      }
+
+
+    }
+  });
+
+  // Handle touch events for moving the player after the camera move
+  if (!inMenu) {
+    // Calculate grid position relative to camera
+    const gridX = Math.floor((x + cameraX) / cellSize);
+    const gridY = Math.floor((y + cameraY) / cellSize);
+
+    if (Math.abs(gridX - player.x) + Math.abs(gridY - player.y) === 1) {
+      movePlayer(gridX - player.x, gridY - player.y);
+      
+      console.log("move player  x " + (gridX - player.x) +  "  y " + (gridY - player.y));
+    }
+  }
+});
+
+
+
+
+// Initial draw to show the menu
+//  draw();
+
+
+
+function isPushing(player, box) {
+  return player.x + player.width >= box.x &&
+    player.x + player.width <= box.x + box.width &&
+    player.y + player.height > box.y &&
+    player.y < box.y + box.height &&
+    player.isMovingRight; // Assuming isMovingRight is a boolean indicating the player is moving right
+}
+
+
