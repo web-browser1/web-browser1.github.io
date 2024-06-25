@@ -8,6 +8,7 @@ var gridHeight = canvas.height / cellSize;
 let inMenu = true;
 
 
+var debug = 1;
 //var utils = new Utils();
 
 //  camera = new Camera(shapes, canvas, bricks);
@@ -182,11 +183,15 @@ function preloadAssets() {
 
       utils.setTrack(tracks);
 
+                  displayError("All assets preloaded successfully ");
 
       console.log('All assets preloaded successfully.');
     })
     .catch(error => {
       console.error('Error preloading assets:', error);
+      
+                  displayError("error assets " + error);
+
     });
 }
 
@@ -203,6 +208,9 @@ window.addEventListener('load', () => {
   start();
 
   console.log("page load");
+  
+        displayError("page load");
+
 });
 
 
@@ -214,15 +222,31 @@ function start() {
     .then(() => {
       // Initialize game or show start screen
       console.log('Game started');
+      displayError("Game started");
       init();
     })
     .catch((error) => {
       console.error('Error starting the game:', error);
+      
+            displayError("error " + error);
+
     });
 }
 
 
 
+
+
+var dtext = "";
+
+function displayError(param) {
+  
+  dtext += param + "   \n";
+   if(debug == 1) {
+      document.getElementById('debug').innerText = dtext;
+   } 
+
+}
 
 
 
@@ -235,6 +259,13 @@ function init() {
   resizeCanvas();
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+    document.getElementById('startButton').style.display = 'block';
+
+   if(debug == 0) {
+      document.getElementById('debug').style.display = 'none';
+   } 
+
 
   
   drawMenuStart();
@@ -278,7 +309,7 @@ function init() {
 function resizeCanvas() {
   // Set canvas size to window size
 
-  console.log("canvas width : " + canvas.width + "  canvas height : " + canvas.height);
+//  console.log("canvas width : " + canvas.width + "  canvas height : " + canvas.height);
 
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -301,7 +332,7 @@ function resizeCanvas() {
   }
 
 
-  console.log("window innerWidth: " + window.innerWidth + " innerHeight: " + window.innerHeight + "  cellSize: " + cellSize + " gridWidth: " + gridWidth + "  gridHeight: " + gridHeight);
+   console.log("window innerWidth: " + window.innerWidth + " innerHeight: " + window.innerHeight + "  cellSize: " + cellSize + " gridWidth: " + gridWidth + "  gridHeight: " + gridHeight);
 
 
 }
@@ -749,13 +780,27 @@ function updateGame() {
 
   // Update alpha value for fade in and out effect
   availableCellAlpha += fadeDirection * fadeSpeed;
+  textAlpha += fadeDirectionText * 0.06;
+  
   if (availableCellAlpha >= 1) {
     availableCellAlpha = 1;
     fadeDirection = -1; // Start fading out
+    
   } else if (availableCellAlpha <= 0) {
     availableCellAlpha = 0;
     fadeDirection = 1; // Start fading in
   }
+
+
+  if (textAlpha >= 1) {
+    textAlpha = 1;
+    fadeDirectionText = -1; // Start fading out
+    
+  } else if (textAlpha <= 0.4) {
+    availableCellAlpha = 0.4;
+    fadeDirectionText = 1; // Start fading in
+  }
+
 
 
 }
@@ -768,6 +813,10 @@ let lastFrameTime = performance.now();
 
 
 let availableCellAlpha = 0;
+let textAlpha = 0;
+
+let fadeDirectionText = 1; // 1 for fade in, -1 for fade out
+
 let fadeDirection = 1; // 1 for fade in, -1 for fade out
 const fadeSpeed = 0.06; // Adjust this for speed of the fade
 
@@ -914,7 +963,7 @@ function drawGame() {
     // Draw tutorial
     const message = tutorialSteps[currentTutorialStep].message;
 
-    utils.drawTutorial(ctx, cellSize, message, availableCellAlpha);
+    utils.drawTutorial(ctx, cellSize, message, textAlpha);
     updateTutorial();
   }
 
@@ -976,9 +1025,8 @@ function drawGame() {
 
   utils.drawButton('pause', 2, (canvas.width / 2) - (cellSize / 2), cellSize * 0.2, cellSize * 1.6, cellSize * 0.6, "PAUSE", togglePause, colors, true, cellSize);
 
-
-
 }
+
 
 
 function restartLevel() {
