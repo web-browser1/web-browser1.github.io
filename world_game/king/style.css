@@ -20,6 +20,10 @@ body {
   margin: 0;
   padding: 0;
 }
+#debug {
+  
+  font-size: 0.6em;
+}
 
 .container {
   position: relative;
