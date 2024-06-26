@@ -117,21 +117,21 @@ function showInterstital() {
 
 
 
-
+var root = 'https://web-browser1.github.io/world_game/king';
 
 
 
 
 function preloadAssets() {
   const audioFiles = [
-      '/arcade1-142093.mp3',
-      '/arcade2-158813.mp3',
-      '/arcade3-158814.mp3'
+      root+'/arcade1-142093.mp3',
+      root+'/arcade2-158813.mp3',
+      root+'/arcade3-158814.mp3'
     ];
 
-  const soundFile = '/beep3-98810.mp3';
+  const soundFile = root+'/beep3-98810.mp3';
   const fontName = 'Pacifico';
-  const fontUrl = 'url(Pacifico-Regular.ttf)';
+  const fontUrl = 'url('+root+'/Pacifico-Regular.ttf)';
 
   const loadAudio = (file) => {
     return new Promise((resolve, reject) => {
