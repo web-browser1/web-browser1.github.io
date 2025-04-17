@@ -91,13 +91,13 @@ body {
 
 .element {
   position: relative;
-  animation: moveUpDown 2s ease-in-out infinite alternate;
+  animation: moveUpDown1 2s ease-in-out infinite alternate;
   /* Add other styles as needed */
   text-align: center;
   line-height: 100px;
 }
 
-@keyframes moveUpDown {
+@keyframes moveUpDown1 {
   0% {
     transform: translateY(0);
   }
