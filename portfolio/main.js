@@ -27,7 +27,7 @@ window.onload = window.onresize = function () {
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
 
-    sunX = WIDTH - (WIDTH*0.2);
+    sunX = WIDTH - (WIDTH*0.3);
    }
     
 };
