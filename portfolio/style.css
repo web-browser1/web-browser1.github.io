@@ -1,0 +1,385 @@
+/* Base Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15pt;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: #333; /* Default text color */
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px; /* Consistent maximum width for content */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Consistent padding around container content */
+    width: 900px;
+}
+
+/* Header and Navigation */
+.site-header {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.navigation {
+    padding: 10px 0;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center; /* Center the navigation links */
+}
+
+.nav-links li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Main Content Sections */
+.site-main > section {
+    padding: 60px 0; /* Consistent vertical padding for sections */
+    text-align: center; /* Default text alignment for sections */
+}
+
+/* Home Section */
+.hero-section {
+    background-color: #fff; /* Light background for contrast */
+}
+
+.hero-section .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 80px; /* Account for fixed navigation */
+    padding-bottom: 80px;
+}
+
+.hero-section .home-content {
+    text-align: center;
+    max-width: 50%;
+}
+
+.hero-section .hero-image {
+    max-width: 50%;
+    height: auto;
+    border-radius: 10px;
+    
+ 
+}
+
+.element {
+  position: relative;
+  animation: moveUpDown 2s ease-in-out infinite alternate;
+  /* Add other styles as needed */
+  text-align: center;
+  line-height: 100px;
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(12px);
+  }
+}
+
+
+
+/* Animation Section */
+.animation-section {
+    position: relative; /* For absolute positioning of graph elements */
+    background: hsl(347deg 100% 98.39999999999839%);
+    background-color: #eee; /* Another light background */
+
+ border-top-right-radius: 4em;
+ border-top-left-radius: 4em;
+ margin-top: -4em;
+}
+
+.text1 { 
+  background: hsl(347deg 95.09999999999971% 74.89999999999972%);
+  width: 100%;
+  height: 3px;
+  margin: 1em 0;
+
+}
+
+
+.animation-section .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#canvas {
+    margin-bottom: 0px;
+    border: 0px solid #ccc; /* Optional border for canvas */
+  
+    border-radius: 20px;
+    width: 70%;
+}
+
+.graph {
+  position: relative; /* For absolute positioning of graph elements */
+
+  
+}
+
+.graph-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-width: 600px; /* Control the width of the graph area */
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.graph-container img.tree {
+    width: 30px;
+    position: absolute;
+    bottom: 0;
+}
+
+.graph-container img.tree-1 {
+    left: 25%;
+}
+
+.graph-container img.tree-2 {
+    left: 65%;
+    width: 40px;
+
+}
+
+.graph-container img.tree-3 {
+    left: 55%;
+}
+
+.graph-container img.tree-4 {
+    left: 5%;
+    width: 50px;
+
+}
+
+.graph-container img.tree-5 {
+    left: 85%;
+}
+
+
+.graph-container img.mount {
+    width: 160px;
+    position: absolute;
+    bottom: 0;
+}
+
+.graph-container img.mount-1 {
+    left: 10%;
+    width: 130px;
+
+}
+
+.graph-container img.mount-2 {
+    left: 70%; /* Adjusted for better visual balance */
+}
+
+.animation-description {
+    color: #555;
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+/* Projects Section */
+.projects-section {
+    background-color: #f0f0f0; /* Light gray background */
+     border-top-right-radius: 0em;
+ border-top-left-radius: 0em;
+
+ z-index: 4;
+}
+
+.projects-section .container {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.projects-section h2 {
+    margin-bottom: 30px;
+}
+
+.project {
+  
+    margin: 60px;
+    background-color: white;
+    padding: 120px;
+    border-radius: 20px;
+    border: 0px solid #ddd; /* Subtle border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.project:nth-child(even) {
+    flex-direction: row-reverse; /* Alternate image/video position */
+}
+
+.project .project-details {
+    text-align: left;
+    max-width: 100%;
+    width: 100%;
+
+}
+
+.project .project-details h2 {
+    color: hsl(347deg 81.1% 41.1%);
+    margin-bottom: 10px;
+}
+
+.project .project-details p {
+    color: hsl(47deg 0% 20%);
+    line-height: 1.7;
+}
+
+.project .skills {
+    margin-top: 15px;
+}
+
+.skills-tag {
+    display: inline-block;
+    background-color: hsl(47deg 90% 20%);
+    color: hsl(47deg 90% 45.3%);
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+
+.project video {
+    max-width: 85%; /* Slightly reduced for better spacing */
+    height: auto;
+    border-radius: 10px;
+    margin: 2em;
+}
+
+/* About Section */
+.about-section {
+    background: hsl(347deg 100% 98.39999999999839%);
+    background-color: #e9ecef; /* Light background */
+width: 100%;
+text-align: center;
+
+
+  
+}
+
+.about-section .container {
+    
+    background: hsl(347deg 81.1% 41.1%);
+border-radius: 3em;
+padding: 2em;
+margin: 2em;
+position: relative;
+    box-shadow: 0 2px 25px rgba(0, 0, 0, 0.1);
+display: inline-block;
+}
+
+.about-section h1 {
+    margin-bottom: 30px;
+    color: hsl(347deg 100% 98.39999999999839%);
+
+}
+
+.about-section p {
+    line-height: 1.8;
+    max-width: 70%;
+    margin: 0 auto;
+    color: hsl(347deg 100% 98.39999999999839%);
+    
+
+}
+
+
+/* Link Styling */
+.github-logo-link {
+  display: inline-block; /* Allows setting width, height, padding, and margin */
+  text-decoration: none; /* Remove default link underline */
+  border-radius: 8px; /* Rounded corners for the background */
+   /* GitHub dark gray background color */
+    background: hsl(347deg 95.09999999999971% 24.89999999999972%);
+margin: 2em;
+  padding: 18px; /* Adjust padding as needed */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+.github-logo-link i {
+ color: #fff;
+ color: hsl(347deg 100% 98.39999999999839%);
+
+ font-size: 2em;
+}
+.github-logo-link:hover {
+
+  background: hsl(347deg 95.09999999999971% 54.89999999999972%);
+/* Darker gray on hover */
+}
+
+
+
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 60px;
+    color: #777;
+    font-size: 0.9em;
+}
+
+.site-footer .container {
+    padding: 20px; /* Ensure padding in the container */
+}
+
+/* Responsive Adjustments (Example) */
+@media (max-width: 768px) {
+    .hero-section .container,
+    .project {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-section .home-content,
+    .project .project-details,
+    .hero-section .hero-image,
+    .project video {
+        max-width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .navigation ul {
+        margin: 0 20px; /* Adjust navigation margins on smaller screens */
+    }
+
+    .nav-links li {
+        margin: 0 10px;
+    }
+}
