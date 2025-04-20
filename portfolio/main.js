@@ -27,7 +27,7 @@ window.onload = window.onresize = function () {
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
 
-    sunX = WIDTH - (WIDTH*0.3);
+    sunX = WIDTH - (WIDTH*0.6);
    }
     
 };
@@ -167,7 +167,7 @@ function main() {
         greet.innerHTML = "|\nGood evening";
     }*/
 
-sunX = WIDTH - (WIDTH * 0.3);
+sunX = WIDTH - (WIDTH * 0.6);
 
 
     sunTop = HEIGHT * 0.2;
